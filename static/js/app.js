@@ -235,7 +235,7 @@ mainModule.service('quizService', function ($http) {
     var base = local;
 
     function getQuizQuestions() {
-        return $http.get(base + '/questions');
+        return $http.get('/questions');
     }
 
     return {
@@ -287,7 +287,7 @@ mainModule.controller('Login', function ($rootScope, $scope, $http, $location, $
             authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)
         } : {};
 
-        $http.get(local + '/user', {
+        $http.get('/user', {
             headers: headers
         }).then(function (response) {
             if (response.data.name) {
