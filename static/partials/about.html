@@ -1,0 +1,78 @@
+<script language="JavaScript">
+
+    function toggleVisON(obj) {
+
+        with (document.getElementById(obj).style) {
+
+            if (visibility != 'visible') {
+                visibility = 'visible';
+            } else {
+                visibility = 'hidden';
+            }
+        }
+    }
+
+
+</script>
+<!-- ****************** SCREEN CONTENT ****************** -->
+
+<div id="content" class="content">
+
+
+    <!-- ****************** SECTION HEADER ****************** -->
+
+    <div class="section_header">About</div>
+
+    <!-- ****************** END SECTION HEADER ****************** -->
+
+
+    <!-- ****************** CONTENT AREA ****************** -->
+
+    <div class="content_body"><em><strong>Facing Ahead</strong></em> is an quiz created by S&K Publishers for couples
+        considering a long-term commitment like marriage. The questions are meant to bring up topics for conversation
+        that will help these couples understand what some of the large issues that face lifelong relationships can be,
+        and how they might approach them.<br><br>
+
+        There are no "right" or "wrong" answers in this quiz; it is meant to compare the two individuals' responses with
+        each other, to show areas of agreement and areas that may need to be discussed or dealt with before a commitment
+        like marriage is considered.
+    </div>
+
+
+    <md-button class="md-raised md-primary" ui-sref="howItWorks">See how it works</md-button>
+    <br/>
+    <md-button class="md-raised md-primary" ui-sref="quiz.families">Start the quiz</md-button>
+    <br/>
+    <md-button class="md-raised md-primary" ui-sref="topics">See how it works</md-button>
+    <br/>
+    <md-button class="md-raised md-primary" ng-show="!showPublishers" ng-click="togglePublishers()">Learn about S&K Publishers
+    </md-button>
+
+
+    <div ng-if="showPublishers">
+        <p class="why_title">S&K Publishers
+            <md-button class="md-primary" ng-click="togglePublishers()">Hide
+            </md-button>
+        </p>
+
+        <p class="why_body">S&K Publishers is run by Steve and Kathy Beirne. They have been actively involved in
+            marriage preparation and enrichment for more than 30 years.<br><br>
+
+            Steve has an M.A. in catechetical theology and has been an educator his whole life, beginning as a high
+            school teacher and then moving into adult education. Kathy received an M.A. in child and family studies from
+            the University of Missouri. In addition to her work in marriage education, she also teaches child
+            development in a local community college.<br><br>
+
+            They have written one book and many magazine articles on marriage and family, and have given talks and
+            workshops across the country. They married in 1967, have seven children, two sons-in-law and five
+            grandchildren, and live in Portland, Maine.</p>
+
+    </div>
+
+</div>
+
+
+<!-- ****************** END QUESTION CONFIRMATION AREA ****************** -->
+
+
+</div>

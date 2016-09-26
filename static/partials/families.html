@@ -1,0 +1,53 @@
+<div id="content">
+
+
+
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+            Sure</em></strong> button.
+    </div>
+
+    <div class="section_header">1. Families</div>
+
+    <div class="question_area">
+        <div class="question_body">I know the names, birthdates, and birthplaces of my parents.</div>
+    </div>
+
+    <div class="answer_area">
+
+        <div class="btn-group" ng-model="answers.families.radio" bs-radio-group>
+            <label class="btn btn-primary">
+                <input type="radio" class="btn btn-default" value="yes"> Yes</label>
+            <label class="btn btn-primary">
+                <input type="radio" class="btn btn-default" value="no"> No</label>
+            <label class="btn btn-primary">
+                <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
+        </div>
+
+        <div>
+            <div id="why_link" class="why_link_text">Why do we ask about Families?
+                <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}</button>
+
+
+            </div>
+
+            <div class="learnMorePanel" ng-show="showLearnMorePanel">
+                <p class="why_title">Families</p>
+                <p class="why_body">Family of origin is an important starting point for each couple. When one marries, he/she is marrying into the other person's family system. The task of each person upon entering marriage is to separate from one's own family of origin, while still remaining connected. To not separate is to make it impossible to create the marital union. At the same time, to cut off from one's family of origin is to threaten the marital relationship with too much pressure and intensity. It is important for both parties to go into marriage with an understanding of their own family background, as well as insight regarding their prospective marriage partner's family of origin.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-repeat="question in questions">
+        {{question.text}}
+
+        <div class="btn-group" ng-model="answers.families.radio" bs-radio-group>
+            <label class="btn btn-primary">
+                <input type="radio" class="btn btn-default" value="yes"> Yes</label>
+            <label class="btn btn-primary">
+                <input type="radio" class="btn btn-default" value="no"> No</label>
+            <label class="btn btn-primary">
+                <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
+        </div>
+    </div>
+</div>

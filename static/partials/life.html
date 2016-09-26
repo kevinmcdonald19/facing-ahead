@@ -1,0 +1,59 @@
+<div id="content">
+
+
+    <!-- ****************** DIRECTIONS ****************** -->
+
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement
+        below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+            Sure</em></strong> button.
+    </div>
+
+    <!-- ****************** END DIRECTIONS ****************** -->
+
+
+    <!-- ****************** SECTION HEADER ****************** -->
+
+    <div class="section_header">13. Inner Life</div>
+
+    <!-- ****************** END SECTION HEADER ****************** -->
+
+
+    <!-- ****************** QUESTION ****************** -->
+
+    <div class="question_area">
+            <div class="question_body">I know what my partner believes about religion.	</div>
+    </div>
+
+    <!-- ****************** END QUESTION ****************** -->
+
+
+    <!-- ****************** ANSWER BUTTONS ****************** -->
+
+    <div class="answer_area">
+        <div class="btn-group" ng-model="answers.life.radio" bs-radio-group>
+            <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="yes"> Yes</label>
+            <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="no"> No</label>
+            <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
+        </div>
+
+        <div id="why_link" class="why_link_text">Why do we ask about Catholicism?
+            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" :
+                "Hide"}}
+            </button>
+
+
+        </div>
+
+        <!-- ****************** END WHY LINK *********************** -->
+
+
+        <div class="learnMorePanel" ng-show="showLearnMorePanel">
+
+            <!-- ****************** END PREV & NEXT BUTTONS ****************** -->
+            <p class="why_title">Catholicism</p>
+            <p class="why_body">Even two practicing Catholics are not necessarily at the same place in their spiritual journey. This section asks the couple to look at their marriage, given that at least one is Catholic, and therefore having their marriage in the Catholic Church. It is important that they look at this as something each is freely choosing and that it requires from each one a basic understanding about what Catholics really believe, and what they especially believe regarding Catholic/Christian marriage.</p>
+
+        </div>
+    </div>
+    </div>
+</div>

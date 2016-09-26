@@ -1,0 +1,137 @@
+<div id="content">
+
+
+    <!-- ****************** SECTION HEADER ****************** -->
+
+    <div class="section_header">Confirm Your Answers</div>
+
+    <!-- ****************** END SECTION HEADER ****************** -->
+
+    <!-- ****************** DIRECTIONS ****************** -->
+
+    <div class="directions_body">Please review your answers and return to any questions you haven't answered, or would
+        like to update. You do not need to complete the entire quiz in one visit. If you'd like to save the answers
+        you've given, and come back to finish the quiz later, click <em><strong>Save & Exit</strong></em> at the bottom
+        of the page. If you are finished answering all the questions, and have confirmed all your answers, use the
+        <em><strong>Submit Answers</strong></em> button to see your results compared with your partner's.
+    </div>
+
+    <!-- ****************** END DIRECTIONS ****************** -->
+
+
+    <!-- ****************** QUESTION CONFIRMATION AREA ****************** -->
+
+    <div class="question_area_confirm">
+        <ol>
+            <li class="question_body_confirm">FAMILY OF ORIGIN: I know the names, birthdates, and birthplaces of my
+                parents.
+                <div class="answer_confirm">{{answers.families.radio}}</div>
+                <p ng-if="!answers.families.radio">You have not answered this question yet</p>
+
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.families')">Return to this question
+                </button>
+            </li>
+            <li class="question_body_confirm">RELATIONSHIP ROLES: I understand that people who live together need to
+                share household tasks.
+                <div class="answer_confirm">{{answers.roles.radio}}</div>
+                <p ng-if="!answers.roles.radio">You have not answered this question yet</p>
+
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.roles')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">FINANCES: I understand that there is no one right way to manage money.
+                <div class="answer_confirm">{{answers.finances.radio}}</div>
+                <p ng-if="!answers.finances.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.finances')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">VALUES: I understand that relationships are of the highest value.
+                <div class="answer_confirm">{{answers.values.radio}}</div>
+                <p ng-if="!answers.values.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.values')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">HABITS: I understand that physical abuse is never acceptable.
+                <div class="answer_confirm">{{answers.habits.radio}}</div>
+                <p ng-if="!answers.habits.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.habits')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">WORK/HOME: I understand that physical abuse is never acceptable.
+                <div class="answer_confirm">{{answers.work.radio}}</div>
+                <p ng-if="!answers.work.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.work')">Return to this question
+                </button>
+            </li>
+            <li class="question_body_confirm">FRIENDS AND LEISURE: I understand that a relationship should be based on
+                friendship.
+
+                <div class="answer_confirm">{{answers.leisure.radio}}</div>
+                <p ng-if="!answers.leisure.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.leisure')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">INTIMACY AND SEXUALITY: I understand that we should be respectful of one
+                another in our intimate relationship.
+
+                <div class="answer_confirm">{{answers.intimacy.radio}}</div>
+                <p ng-if="!answers.intimacy.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.intimacy')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">COMMUNITY LIFE: I know how our local government works.
+
+                <div class="answer_confirm">{{answers.community.radio}}</div>
+                <p ng-if="!answers.community.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.community')">Return to this question
+                </button>
+            </li>
+            <li class="question_body_confirm">COMMUNICATION: I know what “I” statements are
+                <div class="answer_confirm">{{answers.communication.radio}}</div>
+                <p ng-if="!answers.communication.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.communication')">Return to this
+                    question
+                </button>
+            </li>
+            <li class="question_body_confirm">PARENTING: I understand that, in a family, the parental relationship
+                should be primary.
+                <div class="answer_confirm">{{answers.parenting.radio}}</div>
+                <p ng-if="!answers.parenting.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.parenting')">Return to this question
+                </button>
+
+            </li>
+            <li class="question_body_confirm">SPEAKING PERSONALLY: I know that our relationship is solid.
+
+                <div class="answer_confirm">{{answers.speaking.radio}}</div>
+                <p ng-if="!answers.speaking.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.speaking')">Return to this question
+                </button>
+            </li>
+            <li class="question_body_confirm">INNER LIFE: I know what my partner believes about religion.
+
+                <div class="answer_confirm">{{answers.life.radio}}</div>
+                <p ng-if="!answers.life.radio">You have not answered this question yet</p>
+                <button class="btn btn-primary" ng-click="navigateToSection('quiz.life')">Return to this question
+                </button>
+            </li>
+        </ol>
+
+
+        <!-- ****************** SAVE OR SUBMIT BUTTONS ****************** -->
+
+        <div class="submit_area">
+            <button class="btn btn-default" ui-sref="home">Save & Exit</button>
+            <br/>
+            <button class="md-raised btn btn-primary" ui-sref="results">Submit Answers</button>
+
+
+        </div>
+    </div>
+</div>
