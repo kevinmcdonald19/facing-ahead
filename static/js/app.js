@@ -259,14 +259,24 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http) {
         $scope.showPublishers = !$scope.showPublishers;
     };
 
-    $http.get('http://localhost:8080/resource').then(function (data) {
-        self.greeting = data;
+    // test authentication
+    $http.get('/user').then(function (response) {
+        if (response.data.name) {
+            $rootScope.authenticated = true;
+            $rootScope.authenticationResponse = response;
+            $rootScope.userInfo = response.data.principal;
+        } else {
+            $rootScope.authenticated = false;
+        }
+        //callback && callback();
+    }, function (response) {
+        console.log(response);
+        $rootScope.authenticated = false;
+        //callback && callback();
     });
 
-    var local = "http://localhost:8080";
-
     $scope.logout = function () {
-        $http.post(local + '/logout', {}).finally(function () {
+        $http.post('/logout', {}).finally(function () {
             $rootScope.authenticated = false;
             $location.path("/");
         });
@@ -303,7 +313,6 @@ mainModule.controller('Login', function ($rootScope, $scope, $http, $location, $
             $rootScope.authenticated = false;
             callback && callback();
         });
-
     };
 
     authenticate();
