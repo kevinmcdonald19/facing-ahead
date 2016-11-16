@@ -6,22 +6,20 @@
             Sure</em></strong> button.
     </div>
 
+    <!--
+   <pre>
+    user's existing answers: <br/>
+        {{userQuestionsAnswersByCategory | json}}
+    </pre>
+-->
+
     <div class="section_header">1. Families</div>
 
     <div class="question_area">
-        <div class="question_body">I know the names, birthdates, and birthplaces of my parents.</div>
+        <div class="question_body">{{familiesQuestions[0].text}}</div>
     </div>
 
     <div class="answer_area">
-
-        <div class="btn-group" ng-model="answers.families.radio" bs-radio-group>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="yes"> Yes</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="no"> No</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
-        </div>
 
         <div>
             <div id="why_link" class="why_link_text">Why do we ask about Families?
@@ -36,18 +34,22 @@
             </div>
 
         </div>
+
+
     </div>
 
     <div ng-repeat="question in questions">
         {{question.text}}
+        <br/> {{question.id}}
 
-        <div class="btn-group" ng-model="answers.families.radio" bs-radio-group>
+        <div class="btn-group" ng-model="answers.families[question.question.id].radio" bs-radio-group>
             <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="yes"> Yes</label>
+                <input type="radio" class="btn btn-default" value="yes">Yes</label>
             <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="no"> No</label>
+                <input type="radio" class="btn btn-default" value="no">No</label>
             <label class="btn btn-primary">
                 <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
         </div>
+
     </div>
 </div>

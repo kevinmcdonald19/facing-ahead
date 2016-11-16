@@ -1,5 +1,6 @@
 package hello;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class QuestionsController {
+	
+	@RequestMapping("/user")
+	public Principal user(Principal user) {
+		return user;
+	}
 
 	@Autowired
 	private QuestionRepository questionsRepository;
 
-	@RequestMapping(value = "/{category}/questions", method = RequestMethod.GET)
+	@RequestMapping(value = "/questions/{category}", method = RequestMethod.GET)
 	public List<Question> getQuestionsByCategory(@PathVariable("category") String category) {
 		return questionsRepository.findByCategoryIgnoreCase(category);
 	}
@@ -33,15 +39,15 @@ public class QuestionsController {
 	}
 
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
-	public List<Question> getQuestion() {
+	public List<Question> getQuestions(Principal user) {
 		return questionsRepository.findAll();
 	}
 
-	@RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
-	public Question getQuestion(@PathVariable("id") String id) {
-		Question p = questionsRepository.findOne(id);
-		return p;
-	}
+//	@RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
+//	public Question getQuestion(@PathVariable("id") int id) {
+//		Question p = questionsRepository.findOne(id);
+//		return p;
+//	}
 
 	@RequestMapping(value = "/questions/{id}", method = RequestMethod.DELETE)
 	public Question deleteQuestion(@PathVariable("id") String id) {

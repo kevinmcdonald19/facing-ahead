@@ -218,9 +218,19 @@ mainModule.service('quizService', function ($http) {
 
     var answers = {};
 
-    function saveAnswers(answers) {
+    function saveAnswers(username, category, answers) {
         // todo: save this to the server rather than just in cache
         this.answers = answers;
+        //        return $http.post('/users/' + username + '/quizResponse/questionAnswers/' + category, answers);
+
+        return $http({
+            method: 'POST',
+            url: '/users/' + username + '/quizResponse/questionAnswers/' + category,
+            data: answers,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 
     function getAnswers() {
@@ -234,9 +244,16 @@ mainModule.service('quizService', function ($http) {
 
     var base = local;
 
-    function getQuizQuestions() {
-        return $http.get('/questions');
+    function getQuizQuestions(category) {
+        if (category) {
+            return $http.get('/questions' + '/' + category);
+        }
     }
+
+    function getUserQuestionAnswersByCategory(username, category) {
+        return $http.get('/users/' + username + '/quizResponse/questionAnswers/' + category);
+    }
+
 
     return {
         getQuizStates: getQuizStates,
@@ -245,6 +262,7 @@ mainModule.service('quizService', function ($http) {
 
         // service calls to get quiz questions
         getQuizQuestions: getQuizQuestions,
+        getUserQuestionAnswersByCategory: getUserQuestionAnswersByCategory,
 
         saveAnswers: saveAnswers,
         getAnswers: getAnswers
@@ -339,53 +357,121 @@ mainModule.controller('Login', function ($rootScope, $scope, $http, $location, $
 
 });
 
-mainModule.controller('QuizController', function ($scope, $state, $rootScope, $stateParams, quizService) {
+mainModule.controller('QuizController', function ($scope, $http, $state, $rootScope, $stateParams, quizService) {
 
-    if (!$rootScope.authenticated) {
-        $state.go('login', {
-            location: $state.current.name
+    initializeToggles();
+
+    function testAuthentication() {
+        // test authentication
+        $http.get('/user').then(function (response) {
+            if (response.data.name) {
+                $rootScope.authenticated = true;
+                $rootScope.authenticationResponse = response;
+                $rootScope.userInfo = response.data.principal;
+            } else {
+                $rootScope.authenticated = false;
+                console.log('user not authenticated');
+            }
+            firstPageSetup();
+        }, function (response) {
+            console.log(response);
+            $rootScope.authenticated = false;
+            //callback && callback();
         });
-    } else {
-        /* Navigation */
+    }
+
+    testAuthentication();
+
+
+    function firstPageSetup() {
         getQuizState();
 
-        // get questions
-        quizService.getQuizQuestions().then(function (data) {
-            console.log(data.data);
-            $scope.questions = data.data;
+        // obtain the users's answers
+        $scope.answers = {};
+        $scope.answers.families = {};
+        $scope.answers.families.radio = {};
+        var username = $rootScope.userInfo.username;
+        quizService.getUserQuestionAnswersByCategory(username, "families").then(function (response) {
+            $scope.questions = response.data;
+            for (var i = 0; i < response.data.length; i++) {
+                var questionAnswer = response.data[i];
+
+                $scope.answers.families[questionAnswer.question.id] = {};
+                $scope.answers.families[questionAnswer.question.id].radio = questionAnswer.answer;
+            }
+
+            console.log($scope.answers.families);
         });
 
-        $scope.goToPreviousState = function () {
-            quizService.saveAnswers($scope.answers);
-            $state.go($scope.quizState.previous).then(getQuizState);
-        };
+        $scope.clickSaveButton = function (category) {
+            var questionAnswers = new Object();
+            questionAnswers.updateQuestionAnswerDTOList = [];
 
-        $scope.goToNextState = function () {
-            console.log('going to: ' + $scope.quizState.next);
-            quizService.saveAnswers($scope.answers);
-            $state.go($scope.quizState.next).then(getQuizState);
-        };
+            // pick out just the values with question ID's as the key
+            var answersKeys = Object.keys($scope.answers.families);
+            for (var i = 0; i < answersKeys.length; i++) {
+                var key = answersKeys[i];
+                if (key != 'radio' && key != 'toggle') {
+                    var temp = {};
+                    temp.questionID = key;
+                    temp.answer = $scope.answers.families[answersKeys[i]].radio;
+                    questionAnswers.updateQuestionAnswerDTOList.push(temp);
+                }
+            }
 
+            // submit to the server!
+            quizService.saveAnswers(username, category, questionAnswers).then(function (response) {
+                for (var i = 0; i < response.data.length; i++) {
+                    var questionAnswer = response.data[i];
+                    $scope.answers.families[questionAnswer.question.id].radio = questionAnswer.answer;
+                    console.log($scope.answers.families[questionAnswer.question.id].radio);
+                }
+            });
+        }
+
+    }
+
+
+
+
+
+
+
+
+    $scope.goToPreviousState = function () {
+        // refresh answers
+        $state.go($scope.quizState.previous).then(getQuizState);
+    };
+
+    $scope.goToNextState = function () {
+        var currentState = getQuizState();
+
+        $scope.clickSaveButton(currentState);
+
+        $state.go($scope.quizState.next).then(getQuizState);
+    };
+
+    $scope.showLearnMorePanel = false;
+    $scope.togglePanel = function () {
+        $scope.showLearnMorePanel = !$scope.showLearnMorePanel;
+    }
+
+    $scope.navigateToSection = function (section) {
+        $state.go(section).then(getQuizState);
+    }
+
+    function getQuizState() {
+        var urlName = $state.current.name;
+        $scope.quizState = quizService.getQuizState(urlName);
+        console.log($scope.quizState);
         $scope.showLearnMorePanel = false;
-        $scope.togglePanel = function () {
-            $scope.showLearnMorePanel = !$scope.showLearnMorePanel;
-        }
+    }
 
-        $scope.navigateToSection = function (section) {
-            $state.go(section).then(getQuizState);
-        }
+    /* General */
+    var answers = {};
 
-        function getQuizState() {
-            var urlName = $state.current.name;
-            $scope.quizState = quizService.getQuizState(urlName);
-            console.log($scope.quizState);
-            $scope.showLearnMorePanel = false;
-        }
-
-        /* General */
-        var answers = {};
-
-        /* Storing the answers */
+    /* Storing the answers */
+    function initializeToggles() {
         $scope.answers = {};
         $scope.answers.families = {
             toggle: true
@@ -439,6 +525,8 @@ mainModule.controller('QuizController', function ($scope, $state, $rootScope, $s
             toggle: true
         };
     }
+
+    //    }
 });
 
 mainModule.controller('ResultsController', function ($scope, quizService) {
