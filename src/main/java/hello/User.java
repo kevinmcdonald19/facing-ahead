@@ -1,7 +1,5 @@
 package hello;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 
 import quiz_answers.QuizResponse;

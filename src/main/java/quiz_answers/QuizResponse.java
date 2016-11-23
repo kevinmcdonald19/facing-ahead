@@ -1,24 +1,46 @@
 package quiz_answers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import hello.Question;
 import hello.User;
 
-public class QuizResponse {	
+public class QuizResponse {
 
-	private List<QuestionAnswer> questionAnswers = new ArrayList<QuestionAnswer>();
+	private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>();
 	private User user;
-	
-	public QuizResponse(){
-		
+
+	public QuizResponse() {
+
 	}
 
 	public QuizResponse(List<Question> questions) {
-		for (Question question : questions){
+		for (Question question : questions) {
 			questionAnswers.add(new QuestionAnswer(question, null));
 		}
+	}
+
+	public void syncUserQuizResponse(List<Question> questions) {
+//		questionAnswers.clear();
+
+		// add any questions that haven't been added
+		for (Question question : questions) {
+			if (!containsQuestion(question)) {
+				questionAnswers.add(new QuestionAnswer(question, null));
+			}
+		}
+	}
+
+	private boolean containsQuestion(Question question) {
+		for (QuestionAnswer questionAnswer : questionAnswers) {
+			if (questionAnswer.getQuestion().getText().equals(question.getText())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public User getUser() {
@@ -29,21 +51,21 @@ public class QuizResponse {
 		this.user = user;
 	}
 
-	public List<QuestionAnswer> getQuestionAnswers() {
+	public Set<QuestionAnswer> getQuestionAnswers() {
 		return questionAnswers;
 	}
-	
-	public List<QuestionAnswer> getQuestionsByCategory(String category){
+
+	public List<QuestionAnswer> getQuestionsByCategory(String category) {
 		List<QuestionAnswer> filteredList = new ArrayList<QuestionAnswer>();
-		for (QuestionAnswer qa : this.questionAnswers){
-			if (qa.getQuestion().getCategory().equalsIgnoreCase(category)){
+		for (QuestionAnswer qa : this.questionAnswers) {
+			if (qa.getQuestion().getCategory().equalsIgnoreCase(category)) {
 				filteredList.add(qa);
 			}
 		}
 		return filteredList;
 	}
 
-	public void setQuestionAnswers(List<QuestionAnswer> questionAnswers) {
+	public void setQuestionAnswers(Set<QuestionAnswer> questionAnswers) {
 		this.questionAnswers = questionAnswers;
 	}
 

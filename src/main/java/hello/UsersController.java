@@ -1,6 +1,7 @@
 package hello;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,7 +62,9 @@ public class UsersController {
 			@PathVariable("category") String category) {
 		User savedUser = usersRepository.findByUsername(username);
 		QuizResponse quizResponse = savedUser.getQuizResponse();
-		return quizResponse.getQuestionsByCategory(category);
+		quizResponse.syncUserQuizResponse(questionRepository.findAll());
+		usersRepository.save(savedUser);
+		return savedUser.getQuizResponse().getQuestionsByCategory(category);
 	}
 
 	@RequestMapping(value = "/users/{username}/quizResponse/questionAnswers/{category}", method = RequestMethod.POST)
@@ -81,7 +84,7 @@ public class UsersController {
 		return savedUser.getQuizResponse().getQuestionsByCategory(category);
 	}
 
-	private QuestionAnswer findQuestionAnswerWithQuestion(List<QuestionAnswer> questionAnswerList, String questionID) {
+	private QuestionAnswer findQuestionAnswerWithQuestion(Set<QuestionAnswer> questionAnswerList, String questionID) {
 		for (QuestionAnswer questionAnswer : questionAnswerList) {
 			if (questionAnswer.getQuestion().getId().equals(questionID)) {
 				return questionAnswer;
