@@ -3,49 +3,24 @@
 
     <!-- ****************** DIRECTIONS ****************** -->
 
-    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement
-        below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
+    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
             Sure</em></strong> button.
     </div>
 
-    <!-- ****************** END DIRECTIONS ****************** -->
-
-
-    <!-- ****************** SECTION HEADER ****************** -->
 
     <div class="section_header">9. Community Life</div>
 
-    <!-- ****************** END SECTION HEADER ****************** -->
 
-
-    <!-- ****************** QUESTION ****************** -->
-
-    <div class="question_area">
-            <div class="question_body">I know how our local government works.</div>
-    </div>
-
-    <!-- ****************** END QUESTION ****************** -->
-
-
-    <!-- ****************** ANSWER BUTTONS ****************** -->
 
     <div class="answer_area">
-        <div class="btn-group" ng-model="answers.community.radio" bs-radio-group>
-            <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="yes"> Yes</label>
-            <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="no"> No</label>
-            <label class="btn btn-primary"><input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
-        </div>
+
 
         <div id="why_link" class="why_link_text">Why do we ask about Commitment?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" :
-                "Hide"}}
+            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
             </button>
 
 
         </div>
-
-        <!-- ****************** END WHY LINK *********************** -->
-
 
         <div class="learnMorePanel" ng-show="showLearnMorePanel">
 
@@ -53,6 +28,20 @@
             <p class="why_body">Too many movies, love songs, and TV shows reflect the notion that love is a feeling rather than a decision. This section has to do with choosing to love even when it might be difficult. Commitment is an agreement or a pledge to do something in the future, even when we may or may not feel like doing so. We act according to our agreement. Marriage represents such a commitment. We decide to love, with or without the loving feelings. What we also know about such a pledge is that when we do act based upon one's commitment we can create an atmosphere where the positive and loving feelings can more likely flourish.</p>
 
         </div>
+
+        <div ng-repeat="questionAnswer in community.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/> {{questionAnswer.id}}
+
+            <div class="btn-group" ng-model="community.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
+            </div>
+        </div>
     </div>
-    </div>
+
 </div>

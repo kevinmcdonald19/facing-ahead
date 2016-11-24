@@ -98,7 +98,8 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('quiz.confirmation', {
             url: "/confirmation",
-            templateUrl: "partials/confirmation.html"
+            templateUrl: "partials/confirmation.html",
+            controller: "ConfirmationController"
         })
         .state('login', {
             url: '/login',
@@ -254,6 +255,10 @@ mainModule.service('quizService', function ($http) {
         return $http.get('/users/' + username + '/quizResponse/questionAnswers/' + category);
     }
 
+    function getUserQuizResponse(username) {
+        return $http.get('/users/' + username + '/quizResponse');
+    }
+
 
     return {
         getQuizStates: getQuizStates,
@@ -263,6 +268,7 @@ mainModule.service('quizService', function ($http) {
         // service calls to get quiz questions
         getQuizQuestions: getQuizQuestions,
         getUserQuestionAnswersByCategory: getUserQuestionAnswersByCategory,
+        getUserQuizResponse: getUserQuizResponse,
 
         saveAnswers: saveAnswers,
         getAnswers: getAnswers
@@ -299,6 +305,13 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http) {
             $location.path("/");
         });
     };
+});
+
+mainModule.controller('ConfirmationController', function ($rootScope, $scope, $http, quizService) {
+    var username = $rootScope.userInfo.username;
+    quizService.getUserQuizResponse(username).then(function (response) {
+        $scope.quizResponse = response.data;
+    });
 });
 
 mainModule.controller('Login', function ($rootScope, $scope, $http, $location, $stateParams) {
@@ -392,65 +405,34 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
             financesPage();
         } else if (targetStateName == 'quiz.values') {
             valuesPage();
+        } else if (targetStateName == 'quiz.habits') {
+            habitsPage();
+        } else if (targetStateName == 'quiz.work') {
+            workPage();
+        } else if (targetStateName == 'quiz.leisure') {
+            leisurePage();
+        } else if (targetStateName == 'quiz.intimacy') {
+            intimacyPage();
+        } else if (targetStateName == 'quiz.community') {
+            communityPage();
+        } else if (targetStateName == 'quiz.communication') {
+            communicationPage();
+        } else if (targetStateName == 'quiz.parenting') {
+            parentingPage();
+        } else if (targetStateName == 'quiz.speaking') {
+            speakingPage();
+        } else if (targetStateName == 'quiz.life') {
+            lifePage();
         }
-
         getQuizState();
     }
 
     testAuthentication();
 
-    // FAMILIES page
-    function familiesPageSetup() {
-        console.log('families page setup');
-        getQuizState();
 
-        function initAnswers() {
-            // obtain the users's answers
-            $scope.answers = {};
-            $scope.answers.families = {};
-            $scope.answers.families.radio = {};
-        }
 
-        initAnswers();
-
-        var username = $rootScope.userInfo.username;
-        quizService.getUserQuestionAnswersByCategory(username, "families").then(function (response) {
-            $scope.questions = response.data;
-            for (var i = 0; i < response.data.length; i++) {
-                var questionAnswer = response.data[i];
-                $scope.answers.families[questionAnswer.question.id] = {};
-                $scope.answers.families[questionAnswer.question.id].radio = questionAnswer.answer;
-            }
-        });
-
-        $scope.clickSaveButton = function (category) {
-            console.log('saving answers for category: ' + category);
-            initAnswers();
-            var questionAnswers = {};
-            questionAnswers.updateQuestionAnswerDTOList = [];
-
-            // pick out just the values with question ID's as the key
-            var answersKeys = Object.keys($scope.answers.families);
-            for (var i = 0; i < answersKeys.length; i++) {
-                var key = answersKeys[i];
-                if (key != 'radio' && key != 'toggle') {
-                    var temp = {};
-                    temp.questionID = key;
-                    temp.answer = $scope.answers.families[answersKeys[i]].radio;
-                    questionAnswers.updateQuestionAnswerDTOList.push(temp);
-                }
-            }
-
-            // submit to the server!
-            var category = "families";
-            quizService.saveAnswers(username, category, questionAnswers).then(function (response) {
-                for (var i = 0; i < response.data.length; i++) {
-                    var questionAnswer = response.data[i];
-                    $scope.answers.families[questionAnswer.question.id] = {};
-                    $scope.answers.families[questionAnswer.question.id].radio = questionAnswer.answer;
-                }
-            });
-        }
+    $scope.saveFamilies = function () {
+        saveAnswers('families');
     }
 
     // ROLES
@@ -461,55 +443,124 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         $scope[category].answers.radio = {};
     }
 
+    function syncData(category, response) {
+        $scope[category].answers = {};
+
+        for (var i = 0; i < response.data.length; i++) {
+            var questionAnswer = response.data[i];
+            $scope[category].answers[questionAnswer.question.id] = {};
+            $scope[category].answers[questionAnswer.question.id].radio = questionAnswer.answer;
+        }
+    }
+
+    /* GET THE QUESTIONS */
     function getQuestions(category) {
         quizService.getUserQuestionAnswersByCategory($rootScope.userInfo.username, category).then(function (response) {
-            $scope.questionAnswers = response.data;
-
-            for (var i = 0; i < response.data.length; i++) {
-                var questionAnswer = response.data[i];
-                $scope[category].answers[questionAnswer.question.id] = {};
-                $scope[category].answers[questionAnswer.question.id].radio = questionAnswer.answer;
-            }
+            $scope[category] = {};
+            $scope[category].questionAnswers = {};
+            $scope[category].questionAnswers = response.data;
+            syncData(category, response);
         });
     }
 
-    function saveAnswers(category) {
+    /* SAVE THE ANSWERS */
+    $scope.saveAnswers = function (category) {
         console.log('saving answers for category: ' + category);
 
         var questionAnswers = {};
         questionAnswers.updateQuestionAnswerDTOList = [];
 
         // pick out just the values with question ID's as the key
-        var answersKeys = Object.keys($scope[category].answers);
-        for (var i = 0; i < answersKeys.length; i++) {
-            var key = answersKeys[i];
-            if (key != 'radio' && key != 'toggle') {
-                var temp = {};
-                temp.questionID = key;
-                temp.answer = $scope[category].answers[answersKeys[i]].radio;
-                questionAnswers.updateQuestionAnswerDTOList.push(temp);
+        if ($scope[category]) {
+            var answersKeys = Object.keys($scope[category].answers);
+            for (var i = 0; i < answersKeys.length; i++) {
+                var key = answersKeys[i];
+                if (key != 'radio' && key != 'toggle') {
+                    var temp = {};
+                    temp.questionID = key;
+                    temp.answer = $scope[category].answers[answersKeys[i]].radio;
+                    questionAnswers.updateQuestionAnswerDTOList.push(temp);
+                }
             }
-        }
 
-        // submit to the server!
-        quizService.saveAnswers($rootScope.userInfo.username, category, questionAnswers).then(function (response) {
-            for (var i = 0; i < response.data.length; i++) {
-                var questionAnswer = response.data[i];
-                $scope[category].answers[questionAnswer.question.id] = {};
-                $scope[category].answers[questionAnswer.question.id].radio = questionAnswer.answer;
-            }
-        });
+            // submit to the server!
+            quizService.saveAnswers($rootScope.userInfo.username, category, questionAnswers).then(function (response) {
+                syncData(category, response);
+            });
+        }
     }
 
+    // FAMILIES 
+    function familiesPageSetup() {
+        console.log('families page setup');
+        var category = "families";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function initAutoSave() {
+        $scope.$watch('families.answers', function (scope) {
+            $scope.saveAnswers('families');
+        }, true);
+
+        $scope.$watch('roles.answers', function (scope) {
+            $scope.saveAnswers('roles');
+        }, true);
+
+        $scope.$watch('finances.answers', function (scope) {
+            $scope.saveAnswers('finances');
+        }, true);
+
+        $scope.$watch('values.answers', function (scope) {
+            $scope.saveAnswers('values');
+        }, true);
+
+        $scope.$watch('habits.answers', function (scope) {
+            $scope.saveAnswers('values');
+        }, true);
+
+        $scope.$watch('work.answers', function (scope) {
+            $scope.saveAnswers('work');
+        }, true);
+
+        $scope.$watch('leisure.answers', function (scope) {
+            $scope.saveAnswers('leisure');
+        }, true);
+
+        $scope.$watch('intimacy.answers', function (scope) {
+            $scope.saveAnswers('intimacy');
+        }, true);
+
+        $scope.$watch('community.answers', function (scope) {
+            $scope.saveAnswers('community');
+        }, true);
+
+        $scope.$watch('communication.answers', function (scope) {
+            $scope.saveAnswers('communication');
+        }, true);
+
+        $scope.$watch('parenting.answers', function (scope) {
+            $scope.saveAnswers('parenting');
+        }, true);
+
+        $scope.$watch('speaking.answers', function (scope) {
+            $scope.saveAnswers('speaking');
+        }, true);
+
+        $scope.$watch('life.answers', function (scope) {
+            $scope.saveAnswers('life');
+        }, true);
+    }
+
+    // creates the watchers to auto-save values when chosen
+    initAutoSave();
+
+
     function rolesPageSetup() {
-        console.log('ROLES page setup');
+        console.log('roles page setup');
         var category = "roles";
         initializeQuestionAnswers(category);
         getQuestions(category);
-
-        $scope.saveRolesAnswers = function () {
-            saveAnswers("roles");
-        }
     }
 
     function financesPage() {
@@ -526,34 +577,80 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         getQuestions(category);
     }
 
-    $scope.goToPreviousState = function () {
-        // refresh answers
-        $state.go($scope.quizState.previous).then(getQuizState);
-        saveAllAnswers();
+    function habitsPage() {
+        console.log('Habits page setup');
+        var category = "habits";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
 
+    function workPage() {
+        console.log('Work page setup');
+        var category = "work";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function leisurePage() {
+        console.log('Leisure page setup');
+        var category = "leisure";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function intimacyPage() {
+        console.log('Intimacy page setup');
+        var category = "intimacy";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function communityPage() {
+        console.log('Community page setup');
+        var category = "community";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function communicationPage() {
+        console.log('Communication page setup');
+        var category = "communication";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function parentingPage() {
+        console.log('Parenting page setup');
+        var category = "parenting";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function speakingPage() {
+        console.log('Speaking page setup');
+        var category = "speaking";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    function lifePage() {
+        console.log('Life page setup');
+        var category = "life";
+        initializeQuestionAnswers(category);
+        getQuestions(category);
+    }
+
+    $scope.goToPreviousState = function () {
+        var quizState = getQuizState();
+        $state.go($scope.quizState.previous).then(getQuizState);
         initPageRoute($scope.quizState.previous);
     };
 
     $scope.goToNextState = function () {
         var quizState = getQuizState();
-        saveAllAnswers();
         $state.go($scope.quizState.next).then(getQuizState);
         initPageRoute($scope.quizState.next);
     };
-
-    function saveAllAnswers() {
-        var currentState = getCurrentState();
-        if (currentState == 'quiz.families') {
-            $scope.clickSaveButton('families');
-        } else if (currentState == 'quiz.roles') {
-            console.log('about to save roles answers');
-            $scope.saveRolesAnswers();
-        } else if (currentState == 'quiz.finances') {
-            saveAnswers('finances');
-        } else if (currentState == 'quiz.values') {
-            saveAnswers('values');
-        }
-    }
 
     $scope.showLearnMorePanel = false;
     $scope.togglePanel = function () {

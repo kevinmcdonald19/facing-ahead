@@ -19,15 +19,6 @@
 
     <!-- ****************** QUESTION ****************** -->
 
-    <div class="question_area">
-        <div class="question_body">I understand that relationships are of the highest value.</div>
-    </div>
-
-    <!-- ****************** END QUESTION ****************** -->
-
-
-    <!-- ****************** ANSWER BUTTONS ****************** -->
-
     <div class="answer_area">
 
 
@@ -47,8 +38,8 @@
             <p class="why_body">Making their relationship primary is a value that will be essential for a healthy and strong marriage. Hopefully the couple holds many similar values. Even where they have some dissimilar values, there will need to be some deepening appreciation for how the other party holds a particular value. The ideal is that they attempt to make such values into "our value" — meaning, the one who may value doing some charity or outreach, would be joined by their partner in such an endeavor. At the least, the other partner would support him or her, even if they do not see it as such a high value. In return the partner who is now getting support can express true appreciation for their partner's efforts.</p>
 
         </div>
-        <div ng-repeat="questionAnswer in questionAnswers">
-            {{questionAnswer.text}}
+        <div ng-repeat="questionAnswer in values.questionAnswers">
+            {{questionAnswer.question.text}}
             <br/> {{questionAnswer.id}}
 
             <div class="btn-group" ng-model="values.answers[questionAnswer.question.id].radio" bs-radio-group>

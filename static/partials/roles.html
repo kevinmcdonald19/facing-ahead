@@ -14,19 +14,6 @@
 
     <div class="section_header">2. Relationship Roles</div>
 
-    <!-- ****************** END SECTION HEADER ****************** -->
-
-
-    <!-- ****************** QUESTION ****************** -->
-
-    <div class="question_area">
-        <div class="question_body">I understand that people who live together need to share household tasks.</div>
-    </div>
-
-    <!-- ****************** END QUESTION ****************** -->
-
-
-    <!-- ****************** ANSWER BUTTONS ****************** -->
 
     <div class="answer_area">
 
@@ -46,9 +33,9 @@
 
         </div>
 
-        <div ng-repeat="questionAnswer in questionAnswers">
-            {{questionAnswer.text}}
-            <br/> {{questionAnswer.id}}
+        <div ng-repeat="questionAnswer in roles.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/>
 
             <div class="btn-group" ng-model="roles.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
@@ -59,16 +46,10 @@
                     <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
             </div>
 
+            <!--            <pre>{{values.answers | json }}</pre>-->
+
         </div>
 
-<!--
-      <pre>
-        questionAnswers: <br/>
-        {{questionAnswers | json}}
-        
-        <br/>
-        {{ roles.answers | json}}
-        </pre>
--->
+
     </div>
 </div>

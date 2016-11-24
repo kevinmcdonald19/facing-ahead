@@ -44,9 +44,18 @@ public class UsersController {
 		return usersRepository.findAll();
 	}
 
+
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	public User getUser(@PathVariable("id") String id) {
 		User p = usersRepository.findOne(id);
+		return p;
+	}
+	
+	@RequestMapping(value = "/users/{id}/clearQuestionAnswers", method = RequestMethod.GET)
+	public User clearQuizResponse(@PathVariable("id") String id) {
+		User p = usersRepository.findOne(id);
+		p.getQuizResponse().getQuestionAnswers().clear();
+		usersRepository.save(p);
 		return p;
 	}
 

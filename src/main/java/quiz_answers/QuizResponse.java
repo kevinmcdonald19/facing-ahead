@@ -36,7 +36,7 @@ public class QuizResponse {
 
 	private boolean containsQuestion(Question question) {
 		for (QuestionAnswer questionAnswer : questionAnswers) {
-			if (questionAnswer.getQuestion().getText().equals(question.getText())) {
+			if (questionAnswer.getQuestion().getId().equals(question.getId())) {
 				return true;
 			}
 		}

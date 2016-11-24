@@ -14,15 +14,7 @@
 
     <div class="section_header">3. Finances</div>
 
-    <!-- ****************** END SECTION HEADER ****************** -->
 
-
-    <!-- ****************** QUESTION ****************** -->
-
-    <div class="question_area">
-        <div class="question_body">I understand that there is no one right way to manage money.
-        </div>
-    </div>
 
     <!-- ****************** END QUESTION ****************** -->
 
@@ -44,9 +36,6 @@
 
             </div>
 
-            <!-- ****************** END WHY LINK *********************** -->
-
-
             <div class="learnMorePanel" ng-show="showLearnMorePanel">
 
                 <!-- ****************** END PREV & NEXT BUTTONS ****************** -->
@@ -56,8 +45,8 @@
             </div>
         </div>
 
-        <div ng-repeat="questionAnswer in questionAnswers">
-            {{questionAnswer.text}}
+        <div ng-repeat="questionAnswer in finances.questionAnswers">
+            {{questionAnswer.question.text}}
             <br/> {{questionAnswer.id}}
 
             <div class="btn-group" ng-model="finances.answers[questionAnswer.question.id].radio" bs-radio-group>
