@@ -658,7 +658,7 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
     }
 
     $scope.navigateToSection = function (section) {
-        $state.go(section).then(getQuizState);
+        $state.go('quiz.' + section.toLowerCase()).then(getQuizState);
     }
 
     function getQuizState() {

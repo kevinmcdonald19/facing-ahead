@@ -13,16 +13,13 @@
         <em><strong>Submit Answers</strong></em> button to see your results compared with your partner's.
     </div>
 
-    <!-- ****************** END DIRECTIONS ****************** -->
 
-
-    <!-- ****************** QUESTION CONFIRMATION AREA ****************** -->
 
     <h1>QuestionAnswers</h1>
     <div ng-repeat="questionAnswer in quizResponse.questionAnswers">
         <div>{{questionAnswer.question.text}}</div>
         <div>{{questionAnswer.answer}}</div>
-        <button class="btn btn-warning">Take me to question</button>
+        <button class="btn btn-warning" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
     </div>
 
 
