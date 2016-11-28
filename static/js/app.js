@@ -37,7 +37,8 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('settings', {
             url: "/home/settings",
-            templateUrl: "partials/settings.html"
+            templateUrl: "partials/settings.html",
+            controller: "HomeController"
         })
         .state('quiz', {
             url: "/home/quiz",
@@ -46,60 +47,87 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('quiz.families', {
             url: "/families",
-            templateUrl: "partials/families.html"
+            templateUrl: "partials/families.html",
+            controller: "QuizController"
+
         })
         .state('quiz.roles', {
             url: "/roles",
-            templateUrl: "partials/roles.html"
+            templateUrl: "partials/roles.html",
+            controller: "QuizController"
+
         })
         .state('quiz.finances', {
             url: "/finances",
-            templateUrl: "partials/finances.html"
+            templateUrl: "partials/finances.html",
+            controller: "QuizController"
+
         })
         .state('quiz.values', {
             url: "/values",
-            templateUrl: "partials/values.html"
+            templateUrl: "partials/values.html",
+            controller: "QuizController"
+
         })
         .state('quiz.habits', {
             url: "/habits",
-            templateUrl: "partials/habits.html"
+            templateUrl: "partials/habits.html",
+            controller: "QuizController"
+
         })
         .state('quiz.work', {
             url: "/work",
-            templateUrl: "partials/work.html"
+            templateUrl: "partials/work.html",
+            controller: "QuizController"
+
         })
         .state('quiz.leisure', {
             url: "/leisure",
-            templateUrl: "partials/leisure.html"
+            templateUrl: "partials/leisure.html",
+            controller: "QuizController"
+
         })
         .state('quiz.intimacy', {
             url: "/intimacy",
-            templateUrl: "partials/intimacy.html"
+            templateUrl: "partials/intimacy.html",
+            controller: "QuizController"
+
         })
         .state('quiz.community', {
             url: "/community",
-            templateUrl: "partials/community.html"
+            templateUrl: "partials/community.html",
+            controller: "QuizController"
+
         })
         .state('quiz.communication', {
             url: "/communication",
-            templateUrl: "partials/communication.html"
+            templateUrl: "partials/communication.html",
+            controller: "QuizController"
+
         })
         .state('quiz.parenting', {
             url: "/parenting",
-            templateUrl: "partials/parenting.html"
+            templateUrl: "partials/parenting.html",
+            controller: "QuizController"
+
         })
         .state('quiz.speaking', {
             url: "/speaking",
-            templateUrl: "partials/speaking.html"
+            templateUrl: "partials/speaking.html",
+            controller: "QuizController"
+
         })
         .state('quiz.life', {
             url: "/life",
-            templateUrl: "partials/life.html"
+            templateUrl: "partials/life.html",
+            controller: "QuizController"
+
         })
         .state('quiz.confirmation', {
             url: "/confirmation",
             templateUrl: "partials/confirmation.html",
-            controller: "ConfirmationController"
+            controller: "ConfirmationController",
+
         })
         .state('login', {
             url: '/login',
@@ -114,169 +142,28 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
 });
 /* Services */
-mainModule.service('quizService', function ($http) {
-    var quiz = {};
-    quiz.quizStates = [
-        {
-            state: 'quiz.families',
-            next: 'quiz.roles',
-            previous: null,
-            order: 0,
-            question: 'soething'
-        },
-        {
-            state: 'quiz.roles',
-            next: 'quiz.finances',
-            previous: 'quiz.families',
-            order: 1
-        },
-        {
-            state: 'quiz.finances',
-            next: 'quiz.values',
-            previous: 'quiz.roles',
-            order: 1
-        },
-        {
-            state: 'quiz.values',
-            next: 'quiz.habits',
-            previous: 'quiz.finances',
-            order: 1
-        },
-        {
-            state: 'quiz.habits',
-            next: 'quiz.work',
-            previous: 'quiz.values',
-            order: 1
-        },
-        {
-            state: 'quiz.work',
-            next: 'quiz.leisure',
-            previous: 'quiz.habits',
-            order: 1
-        },
-        {
-            state: 'quiz.leisure',
-            next: 'quiz.intimacy',
-            previous: 'quiz.work',
-            order: 1
-        },
-        {
-            state: 'quiz.intimacy',
-            next: 'quiz.community',
-            previous: 'quiz.leisure',
-            order: 1
-        },
-        {
-            state: 'quiz.community',
-            next: 'quiz.communication',
-            previous: 'quiz.intimacy',
-            order: 1
-        },
-        {
-            state: 'quiz.communication',
-            next: 'quiz.parenting',
-            previous: 'quiz.community',
-            order: 1
-        },
-        {
-            state: 'quiz.parenting',
-            next: 'quiz.speaking',
-            previous: 'quiz.communication',
-            order: 1
-        },
-        {
-            state: 'quiz.speaking',
-            next: 'quiz.life',
-            previous: 'quiz.parenting',
-            order: 1
-        },
-        {
-            state: 'quiz.life',
-            next: 'quiz.confirmation',
-            previous: 'quiz.speaking',
-            order: 0
-        }
-    ];
-
-    function getQuizState(stateName) {
-        for (var i = 0; i < quiz.quizStates.length; i++) {
-            if (stateName == quiz.quizStates[i].state) {
-                return quiz.quizStates[i];
-            }
-        }
-        return null;
+mainModule.service('userService', function ($http) {
+    function getUser(username) {
+        return $http.get('/users/' + username);
     }
 
-    function getQuizStates() {
-        return quiz.states;
+    function updatePartnerUsername(currentUsername, partnerUsername) {
+        return $http.put('/users/' + currentUsername + '/' + partnerUsername);
     }
 
-    function getNextState(state) {
-        var stateObject = this.getQuizState(state.state);
-        var nextStateObject = this.getQuizState(stateObject.next);
-        return nextStateObject;
+    function getResults(currentUsername) {
+        return $http.get('/users/' + currentUsername + '/results');
     }
-
-    var answers = {};
-
-    function saveAnswers(username, category, answers) {
-        // todo: save this to the server rather than just in cache
-        this.answers = answers;
-        //        return $http.post('/users/' + username + '/quizResponse/questionAnswers/' + category, answers);
-
-        return $http({
-            method: 'POST',
-            url: '/users/' + username + '/quizResponse/questionAnswers/' + category,
-            data: answers,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-    }
-
-    function getAnswers() {
-        // todo: return these answers from the server
-
-        return this.answers;
-    }
-
-    // service calls to get quiz questions
-    var local = "http://localhost:8080";
-
-    var base = local;
-
-    function getQuizQuestions(category) {
-        if (category) {
-            return $http.get('/questions' + '/' + category);
-        }
-    }
-
-    function getUserQuestionAnswersByCategory(username, category) {
-        return $http.get('/users/' + username + '/quizResponse/questionAnswers/' + category);
-    }
-
-    function getUserQuizResponse(username) {
-        return $http.get('/users/' + username + '/quizResponse');
-    }
-
 
     return {
-        getQuizStates: getQuizStates,
-        getQuizState: getQuizState,
-        getNextState: getNextState,
-
-        // service calls to get quiz questions
-        getQuizQuestions: getQuizQuestions,
-        getUserQuestionAnswersByCategory: getUserQuestionAnswersByCategory,
-        getUserQuizResponse: getUserQuizResponse,
-
-        saveAnswers: saveAnswers,
-        getAnswers: getAnswers
+        getUser: getUser,
+        updatePartnerUsername: updatePartnerUsername,
+        getResults: getResults
     }
 });
 
 /* Controllers */
-mainModule.controller('HomeController', function ($rootScope, $scope, $http) {
+mainModule.controller('HomeController', function ($rootScope, $scope, $http, userService) {
     var self = this;
     $scope.showPublishers = false;
     $scope.togglePublishers = function () {
@@ -289,6 +176,10 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http) {
             $rootScope.authenticated = true;
             $rootScope.authenticationResponse = response;
             $rootScope.userInfo = response.data.principal;
+
+            userService.getUser($rootScope.userInfo.username).then(function (response) {
+                $scope.user = response.data;
+            });
         } else {
             $rootScope.authenticated = false;
         }
@@ -299,6 +190,21 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http) {
         //callback && callback();
     });
 
+    //    $scope.partner = {};
+
+    $scope.updatePartnerUsername = function () {
+        console.log('update partner username');
+
+        var partnerUsername = $scope.partner.username;
+        userService.updatePartnerUsername($scope.user.username, partnerUsername).then(function (response) {
+            if (response.data != '') {
+                $scope.user = response.data;
+            } else {
+                //show warning message
+            }
+        });
+    }
+
     $scope.logout = function () {
         $http.post('/logout', {}).finally(function () {
             $rootScope.authenticated = false;
@@ -307,11 +213,29 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http) {
     };
 });
 
-mainModule.controller('ConfirmationController', function ($rootScope, $scope, $http, quizService) {
-    var username = $rootScope.userInfo.username;
-    quizService.getUserQuizResponse(username).then(function (response) {
-        $scope.quizResponse = response.data;
+mainModule.controller('ConfirmationController', function ($rootScope, $scope, $http, userService) {
+
+    // test authentication
+    $http.get('/user').then(function (response) {
+        if (response.data.name) {
+            $rootScope.authenticated = true;
+            $rootScope.authenticationResponse = response;
+            $rootScope.userInfo = response.data.principal;
+
+            userService.getUser($rootScope.userInfo.username).then(function (response) {
+                $scope.user = response.data;
+            });
+        } else {
+            $rootScope.authenticated = false;
+        }
+        //callback && callback();
+    }, function (response) {
+        console.log(response);
+        $rootScope.authenticated = false;
+        //callback && callback();
     });
+
+
 });
 
 mainModule.controller('Login', function ($rootScope, $scope, $http, $location, $stateParams) {
@@ -516,7 +440,7 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         }, true);
 
         $scope.$watch('habits.answers', function (scope) {
-            $scope.saveAnswers('values');
+            $scope.saveAnswers('habits');
         }, true);
 
         $scope.$watch('work.answers', function (scope) {
@@ -740,8 +664,200 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
 
 });
 
-mainModule.controller('ResultsController', function ($scope, quizService) {
+mainModule.controller('ResultsController', function ($scope, $state, $http, $rootScope, userService) {
     console.log('results controller');
 
-    $scope.answers = quizService.getAnswers();
+    // test authentication
+    $http.get('/user').then(function (response) {
+        if (response.data.name) {
+            $rootScope.authenticated = true;
+            $rootScope.authenticationResponse = response;
+            $rootScope.userInfo = response.data.principal;
+
+            userService.getUser($rootScope.userInfo.username).then(function (response) {
+                $scope.user = response.data;
+
+                initResultsController();
+            });
+        } else {
+            $rootScope.authenticated = false;
+        }
+        //callback && callback();
+    }, function (response) {
+        console.log(response);
+        $rootScope.authenticated = false;
+        //callback && callback();
+    });
+
+    function initResultsController() {
+        // get partner's quizResponse
+        userService.getResults($scope.user.username).then(function (response) {
+            $scope.results = response.data;
+        });
+    }
+
+    $scope.navigateToSection = function (section) {
+        $state.go('quiz.' + section.toLowerCase());
+    }
+});
+
+mainModule.service('quizService', function ($http) {
+    var quiz = {};
+    quiz.quizStates = [
+        {
+            state: 'quiz.families',
+            next: 'quiz.roles',
+            previous: null,
+            order: 0,
+            question: 'soething'
+        },
+        {
+            state: 'quiz.roles',
+            next: 'quiz.finances',
+            previous: 'quiz.families',
+            order: 1
+        },
+        {
+            state: 'quiz.finances',
+            next: 'quiz.values',
+            previous: 'quiz.roles',
+            order: 1
+        },
+        {
+            state: 'quiz.values',
+            next: 'quiz.habits',
+            previous: 'quiz.finances',
+            order: 1
+        },
+        {
+            state: 'quiz.habits',
+            next: 'quiz.work',
+            previous: 'quiz.values',
+            order: 1
+        },
+        {
+            state: 'quiz.work',
+            next: 'quiz.leisure',
+            previous: 'quiz.habits',
+            order: 1
+        },
+        {
+            state: 'quiz.leisure',
+            next: 'quiz.intimacy',
+            previous: 'quiz.work',
+            order: 1
+        },
+        {
+            state: 'quiz.intimacy',
+            next: 'quiz.community',
+            previous: 'quiz.leisure',
+            order: 1
+        },
+        {
+            state: 'quiz.community',
+            next: 'quiz.communication',
+            previous: 'quiz.intimacy',
+            order: 1
+        },
+        {
+            state: 'quiz.communication',
+            next: 'quiz.parenting',
+            previous: 'quiz.community',
+            order: 1
+        },
+        {
+            state: 'quiz.parenting',
+            next: 'quiz.speaking',
+            previous: 'quiz.communication',
+            order: 1
+        },
+        {
+            state: 'quiz.speaking',
+            next: 'quiz.life',
+            previous: 'quiz.parenting',
+            order: 1
+        },
+        {
+            state: 'quiz.life',
+            next: 'quiz.confirmation',
+            previous: 'quiz.speaking',
+            order: 0
+        }
+    ];
+
+    function getQuizState(stateName) {
+        for (var i = 0; i < quiz.quizStates.length; i++) {
+            if (stateName == quiz.quizStates[i].state) {
+                return quiz.quizStates[i];
+            }
+        }
+        return null;
+    }
+
+    function getQuizStates() {
+        return quiz.states;
+    }
+
+    function getNextState(state) {
+        var stateObject = this.getQuizState(state.state);
+        var nextStateObject = this.getQuizState(stateObject.next);
+        return nextStateObject;
+    }
+
+    var answers = {};
+
+    function saveAnswers(username, category, answers) {
+        // todo: save this to the server rather than just in cache
+        this.answers = answers;
+        //        return $http.post('/users/' + username + '/quizResponse/questionAnswers/' + category, answers);
+
+        return $http({
+            method: 'POST',
+            url: '/users/' + username + '/quizResponse/questionAnswers/' + category,
+            data: answers,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    function getAnswers() {
+        // todo: return these answers from the server
+
+        return this.answers;
+    }
+
+    // service calls to get quiz questions
+    var local = "http://localhost:8080";
+
+    var base = local;
+
+    function getQuizQuestions(category) {
+        if (category) {
+            return $http.get('/questions' + '/' + category);
+        }
+    }
+
+    function getUserQuestionAnswersByCategory(username, category) {
+        return $http.get('/users/' + username + '/quizResponse/questionAnswers/' + category);
+    }
+
+    function getUserQuizResponse(username) {
+        return $http.get('/users/' + username + '/quizResponse');
+    }
+
+
+    return {
+        getQuizStates: getQuizStates,
+        getQuizState: getQuizState,
+        getNextState: getNextState,
+
+        // service calls to get quiz questions
+        getQuizQuestions: getQuizQuestions,
+        getUserQuestionAnswersByCategory: getUserQuestionAnswersByCategory,
+        getUserQuizResponse: getUserQuizResponse,
+
+        saveAnswers: saveAnswers,
+        getAnswers: getAnswers
+    }
 });

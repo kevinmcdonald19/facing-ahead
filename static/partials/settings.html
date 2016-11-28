@@ -4,6 +4,23 @@
 
     <div class="section_header">Settings</div>
 
+    <h1>Profile</h1>
+    <label>Name</label>
+    <p>{{user.name}}</p>
+
+    <label>Username:</label>
+    <p>{{user.username}}</p>
+
+    <label>Partner:</label>
+    <p>{{user.partnerUsername}}</p>
+    <hr/>
+    <input type="text" class="form-control" placeholder="Update partner username" ng-model="partner.username" />
+    <br/>
+    <button class="btn btn-success" ng-click="updatePartnerUsername()">Updated Partner</button>
+
+
+
+
 
 
 

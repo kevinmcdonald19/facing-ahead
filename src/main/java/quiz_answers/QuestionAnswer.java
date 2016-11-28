@@ -10,6 +10,7 @@ public class QuestionAnswer {
 	private String id;
 	private Question question;
 	private String answer;
+	private String partnerAnswer;
 	
 	public QuestionAnswer(){
 		// blank constructor

@@ -10,6 +10,17 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	private Long uniqueCode;
+	private String partnerUsername;
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getUsername() {
 		return username;
@@ -21,12 +32,12 @@ public class User {
 
 	private String role;
 	private QuizResponse quizResponse;
-	
-	public User(){
+
+	public User() {
 		// blank constructor
 	}
-	
-	public void updateValues(User user){
+
+	public void updateValues(User user) {
 		this.name = user.getName();
 		this.username = user.getUsername();
 		this.password = user.getPassword();
@@ -67,17 +78,33 @@ public class User {
 	public String getId() {
 		return id;
 	}
-	
-	public void setId(String id){
+
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name){
+
+	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getUniqueCode() {
+		return uniqueCode;
+	}
+
+	public void setUniqueCode(Long uniqueCode) {
+		this.uniqueCode = uniqueCode;
+	}
+
+	public String getPartnerUsername() {
+		return partnerUsername;
+	}
+
+	public void setPartnerUsername(String partnerUsername) {
+		this.partnerUsername = partnerUsername;
 	}
 
 }

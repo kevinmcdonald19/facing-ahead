@@ -1,15 +1,25 @@
 <div id="content" class="content">
 
-
-    <!-- ****************** SECTION HEADER ****************** -->
-
     <div class="section_header">Results</div>
 
-    <!-- ****************** END SECTION HEADER ****************** -->
+    <div>You: {{results.partnerOne.username}}</div>
+    <div>Partner: {{results.partnerTwo.username}}</div>
+    <hr/>
 
-    <!-- ****************** DIRECTIONS ****************** -->
+    <div ng-repeat="questionAnswer in results.partnerQuizResponse.partnerQuestionAnswerList">
+        <div>{{questionAnswer.question.text}}</div>
 
-    <md-button class="md-raised md-primary" ui-sref="home">Home</md-button>
+        <label>Your Answer: {{questionAnswer.partnerOneAnswer}}</label>
+        <br/>
+
+        <label>Partner's Answer: {{questionAnswer.partnerTwoAnswer}}</label>
+        <br/>
+
+        <button class="btn-xs btn btn-primary" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+
+        <br/>
+        <br/>
+    </div>
 
 
 </div>

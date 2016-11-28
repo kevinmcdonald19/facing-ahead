@@ -1,7 +1,5 @@
 package hello;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,9 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 public class Application {
@@ -26,11 +22,6 @@ public class Application {
 	@Configuration
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-//		@Override
-//		public void configure(WebSecurity web) throws Exception {
-//		    web.ignoring().antMatchers("/static/**");
-//		}
-		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/static/**", "/", "/lib/**", "/css/**", "/images/**", "/partials/**")
@@ -39,9 +30,8 @@ public class Application {
 
 		@Autowired
 		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-			auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
 			auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+			auth.inMemoryAuthentication().withUser("nalah").password("nalah").roles("USER");
 		}
-
 	}
 }

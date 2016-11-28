@@ -1,22 +1,13 @@
 <div id="content">
 
-
-    <!-- ****************** SECTION HEADER ****************** -->
-
     <div class="section_header">Confirm Your Answers</div>
-
-    <!-- ****************** END SECTION HEADER ****************** -->
-
-    <!-- ****************** DIRECTIONS ****************** -->
 
     <div class="directions_body">Please review your answers and return to any questions you haven't answered, or would like to update. You do not need to complete the entire quiz in one visit. If you'd like to save the answers you've given, and come back to finish the quiz later, click <em><strong>Save & Exit</strong></em> at the bottom of the page. If you are finished answering all the questions, and have confirmed all your answers, use the
         <em><strong>Submit Answers</strong></em> button to see your results compared with your partner's.
     </div>
 
-
-
     <h1>QuestionAnswers</h1>
-    <div ng-repeat="questionAnswer in quizResponse.questionAnswers">
+    <div ng-repeat="questionAnswer in user.quizResponse.questionAnswers">
         <div>{{questionAnswer.question.text}}</div>
         <div>{{questionAnswer.answer}}</div>
         <button class="btn btn-warning" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
@@ -24,10 +15,7 @@
 
 
     <div class="submit_area">
-        <button class="btn btn-default" ui-sref="home">Save & Exit</button>
         <br/>
-        <button class="md-raised btn btn-primary" ui-sref="results">Submit Answers</button>
-
-
+        <button class="btn btn-primary" ui-sref="results">Submit Answers</button>
     </div>
 </div>
