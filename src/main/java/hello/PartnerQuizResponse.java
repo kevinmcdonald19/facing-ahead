@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import quiz_answers.QuestionAnswer;
-
 public class PartnerQuizResponse {
 	private List<PartnerQuestionAnswer> partnerQuestionAnswerList;
 

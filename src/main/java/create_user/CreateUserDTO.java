@@ -2,7 +2,7 @@ package create_user;
 
 import org.springframework.data.annotation.Id;
 
-import quiz_answers.QuizResponse;
+import hello.QuizResponse;
 
 public class CreateUserDTO {
 	@Id

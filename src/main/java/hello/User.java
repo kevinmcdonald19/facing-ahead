@@ -2,8 +2,6 @@ package hello;
 
 import org.springframework.data.annotation.Id;
 
-import quiz_answers.QuizResponse;
-
 public class User {
 	@Id
 	private String id;

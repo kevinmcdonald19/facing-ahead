@@ -1,8 +1,6 @@
-package quiz_answers;
+package hello;
 
 import org.springframework.data.annotation.Id;
-
-import hello.Question;
 
 public class QuestionAnswer {
 	
