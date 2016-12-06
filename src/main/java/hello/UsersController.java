@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,28 +25,18 @@ public class UsersController {
 	private QuestionRepository questionRepository;
 
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
-	public User createUser(@ModelAttribute User user, Principal principalUser, HttpServletRequest request) {
+	public User createUser(@RequestBody CreateUserDTO createUserDTO, Principal principalUser,
+			HttpServletRequest request) {
 
-		QuizResponse newQuizResponse = new QuizResponse(questionRepository.findAll());
-
-		User savedUser = usersRepository.save(new User(user, newQuizResponse));
-
-		// UsernamePasswordAuthenticationToken authRequest = new
-		// UsernamePasswordAuthenticationToken(user.getUsername(),
-		// user.getPassword());
-		// // Authenticate the user
-		//
-		// List<GrantedAuthority> authorities = new
-		// ArrayList<GrantedAuthority>();
-		// authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		// UserDetails newUser = new User("kevinmcdonald", "password",
-		// authorities);
-		// Authentication authentication = new
-		// UsernamePasswordAuthenticationToken(newUser.getUsername(),
-		// newUser.getPassword(), authorities);
-		// SecurityContextHolder.getContext().setAuthentication(authentication);
-
-		return savedUser;
+		// check to see if the user exists
+		User existingUser = usersRepository.findByUsername(createUserDTO.getUsername());
+		if (existingUser == null) {
+			QuizResponse newQuizResponse = new QuizResponse(questionRepository.findAll());
+			User savedUser = usersRepository.save(new User(createUserDTO, newQuizResponse));
+			return savedUser;
+		} else {
+			return null;
+		}
 	}
 
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)

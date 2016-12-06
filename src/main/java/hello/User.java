@@ -65,12 +65,12 @@ public class User {
 		this.quizResponse = quizResponse;
 	}
 
-	public User(User user, QuizResponse quizResponse) {
-		this.name = user.getName();
-		this.username = user.getUsername();
-		this.password = user.getPassword();
+	public User(CreateUserDTO userDTO, QuizResponse quizResponse) {
+		this.name = userDTO.getName();
+		this.username = userDTO.getUsername();
+		this.password = userDTO.getPassword();
 		this.quizResponse = quizResponse;
-		this.quizResponse.setUser(user);
+//		this.quizResponse.setUser(userDTO);
 	}
 
 	public String getId() {

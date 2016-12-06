@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @SpringBootApplication
 public class Application {
-	
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -22,16 +20,28 @@ public class Application {
 	@Configuration
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+		@Autowired
+		SecUserDetailsService userDetailsService;
+
+		@Autowired
+		public void configAuthBuilder(AuthenticationManagerBuilder builder) throws Exception {
+			builder.userDetailsService(userDetailsService);
+		}
+		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/static/**", "/", "/lib/**", "/css/**", "/images/**", "/partials/**")
+			http.httpBasic().and().authorizeRequests()
+					.antMatchers("/index.html", "/home.html", "/login.html", "/static/**", "/", "/lib/**", "/css/**",
+							"/images/**", "/partials/**", "/users")
 					.permitAll().anyRequest().authenticated().and().csrf().disable();
 		}
 
-		@Autowired
-		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-			auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-			auth.inMemoryAuthentication().withUser("nalah").password("nalah").roles("USER");
-		}
+		// @Autowired
+		// public void configureGlobal(AuthenticationManagerBuilder auth) throws
+		// Exception {
+		// auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+		// auth.inMemoryAuthentication().withUser("nalah").password("nalah").roles("USER");
+		// }
 	}
 }

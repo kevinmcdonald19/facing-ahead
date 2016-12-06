@@ -12,9 +12,21 @@ mainModule.service('userService', function ($http) {
         return $http.get('/users/' + currentUsername + '/results');
     }
 
+    function createUser(creds) {
+        return $http({
+            method: 'POST',
+            url: '/users',
+            data: creds,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     return {
         getUser: getUser,
         updatePartnerUsername: updatePartnerUsername,
-        getResults: getResults
+        getResults: getResults,
+        createUser: createUser
     }
 });
