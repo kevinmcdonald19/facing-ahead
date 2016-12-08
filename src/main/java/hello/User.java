@@ -11,6 +11,20 @@ public class User {
 	private Long uniqueCode;
 	private String partnerUsername;
 	private String email;
+	private String role;
+	private QuizResponse quizResponse;
+	private boolean ableToSubmitResults;
+	private boolean partnerMutuallyAddedYou;
+
+	public User() {
+		// blank constructor
+	}
+
+	public void updateValues(User user) {
+		this.name = user.getName();
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+	}
 
 	public String getEmail() {
 		return email;
@@ -26,19 +40,6 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	private String role;
-	private QuizResponse quizResponse;
-
-	public User() {
-		// blank constructor
-	}
-
-	public void updateValues(User user) {
-		this.name = user.getName();
-		this.username = user.getUsername();
-		this.password = user.getPassword();
 	}
 
 	public String getPassword() {
@@ -70,7 +71,7 @@ public class User {
 		this.username = userDTO.getUsername();
 		this.password = userDTO.getPassword();
 		this.quizResponse = quizResponse;
-//		this.quizResponse.setUser(userDTO);
+		// this.quizResponse.setUser(userDTO);
 	}
 
 	public String getId() {
@@ -103,6 +104,51 @@ public class User {
 
 	public void setPartnerUsername(String partnerUsername) {
 		this.partnerUsername = partnerUsername;
+	}
+
+	public boolean isAbleToSubmitResults() {
+		return ableToSubmitResults;
+	}
+
+	public void setAbleToSubmitResults(boolean ableToSubmitResults) {
+		this.ableToSubmitResults = ableToSubmitResults;
+	}
+
+	public boolean isPartnerMutuallyAddedYou() {
+		return partnerMutuallyAddedYou;
+	}
+
+	public void setPartnerMutuallyAddedYou(boolean partnerMutuallyAddedYou) {
+		this.partnerMutuallyAddedYou = partnerMutuallyAddedYou;
+	}
+
+	public boolean partnerMutuallyAddedYou(User partner) {
+		if (partner != null && partner.getPartnerUsername() != null) {
+			if (partner.getPartnerUsername().equals(this.username)) {
+				this.partnerMutuallyAddedYou = true;
+				return true;
+			} else {
+				this.partnerMutuallyAddedYou = false;
+				return false;
+			}
+		} else {
+			return false;
+		}
+
+	}
+
+	public boolean determineIfAbleToSubmitResults(User partner) {
+		if (partner != null) {
+			if (partnerMutuallyAddedYou(partner) && this.quizResponse.allQuestionsAnswered()) {
+				this.ableToSubmitResults = true;
+				return true;
+			} else {
+				this.ableToSubmitResults = false;
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 }

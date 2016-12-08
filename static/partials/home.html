@@ -7,26 +7,22 @@
             <h1>Hello, {{userInfo.username}}</h1>
             <button class="btn btn-warning" ng-click="logout()">Logout</button>
         </div>
-        <br/>
-        <button class="btn btn-primary" ui-sref="createAccount">Create Account</button>
-        <hr/>
-        <br/>
-        <button class="btn btn-primary" ui-sref="howItWorks">
-            How it Works
-        </button>
-        <br/>
-        <button class="btn btn-primary" ui-sref="topics">
-            Quiz Topics/Sections
-        </button>
-        <br/>
 
+        <button ng-if="!authenticated" class="btn btn-primary" ui-sref="createAccount">Create Account</button>
+        <hr/>
         <button ng-if="authenticated" class="btn btn-info" ui-sref="quiz.families">
             Take the Quiz
         </button>
 
-        <br/>
-        <button ng-if="authenticated" class="btn btn-info" ui-sref="results">
-            See Your Results
-        </button>
+        <div ng-if="authenticated">
+            <button class="btn btn-primary" ui-sref="confirmation">Confirm your answers</button>
+            <br/>
+<!--
+            <button ng-if="authenticated && user.ableToSubmitResults" class="btn btn-info" ui-sref="results">
+    Compare results with partner
+</button>
+-->
+        </div>
+
     </div>
 </div>

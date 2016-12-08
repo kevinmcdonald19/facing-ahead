@@ -75,8 +75,11 @@ public class UsersController {
 
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
 	public User getUser(@PathVariable("username") String username) {
-		User p = usersRepository.findByUsername(username);
-		return p;
+		User user = usersRepository.findByUsername(username);
+		user.getQuizResponse().allQuestionsAnswered();
+		user.determineIfAbleToSubmitResults(usersRepository.findByUsername(user.getPartnerUsername()));
+		return user;
+
 	}
 
 	@RequestMapping(value = "/users/{id}/clearQuestionAnswers", method = RequestMethod.GET)

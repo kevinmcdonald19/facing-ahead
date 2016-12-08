@@ -9,6 +9,8 @@ public class QuizResponse {
 
 	private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>();
 	private User user;
+	private boolean allQuestionsAnswered;
+	private List<QuestionAnswer> unansweredQuestions = new ArrayList<QuestionAnswer>();
 
 	public QuizResponse() {
 
@@ -21,7 +23,7 @@ public class QuizResponse {
 	}
 
 	public void syncUserQuizResponse(List<Question> questions) {
-//		questionAnswers.clear();
+		// questionAnswers.clear();
 
 		// add any questions that haven't been added
 		for (Question question : questions) {
@@ -64,6 +66,38 @@ public class QuizResponse {
 
 	public void setQuestionAnswers(Set<QuestionAnswer> questionAnswers) {
 		this.questionAnswers = questionAnswers;
+	}
+
+	public boolean isAllQuestionsAnswered() {
+		return allQuestionsAnswered;
+	}
+
+	public void setAllQuestionsAnswered(boolean allQuestionsAnswered) {
+		this.allQuestionsAnswered = allQuestionsAnswered;
+	}
+
+	public List<QuestionAnswer> getUnansweredQuestions() {
+		return unansweredQuestions;
+	}
+
+	public void setUnansweredQuestions(List<QuestionAnswer> unansweredQuestions) {
+		this.unansweredQuestions = unansweredQuestions;
+	}
+
+	public boolean allQuestionsAnswered() {
+		for (QuestionAnswer qa : this.questionAnswers) {
+			if (qa.getAnswer() == null || qa.getAnswer().isEmpty()) {
+				this.unansweredQuestions.add(qa);
+			}
+		}
+		
+		if (this.unansweredQuestions.size() > 0) {
+			this.allQuestionsAnswered = false;
+			return false;
+		} else {
+			this.allQuestionsAnswered = true;
+			return true;
+		}
 	}
 
 }

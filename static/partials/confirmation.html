@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="content">
 
     <div class="section_header">Confirm Your Answers</div>
 
@@ -6,16 +6,29 @@
         <em><strong>Submit Answers</strong></em> button to see your results compared with your partner's.
     </div>
 
-    <h1>QuestionAnswers</h1>
+    <h1>Your Answers</h1>
     <div ng-repeat="questionAnswer in user.quizResponse.questionAnswers">
         <div>{{questionAnswer.question.text}}</div>
         <div>{{questionAnswer.answer}}</div>
-        <button class="btn btn-warning" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+        <button class="btn btn-xs btn-warning" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+        <hr/>
     </div>
 
-
     <div class="submit_area">
-        <br/>
-        <button class="btn btn-primary" ui-sref="results">Submit Answers</button>
+        <div class="alert alert-warning" ng-if="!user.quizResponse.allQuestionsAnswered">
+            You haven't answered all the questions yet! Before submitting for review with a partner, you must answer all of the questions.
+        </div>
+
+        <div class="alert alert-warning" ng-if="!user.partnerUsername">
+            You must enter a partner's username and they must have your username as well. Enter their username in your
+            <button class="btn btn-xs" ui-sref="settings">Settings</button>
+        </div>
+
+        <div class="alert alert-warning" ng-if="!user.partnerMutuallyAddedYou">
+            Your partner hasn't mutually added you yet, so you can't compare results yet.
+        </div>
+
+        <button class="btn btn-primary" ng-disabled="!user.ableToSubmitResults" ui-sref="results">Compare results with partner</button>
+        <div ng-if="!user.ableToSubmitResults">Once the above measures are met, you will then be able to submit your results to compare with a partner</div>
     </div>
 </div>

@@ -125,7 +125,7 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: "QuizController"
 
         })
-        .state('quiz.confirmation', {
+        .state('confirmation', {
             url: "/confirmation",
             templateUrl: "partials/confirmation.html",
             controller: "ConfirmationController",
