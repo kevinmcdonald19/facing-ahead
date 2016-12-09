@@ -33,7 +33,7 @@ public class Application {
 		protected void configure(HttpSecurity http) throws Exception {
 			http.httpBasic().and().authorizeRequests()
 					.antMatchers("/index.html", "/home.html", "/login.html", "/static/**", "/", "/lib/**", "/css/**",
-							"/images/**", "/partials/**", "/users")
+							"/images/**", "/partials/**", "/create/user")
 					.permitAll().anyRequest().authenticated().and().csrf().disable();
 		}
 

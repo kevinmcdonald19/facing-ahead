@@ -14,6 +14,7 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http, use
 
             userService.getUser($rootScope.userInfo.username).then(function (response) {
                 $scope.user = response.data;
+                initHomeController();
             });
         } else {
             $rootScope.authenticated = false;
@@ -25,25 +26,33 @@ mainModule.controller('HomeController', function ($rootScope, $scope, $http, use
         //callback && callback();
     });
 
-    //    $scope.partner = {};
+    $scope.partner = {};
+    $scope.partner.username;
 
-    $scope.updatePartnerUsername = function () {
-        console.log('update partner username');
+    function initHomeController() {
+        $scope.userFound = true;
 
-        var partnerUsername = $scope.partner.username;
-        userService.updatePartnerUsername($scope.user.username, partnerUsername).then(function (response) {
-            if (response.data != '') {
-                $scope.user = response.data;
-            } else {
-                //show warning message
-            }
-        });
+        $scope.updatePartnerUsername = function () {
+            console.log('update partner username');
+
+            var partnerUsername = $scope.partner.username;
+            userService.updatePartnerUsername($scope.user.username, partnerUsername).then(function (response) {
+                if (response.data != '' && response.data != null) {
+                    $scope.user = response.data;
+                    $scope.userFound = true;
+                } else {
+                    $scope.userFound = false;
+                }
+            });
+        }
+
+        $scope.logout = function () {
+            $http.post('/logout', {}).finally(function () {
+                $rootScope.authenticated = false;
+                $location.path("/");
+            });
+        };
     }
 
-    $scope.logout = function () {
-        $http.post('/logout', {}).finally(function () {
-            $rootScope.authenticated = false;
-            $location.path("/");
-        });
-    };
+
 });

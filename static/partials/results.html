@@ -1,24 +1,30 @@
 <div id="content" class="content">
 
-    <div class="section_header">Results</div>
+    <div ng-if="ableToCompareResults">
+        <div class="section_header">Results</div>
 
-    <div>You: {{results.partnerOne.username}}</div>
-    <div>Partner: {{results.partnerTwo.username}}</div>
-    <hr/>
+        <div>You: {{results.partnerOne.username}}</div>
+        <div>Partner: {{results.partnerTwo.username}}</div>
+        <hr/>
 
-    <div ng-repeat="questionAnswer in results.partnerQuizResponse.partnerQuestionAnswerList">
-        <div>{{questionAnswer.question.text}}</div>
+        <div ng-repeat="questionAnswer in results.partnerQuizResponse.partnerQuestionAnswerList">
+            <div>{{questionAnswer.question.text}}</div>
 
-        <label>Your Answer: {{questionAnswer.partnerOneAnswer}}</label>
-        <br/>
+            <label>Your Answer: {{questionAnswer.partnerOneAnswer}}</label>
+            <br/>
 
-        <label>Partner's Answer: {{questionAnswer.partnerTwoAnswer}}</label>
-        <br/>
+            <label>Partner's Answer: {{questionAnswer.partnerTwoAnswer}}</label>
+            <br/>
 
-        <button class="btn-xs btn btn-primary" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+            <button class="btn-xs btn btn-primary" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
 
-        <br/>
-        <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" ng-if="!ableToCompareResults">
+        You are not supposed to be viewing this page as you either haven't answered all the questions or added a partner that has also added you.
     </div>
 
 

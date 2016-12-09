@@ -28,6 +28,10 @@
             Your partner hasn't mutually added you yet, so you can't compare results yet.
         </div>
 
+        <div class="alert alert-warning" ng-if="!user.partnerAnsweredAllQuestions">
+            Your partner hasn't answered all questions yet.
+        </div>
+
         <button class="btn btn-primary" ng-disabled="!user.ableToSubmitResults" ui-sref="results">Compare results with partner</button>
         <div ng-if="!user.ableToSubmitResults">Once the above measures are met, you will then be able to submit your results to compare with a partner</div>
     </div>

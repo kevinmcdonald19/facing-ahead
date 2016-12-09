@@ -76,7 +76,7 @@ mainModule.service('quizService', function ($http) {
         },
         {
             state: 'quiz.life',
-            next: 'quiz.confirmation',
+            next: 'confirmation',
             previous: 'quiz.speaking',
             order: 0
         }

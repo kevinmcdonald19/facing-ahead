@@ -15,11 +15,14 @@ mainModule.controller('ResultsController', function ($scope, $state, $http, $roo
             });
         } else {
             $rootScope.authenticated = false;
+            $state.go('login');
         }
         //callback && callback();
     }, function (response) {
         console.log(response);
         $rootScope.authenticated = false;
+        $state.go('login');
+
         //callback && callback();
     });
 
@@ -27,6 +30,14 @@ mainModule.controller('ResultsController', function ($scope, $state, $http, $roo
         // get partner's quizResponse
         userService.getResults($scope.user.username).then(function (response) {
             $scope.results = response.data;
+
+            if (response.data.partnerOne.ableToSubmitResults == '' || response.data.partnerOne.ableToSubmitResults == null) {
+                $scope.ableToCompareResults = false;
+            } else {
+                if (response.data.partnerOne.ableToSubmitResults == true) {
+                    $scope.ableToCompareResults = true;
+                }
+            }
         });
     }
 

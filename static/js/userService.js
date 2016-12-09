@@ -15,7 +15,7 @@ mainModule.service('userService', function ($http) {
     function createUser(creds) {
         return $http({
             method: 'POST',
-            url: '/users',
+            url: 'create/user',
             data: creds,
             headers: {
                 'Content-Type': 'application/json'

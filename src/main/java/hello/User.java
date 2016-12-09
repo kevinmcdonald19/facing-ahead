@@ -15,6 +15,7 @@ public class User {
 	private QuizResponse quizResponse;
 	private boolean ableToSubmitResults;
 	private boolean partnerMutuallyAddedYou;
+	private boolean partnerAnsweredAllQuestions;
 
 	public User() {
 		// blank constructor
@@ -121,6 +122,16 @@ public class User {
 	public void setPartnerMutuallyAddedYou(boolean partnerMutuallyAddedYou) {
 		this.partnerMutuallyAddedYou = partnerMutuallyAddedYou;
 	}
+	
+	
+
+	public boolean isPartnerAnsweredAllQuestions() {
+		return partnerAnsweredAllQuestions;
+	}
+
+	public void setPartnerAnsweredAllQuestions(boolean partnerAnsweredAllQuestions) {
+		this.partnerAnsweredAllQuestions = partnerAnsweredAllQuestions;
+	}
 
 	public boolean partnerMutuallyAddedYou(User partner) {
 		if (partner != null && partner.getPartnerUsername() != null) {
@@ -139,7 +150,7 @@ public class User {
 
 	public boolean determineIfAbleToSubmitResults(User partner) {
 		if (partner != null) {
-			if (partnerMutuallyAddedYou(partner) && this.quizResponse.allQuestionsAnswered()) {
+			if (partnerMutuallyAddedYou(partner) && partnerAnsweredAllQuestions(partner) && this.quizResponse.allQuestionsAnswered()) {
 				this.ableToSubmitResults = true;
 				return true;
 			} else {
@@ -149,6 +160,17 @@ public class User {
 		} else {
 			return false;
 		}
+	}
+
+	private boolean partnerAnsweredAllQuestions(User partner) {
+		for (QuestionAnswer qa: partner.getQuizResponse().getQuestionAnswers()){
+			if (qa.getAnswer() == null){
+				this.partnerAnsweredAllQuestions = false;
+				return false;
+			}
+		}
+		this.partnerAnsweredAllQuestions = true;
+		return true;
 	}
 
 }

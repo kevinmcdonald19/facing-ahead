@@ -12,6 +12,7 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
             } else {
                 $rootScope.authenticated = false;
                 console.log('user not authenticated');
+                $state.go('login');
             }
 
             initPageRoute();
@@ -19,6 +20,7 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         }, function (response) {
             console.log(response);
             $rootScope.authenticated = false;
+            $state.go('login');
             //callback && callback();
         });
     }
@@ -336,9 +338,6 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         $scope.showLearnMorePanel = !$scope.showLearnMorePanel;
     }
 
-    $scope.navigateToSection = function (section) {
-        $state.go('quiz.' + section.toLowerCase()).then(getQuizState);
-    }
 
     function getQuizState() {
         var urlName = $state.current.name;

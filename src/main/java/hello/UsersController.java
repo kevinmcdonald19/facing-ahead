@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class UsersController {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@RequestMapping(value = "/create/user", method = RequestMethod.POST)
 	public User createUser(@RequestBody CreateUserDTO createUserDTO, Principal principalUser,
 			HttpServletRequest request) {
 
@@ -38,6 +39,7 @@ public class UsersController {
 			return null;
 		}
 	}
+
 
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
 	public User updateUser(@PathVariable("id") String id, @ModelAttribute User user) {
@@ -73,13 +75,16 @@ public class UsersController {
 	// return p;
 	// }
 
+	public void determineIfAbleToCompareResults(User user) {
+		user.getQuizResponse().allQuestionsAnswered();
+		user.determineIfAbleToSubmitResults(usersRepository.findByUsername(user.getPartnerUsername()));
+	}
+
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
 	public User getUser(@PathVariable("username") String username) {
 		User user = usersRepository.findByUsername(username);
-		user.getQuizResponse().allQuestionsAnswered();
-		user.determineIfAbleToSubmitResults(usersRepository.findByUsername(user.getPartnerUsername()));
+		determineIfAbleToCompareResults(user);
 		return user;
-
 	}
 
 	@RequestMapping(value = "/users/{id}/clearQuestionAnswers", method = RequestMethod.GET)
@@ -102,13 +107,16 @@ public class UsersController {
 		User currentUser = usersRepository.findByUsername(username);
 		User partnerUser = usersRepository.findByUsername(currentUser.getPartnerUsername());
 
-		if (partnerUser != null) {
+		determineIfAbleToCompareResults(currentUser);
+
+		if (currentUser.isAbleToSubmitResults()) {
 			Results results = new Results(currentUser, partnerUser);
 			results.getPartnerQuizResponse().populateQuestions(questionRepository.findAll(), currentUser, partnerUser);
 			return results;
 		} else {
 			return null;
 		}
+
 	}
 
 	@RequestMapping(value = "/users/{username}/quizResponse/questionAnswers/{category}", method = RequestMethod.GET)
