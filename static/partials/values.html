@@ -44,11 +44,11 @@
 
             <div class="btn-group" ng-model="values.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('values')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('values')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe"> Maybe</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('values')"> Maybe</label>
             </div>
 
             <!--            <pre>{{values.answers | json }}</pre>-->
