@@ -20,6 +20,8 @@
 
         <button class="btn btn-primary" ui-sref="confirmation">Confirm your answers</button>
 
+        <button ng-if="!authenticated" class="btn blue-translucent" ui-sref="createAccount">Create Account</button>
+
         <button class="btn btn-warning" ng-click="logout()">
             Logout
         </button>

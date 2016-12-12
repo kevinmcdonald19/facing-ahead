@@ -1,28 +1,26 @@
 <div id="home_content">
+
+    <div class="text-purple" id="welcomeMessage" ng-if="authenticated">Hello, {{userInfo.username}}
+    </div>
     <div class="home_nav_items">
 
-        <button class="btn btn-success" ng-show="!authenticated" ui-sref="login">Login</button>
-        <br/>
+
+        <div ng-show="!authenticated">
+            <button class="btn background-blue" ng-show="!authenticated" ui-sref="login">Login</button>
+            <button class="btn background-blue" ui-sref="topics">Create Account </button>
+
+            <button class="btn background-blue" ui-sref="howItWorks">How it Works</button>
+            <button class="btn background-blue" ui-sref="topics">Quiz Topics</button>
+        </div>
+
         <div ng-show="authenticated">
-            <h1>Hello, {{userInfo.username}}</h1>
-            <button class="btn btn-warning" ng-click="logout()">Logout</button>
+
+            <button class="btn background-blue" ui-sref="quiz.families">Take the Quiz</button>
+            <button class="btn background-blue" ui-sref="confirmation">Confirm Your Answers</button>
+            <button ng-if="user.ableToSubmitResults" ui-sref="results" class="btn background-blue">See Your Results
+            </button>
         </div>
 
-        <button ng-if="!authenticated" class="btn btn-primary" ui-sref="createAccount">Create Account</button>
-        <hr/>
-        <button ng-if="authenticated" class="btn btn-info" ui-sref="quiz.families">
-            Take the Quiz
-        </button>
-
-        <div ng-if="authenticated">
-            <button class="btn btn-primary" ui-sref="confirmation">Confirm your answers</button>
-            <br/>
-<!--
-            <button ng-if="authenticated && user.ableToSubmitResults" class="btn btn-info" ui-sref="results">
-    Compare results with partner
-</button>
--->
-        </div>
 
     </div>
 </div>

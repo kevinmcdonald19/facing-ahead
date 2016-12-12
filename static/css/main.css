@@ -1,3 +1,32 @@
+/* utility classes */
+
+.background-blue {
+    background: rgba(98, 146, 186, 0.8) !important;
+}
+
+.text-blue {
+    color: rgba(98, 146, 186, 0.8) !important;
+}
+
+.text-purple {
+    color: #393c73;
+}
+
+.background-purple {
+    color: #393c73;
+}
+
+.text-white {
+    color: white;
+}
+
+.background-white {
+    background: white;
+}
+
+
+/* page styles */
+
 body {
     background-color: #000033;
     margin: 0;
@@ -53,39 +82,27 @@ body {
 
 .home_nav_items {
     position: absolute;
-    bottom: 15%;
+    bottom: 42px;
     margin: auto;
     max-width: 475px;
     left: 0;
     right: 0;
+    padding: 30px;
 }
 
-
-/*
-.home_nav_items div {
-    height: 40px;
-    background: rgba(98, 146, 186, 0.8);
-    line-height: 40px;
-    border-radius: 5px;
-    width: 80%;
-    margin: auto;
+.home_nav_items button {
+    display: block;
+    width: 100%;
     margin-top: 10px;
+}
+
+#welcomeMessage {
+    font-size: 28px;
+    background: rgba(255, 255, 255, 0.8);
+    margin-top: 50px;
     text-align: center;
+    padding: 10px;
 }
-*/
-
-
-/*
-
-*/
-
-
-/*
-.home_nav_items div:active {
-    background: rgba(98, 146, 186, 1.0);
-    cursor: pointer;
-}
-*/
 
 
 /* Confirmation Area */
