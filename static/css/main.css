@@ -27,6 +27,11 @@
 
 /* page styles */
 
+#footerContents {
+    text-align: center;
+    margin: auto;
+}
+
 body {
     background-color: #000033;
     margin: 0;

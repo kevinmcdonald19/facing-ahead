@@ -459,8 +459,9 @@ a:visited {
     left: 0px;
     bottom: 0px;
     height: 42px;
-    width: 100%;
+    width: 92%;
     background: #393c73;
+    text-align: center;
 }
 
 #why_button {
