@@ -7,38 +7,37 @@
     </div>
 
     <div class="section_header">1. Families</div>
-
     <div class="answer_area">
-        <div>
-            <div id="why_link" class="why_link_text">Why do we ask about Families?
-                <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}</button>
-            </div>
 
-            <div class="learnMorePanel" ng-show="showLearnMorePanel">
-                <p class="why_title">Families</p>
-                <p class="why_body">Family of origin is an important starting point for each couple. When one marries, he/she is marrying into the other person's family system. The task of each person upon entering marriage is to separate from one's own family of origin, while still remaining connected. To not separate is to make it impossible to create the marital union. At the same time, to cut off from one's family of origin is to threaten the marital relationship with too much pressure and intensity. It is important for both parties to go into marriage with an understanding of their own family background, as well as insight regarding their prospective marriage partner's family of origin.</p>
-            </div>
-        </div>
-    </div>
 
-    <div ng-repeat="questionAnswer in families.questionAnswers">
-        {{questionAnswer.question.text}}
-        <br/>
+        <div ng-repeat="questionAnswer in families.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/>
 
-        <!--
+            <!--
         <button class="btn btn-primary" ng-click="saveAnswers('families', questionAnswer.question.id, 'yes')">
             Yes
         </button>
 -->
 
-        <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Maybe</label>
-        </div>
+            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
+            </div>
 
+        </div>
     </div>
+
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+    <div class="learnMorePanel">
+        <div id="why_link" class="why_link_text">Why do we ask about Values?</div>
+        <p class="why_title">Families</p>
+        <p class="why_body">Family of origin is an important starting point for each couple. When one marries, he/she is marrying into the other person's family system. The task of each person upon entering marriage is to separate from one's own family of origin, while still remaining connected. To not separate is to make it impossible to create the marital union. At the same time, to cut off from one's family of origin is to threaten the marital relationship with too much pressure and intensity. It is important for both parties to go into marriage with an understanding of their own family background, as well as insight regarding their prospective marriage partner's family of origin.</p>
+    </div>
+
 </div>

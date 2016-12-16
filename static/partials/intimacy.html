@@ -21,38 +21,37 @@
     <!-- ****************** ANSWER BUTTONS ****************** -->
 
     <div class="answer_area">
+        <div ng-repeat="questionAnswer in intimacy.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/> {{questionAnswer.id}}
+
+            <div class="btn-group" ng-model="intimacy.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('intimacy')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('intimacy')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('intimacy')"> Not Sure</label>
+            </div>
+
+            <!--            <pre>{{values.answers | json }}</pre>-->
+
+        </div>
+    </div>
 
 
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+
+    <div class="learnMorePanel">
         <div id="why_link" class="why_link_text">Why do we ask about Sexual & Intimacy?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
+
 
         </div>
 
-        <!-- ****************** END WHY LINK *********************** -->
-
-
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
-
-            <p class="why_title">Sexuality & Intimacy</p>
-            <p class="why_body">This section addresses the bonding power of sexual love and how a couple can enter into a life-long commitment to build their relationship into a deepening and lasting one through intimacy and the gift of their sexuality. They must also pay attention to the intentional development of emotional, intellectual, and spiritual intimacy. Each dimension of a couple's intimacy connects with the others. So, if one is neglected, all parts of the relationship can suffer, including the physical expression of love. Studies report that couples that are passionate about each other can more easily solve problems that arise.</p>
-
-        </div>
-    </div>
-    <div ng-repeat="questionAnswer in intimacy.questionAnswers">
-        {{questionAnswer.question.text}}
-        <br/> {{questionAnswer.id}}
-
-        <div class="btn-group" ng-model="intimacy.answers[questionAnswer.question.id].radio" bs-radio-group>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('intimacy')">Yes</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('intimacy')">No</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('intimacy')"> Maybe</label>
-        </div>
-
-        <!--            <pre>{{values.answers | json }}</pre>-->
+        <p class="why_title">Sexuality & Intimacy</p>
+        <p class="why_body">This section addresses the bonding power of sexual love and how a couple can enter into a life-long commitment to build their relationship into a deepening and lasting one through intimacy and the gift of their sexuality. They must also pay attention to the intentional development of emotional, intellectual, and spiritual intimacy. Each dimension of a couple's intimacy connects with the others. So, if one is neglected, all parts of the relationship can suffer, including the physical expression of love. Studies report that couples that are passionate about each other can more easily solve problems that arise.</p>
 
     </div>
+
 </div>

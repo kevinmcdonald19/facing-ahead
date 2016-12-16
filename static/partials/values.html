@@ -7,37 +7,11 @@
             Sure</em></strong> button.
     </div>
 
-    <!-- ****************** END DIRECTIONS ****************** -->
-
-
-    <!-- ****************** SECTION HEADER ****************** -->
-
     <div class="section_header">4. Values</div>
-
-    <!-- ****************** END SECTION HEADER ****************** -->
-
-
-    <!-- ****************** QUESTION ****************** -->
 
     <div class="answer_area">
 
 
-        <div id="why_link" class="why_link_text">Why do we ask about Values?
-
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
-
-        </div>
-
-        <!-- ****************** END WHY LINK *********************** -->
-
-
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
-
-            <p class="why_title">Values</p>
-            <p class="why_body">Making their relationship primary is a value that will be essential for a healthy and strong marriage. Hopefully the couple holds many similar values. Even where they have some dissimilar values, there will need to be some deepening appreciation for how the other party holds a particular value. The ideal is that they attempt to make such values into "our value" — meaning, the one who may value doing some charity or outreach, would be joined by their partner in such an endeavor. At the least, the other partner would support him or her, even if they do not see it as such a high value. In return the partner who is now getting support can express true appreciation for their partner's efforts.</p>
-
-        </div>
         <div ng-repeat="questionAnswer in values.questionAnswers">
             {{questionAnswer.question.text}}
             <br/> {{questionAnswer.id}}
@@ -48,12 +22,24 @@
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('values')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('values')"> Maybe</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('values')"> Not Sure</label>
             </div>
 
             <!--            <pre>{{values.answers | json }}</pre>-->
 
         </div>
+
+        <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+        <div class="learnMorePanel">
+
+            <div id="why_link" class="why_link_text">Why do we ask about Values?
+
+            </div>
+            <p class="why_title">Values</p>
+            <p class="why_body">Making their relationship primary is a value that will be essential for a healthy and strong marriage. Hopefully the couple holds many similar values. Even where they have some dissimilar values, there will need to be some deepening appreciation for how the other party holds a particular value. The ideal is that they attempt to make such values into "our value" — meaning, the one who may value doing some charity or outreach, would be joined by their partner in such an endeavor. At the least, the other partner would support him or her, even if they do not see it as such a high value. In return the partner who is now getting support can express true appreciation for their partner's efforts.</p>
+
+        </div>
     </div>
-</div>
+
 </div>

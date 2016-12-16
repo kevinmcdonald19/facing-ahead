@@ -9,8 +9,11 @@
     <h1>Your Answers</h1>
     <div ng-repeat="questionAnswer in user.quizResponse.questionAnswers">
         <div>{{questionAnswer.question.text}}</div>
-        <div>{{questionAnswer.answer}}</div>
-        <button class="btn btn-xs btn-warning" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+        <div class="list-inline" class="confirmAnswer">
+            <h3>{{questionAnswer.answer}}</h3>
+            <button class="btn btn-xs btn-link" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+        </div>
+
         <hr/>
     </div>
 

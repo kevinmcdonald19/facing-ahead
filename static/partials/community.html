@@ -13,22 +13,6 @@
 
 
     <div class="answer_area">
-
-
-        <div id="why_link" class="why_link_text">Why do we ask about Commitment?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
-
-
-        </div>
-
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
-
-            <p class="why_title">Commitment</p>
-            <p class="why_body">Too many movies, love songs, and TV shows reflect the notion that love is a feeling rather than a decision. This section has to do with choosing to love even when it might be difficult. Commitment is an agreement or a pledge to do something in the future, even when we may or may not feel like doing so. We act according to our agreement. Marriage represents such a commitment. We decide to love, with or without the loving feelings. What we also know about such a pledge is that when we do act based upon one's commitment we can create an atmosphere where the positive and loving feelings can more likely flourish.</p>
-
-        </div>
-
         <div ng-repeat="questionAnswer in community.questionAnswers">
             {{questionAnswer.question.text}}
             <br/> {{questionAnswer.id}}
@@ -39,9 +23,20 @@
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('community')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('community')"> Maybe</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('community')"> Not Sure</label>
             </div>
         </div>
     </div>
 
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+
+    <div class="learnMorePanel">
+
+        <div id="why_link" class="why_link_text">Why do we ask about Commitment?
+        </div>
+        <p class="why_title">Commitment</p>
+        <p class="why_body">Too many movies, love songs, and TV shows reflect the notion that love is a feeling rather than a decision. This section has to do with choosing to love even when it might be difficult. Commitment is an agreement or a pledge to do something in the future, even when we may or may not feel like doing so. We act according to our agreement. Marriage represents such a commitment. We decide to love, with or without the loving feelings. What we also know about such a pledge is that when we do act based upon one's commitment we can create an atmosphere where the positive and loving feelings can more likely flourish.</p>
+
+    </div>
 </div>

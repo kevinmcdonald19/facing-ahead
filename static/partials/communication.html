@@ -16,39 +16,36 @@
 
 
     <div class="answer_area">
+        <div ng-repeat="questionAnswer in communication.questionAnswers">
+            {{questionAnswer.question.text}}
+            <br/> {{questionAnswer.id}}
+
+            <div class="btn-group" ng-model="communication.answers[questionAnswer.question.id].radio" bs-radio-group>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('communication')">Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('communication')">No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('communication')"> Not Sure</label>
+            </div>
+
+            <!--            <pre>{{values.answers | json }}</pre>-->
+
+        </div>
+    </div>
 
 
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+    <div class="learnMorePanel">
         <div id="why_link" class="why_link_text">Why do we ask about Communication?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
 
 
-        </div>
-
-        <!-- ****************** END WHY LINK *********************** -->
-
-
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
-
-            <p class="why_title">Communication</p>
-            <p class="why_body">The importance of Communication is a given, but in reality, it is a never-ending task, an important skill that the couple must continually work on throughout their marriage. This section addresses the basic starting point of this couple's level of communication, but this is only the beginning; they must desire to increase in their capacity to communicate masterfully. Active listening, speaking "I" messages, and all the ways that they have available to them are more than simple skills. In marriage the couple has the possibility of helping each other heal their own childhood wounds, and in doing so become intimate and more in love than they can ever imagine.</p>
 
         </div>
-    </div>
-    <div ng-repeat="questionAnswer in communication.questionAnswers">
-        {{questionAnswer.question.text}}
-        <br/> {{questionAnswer.id}}
 
-        <div class="btn-group" ng-model="communication.answers[questionAnswer.question.id].radio" bs-radio-group>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('communication')">Yes</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('communication')">No</label>
-            <label class="btn btn-primary">
-                <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('communication')"> Maybe</label>
-        </div>
-
-        <!--            <pre>{{values.answers | json }}</pre>-->
+        <p class="why_title">Communication</p>
+        <p class="why_body">The importance of Communication is a given, but in reality, it is a never-ending task, an important skill that the couple must continually work on throughout their marriage. This section addresses the basic starting point of this couple's level of communication, but this is only the beginning; they must desire to increase in their capacity to communicate masterfully. Active listening, speaking "I" messages, and all the ways that they have available to them are more than simple skills. In marriage the couple has the possibility of helping each other heal their own childhood wounds, and in doing so become intimate and more in love than they can ever imagine.</p>
 
     </div>
+
 </div>

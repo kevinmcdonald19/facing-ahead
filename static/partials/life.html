@@ -16,19 +16,6 @@
 
     <div class="answer_area">
 
-        <div id="why_link" class="why_link_text">Why do we ask about Catholicism?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
-        </div>
-
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
-
-            <!-- ****************** END PREV & NEXT BUTTONS ****************** -->
-            <p class="why_title">Catholicism</p>
-            <p class="why_body">Even two practicing Catholics are not necessarily at the same place in their spiritual journey. This section asks the couple to look at their marriage, given that at least one is Catholic, and therefore having their marriage in the Catholic Church. It is important that they look at this as something each is freely choosing and that it requires from each one a basic understanding about what Catholics really believe, and what they especially believe regarding Catholic/Christian marriage.</p>
-
-        </div>
-
         <div ng-repeat="questionAnswer in life.questionAnswers">
             {{questionAnswer.question.text}}
             <br/> {{questionAnswer.id}}
@@ -39,10 +26,24 @@
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('life')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('life')"> Maybe</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('life')"> Not Sure</label>
             </div>
 
         </div>
+
+    </div>
+
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+    <div class="learnMorePanel">
+
+        <div id="why_link" class="why_link_text">Why do we ask about Catholicism?
+            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
+            </button>
+        </div>
+        <!-- ****************** END PREV & NEXT BUTTONS ****************** -->
+        <p class="why_title">Catholicism</p>
+        <p class="why_body">Even two practicing Catholics are not necessarily at the same place in their spiritual journey. This section asks the couple to look at their marriage, given that at least one is Catholic, and therefore having their marriage in the Catholic Church. It is important that they look at this as something each is freely choosing and that it requires from each one a basic understanding about what Catholics really believe, and what they especially believe regarding Catholic/Christian marriage.</p>
 
     </div>
 

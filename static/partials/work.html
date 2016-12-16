@@ -24,24 +24,12 @@
     <div class="answer_area">
 
 
-        <div id="why_link" class="why_link_text">Why do we ask about Works & Family Issues?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
 
-        </div>
 
         <!-- ****************** END WHY LINK *********************** -->
 
 
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
 
-            <p class="why_title">Work & Family Issues</p>
-
-            <p class="why_body">Most of us are swamped with many things and we need to take responsibility for setting a healthy balance and making sure we keep the marriage as our top priority. Eventually there may be children, jobs, or other things that can come between the couple. It is up to the couple to take responsibility for how they will handle the various life obligations that will be an ongoing part of their relationship.
-                <br/>
-                <br/>Many engaged and newly married couples report that even before marriage they have trouble balancing "together time" with the many other time-consuming activities in their lives.
-            </p>
-        </div>
 
         <div ng-repeat="questionAnswer in work.questionAnswers">
             {{questionAnswer.question.text}}
@@ -53,11 +41,26 @@
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('work')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('work')"> Maybe</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('work')"> Not Sure</label>
             </div>
 
             <!--            <pre>{{values.answers | json }}</pre>-->
 
         </div>
     </div>
+
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+    <div class="learnMorePanel">
+        <div id="why_link" class="why_link_text">Why do we ask about Works & Family Issues?
+
+        </div>
+        <p class="why_title">Work & Family Issues</p>
+
+        <p class="why_body">Most of us are swamped with many things and we need to take responsibility for setting a healthy balance and making sure we keep the marriage as our top priority. Eventually there may be children, jobs, or other things that can come between the couple. It is up to the couple to take responsibility for how they will handle the various life obligations that will be an ongoing part of their relationship.
+            <br/>
+            <br/>Many engaged and newly married couples report that even before marriage they have trouble balancing "together time" with the many other time-consuming activities in their lives.
+        </p>
+    </div>
+
 </div>

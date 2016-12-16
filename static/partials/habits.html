@@ -23,21 +23,11 @@
     <div class="answer_area">
 
 
-        <div id="why_link" class="why_link_text">Why do we ask about Habits?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
 
-        </div>
 
         <!-- ****************** END WHY LINK *********************** -->
 
 
-        <div class="learnMorePanel" ng-show="showLearnMorePanel">
-
-            <p class="why_title">Habits</p>
-            <p class="why_body">Habits covers a wide range of items. It might mean an occasional burp, or it could mean road rage. Some habits are destructive and will cause a marriage to crumble. This section has to do with having both parties go into the marriage with their eyes wide open. Too often a person will reason that a destructive habit, such as drug or alcohol abuse will go away once the couple marries. Love will conquer all. This is faulty thinking — magical thinking. In all probability it will only get worse. Counseling and other treatment programs are available and need to be considered if habits that are currently exhibited by one or both of the partners.</p>
-
-        </div>
 
         <div ng-repeat="questionAnswer in habits.questionAnswers">
             {{questionAnswer.question.text}}
@@ -49,11 +39,25 @@
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('habits')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('habits')"> Maybe</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('habits')"> Not Sure</label>
             </div>
 
             <!--            <pre>{{values.answers | json }}</pre>-->
 
         </div>
     </div>
+
+    <div ng-include src="'partials/prev_next_buttons.html'"></div>
+
+
+    <div class="learnMorePanel">
+        <div id="why_link" class="why_link_text">Why do we ask about Habits?
+
+
+        </div>
+        <p class="why_title">Habits</p>
+        <p class="why_body">Habits covers a wide range of items. It might mean an occasional burp, or it could mean road rage. Some habits are destructive and will cause a marriage to crumble. This section has to do with having both parties go into the marriage with their eyes wide open. Too often a person will reason that a destructive habit, such as drug or alcohol abuse will go away once the couple marries. Love will conquer all. This is faulty thinking — magical thinking. In all probability it will only get worse. Counseling and other treatment programs are available and need to be considered if habits that are currently exhibited by one or both of the partners.</p>
+
+    </div>
+
 </div>
