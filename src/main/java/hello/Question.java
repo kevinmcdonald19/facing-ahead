@@ -9,16 +9,19 @@ public class Question {
 
 	@Id
 	private String id;
+	
 	private String text;
 	private String category;
+	private String order;
 
 	public Question() {
 		// blank constructor
 	}
-	
-	public Question(Question question){
-		this.text = question.text;
-		this.category = question.category;
+
+	public Question(Question question) {
+		this.text = question.getText();
+		this.category = question.getCategory();
+		this.order = question.getOrder();
 	}
 
 	public String getId() {
@@ -37,8 +40,6 @@ public class Question {
 		this.text = text;
 	}
 
-
-
 	public String getCategory() {
 		return category;
 	}
@@ -47,6 +48,12 @@ public class Question {
 		this.category = category;
 	}
 
+	public String getOrder() {
+		return order;
+	}
 
+	public void setOrder(String order) {
+		this.order = order;
+	}
 
 }

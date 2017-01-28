@@ -32,7 +32,7 @@ public class PartnerQuizResponse {
 	}
 
 	private QuestionAnswer findAnswerForQuestion(User user, Question question) {
-		Set<QuestionAnswer> questionAnswers = user.getQuizResponse().getQuestionAnswers();
+		List<QuestionAnswer> questionAnswers = user.getQuizResponse().getQuestionAnswers();
 		List<QuestionAnswer> questionAnswersList = new ArrayList<QuestionAnswer>();
 
 		for (QuestionAnswer qa : questionAnswers) {

@@ -1,16 +1,16 @@
 package hello;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class QuizResponse {
 
-	private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>();
+	private List<QuestionAnswer> questionAnswers = new ArrayList<QuestionAnswer>();
 	private User user;
 	private boolean allQuestionsAnswered;
 	private List<QuestionAnswer> unansweredQuestions = new ArrayList<QuestionAnswer>();
+	private List<Question> questionsToDelete = new ArrayList<Question>();
 
 	public QuizResponse() {
 
@@ -22,24 +22,75 @@ public class QuizResponse {
 		}
 	}
 
-	public void syncUserQuizResponse(List<Question> questions) {
+	public void syncUserQuizResponse(List<Question> questionsInRepo) {
 		// questionAnswers.clear();
 
-		// add any questions that haven't been added
-		for (Question question : questions) {
-			if (!containsQuestion(question)) {
-				questionAnswers.add(new QuestionAnswer(question, null));
+		for (QuestionAnswer userQuestionAnswer : this.questionAnswers) {
+			Question usersQuestion = userQuestionAnswer.getQuestion();
+
+			if (usersQuestion != null) {
+				Question savedRepoQuestion = questionsRepoContains(usersQuestion, questionsInRepo);
+
+				if (savedRepoQuestion != null) {
+					// sync
+					usersQuestion.setText(savedRepoQuestion.getText());
+					usersQuestion.setCategory(savedRepoQuestion.getCategory());
+					usersQuestion.setOrder(savedRepoQuestion.getOrder());
+				} else {
+					// delete the question as it no longer exists anymore
+					questionsToDelete.add(usersQuestion);
+				}
 			}
+		}
+
+		// add additional questions if they haven't been added
+		for (Question repoQuestion : questionsInRepo) {
+			QuestionAnswer questionAnswer = quizResponseContainsQuestion(repoQuestion);
+			if (questionAnswer == null) {
+				this.questionAnswers.add(new QuestionAnswer(repoQuestion, null));
+			}
+		}
+
+		// delete any questions that aren't in the questions repo anymore
+		for (Question questionToDelete : questionsToDelete) {
+			QuestionAnswer questionAnswer = findRelatedQuestionAnswer(questionToDelete);
+			this.questionAnswers.remove(questionAnswer);
 		}
 	}
 
-	private boolean containsQuestion(Question question) {
-		for (QuestionAnswer questionAnswer : questionAnswers) {
-			if (questionAnswer.getQuestion().getId().equals(question.getId())) {
-				return true;
+	public List<Question> getQuestionsToDelete() {
+		return questionsToDelete;
+	}
+
+	public void setQuestionsToDelete(List<Question> questionsToDelete) {
+		this.questionsToDelete = questionsToDelete;
+	}
+
+	private Question questionsRepoContains(Question usersQuestion, List<Question> questionsInRepo) {
+		for (Question repoQuestion : questionsInRepo) {
+			if (repoQuestion.getId().equals(usersQuestion.getId())) {
+				return repoQuestion;
 			}
 		}
-		return false;
+		return null;
+	}
+
+	private QuestionAnswer findRelatedQuestionAnswer(Question question) {
+		for (QuestionAnswer questionAnswer : this.questionAnswers) {
+			if (questionAnswer.getQuestion().getId().equals(question.getId())) {
+				return questionAnswer;
+			}
+		}
+		return null;
+	}
+
+	private QuestionAnswer quizResponseContainsQuestion(Question question) {
+		for (QuestionAnswer questionAnswer : questionAnswers) {
+			if (questionAnswer.getQuestion().getId().equals(question.getId())) {
+				return questionAnswer;
+			}
+		}
+		return null;
 	}
 
 	public User getUser() {
@@ -50,7 +101,7 @@ public class QuizResponse {
 		this.user = user;
 	}
 
-	public Set<QuestionAnswer> getQuestionAnswers() {
+	public List<QuestionAnswer> getQuestionAnswers() {
 		return questionAnswers;
 	}
 
@@ -64,7 +115,7 @@ public class QuizResponse {
 		return filteredList;
 	}
 
-	public void setQuestionAnswers(Set<QuestionAnswer> questionAnswers) {
+	public void setQuestionAnswers(List<QuestionAnswer> questionAnswers) {
 		this.questionAnswers = questionAnswers;
 	}
 
@@ -90,7 +141,7 @@ public class QuizResponse {
 				this.unansweredQuestions.add(qa);
 			}
 		}
-		
+
 		if (this.unansweredQuestions.size() > 0) {
 			this.allQuestionsAnswered = false;
 			return false;

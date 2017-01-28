@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class QuestionsController {
-	
+
 	@RequestMapping("/user")
 	public Principal user(Principal user) {
 		return user;
@@ -31,9 +31,22 @@ public class QuestionsController {
 		return questionsRepository.save(new Question(question));
 	}
 
-	@RequestMapping(value = "/questions/{id}", method = RequestMethod.PUT)
-	public Question updateQuestion(@PathVariable("id") String id) {
+	@RequestMapping(value = "/questions/{id}", method = RequestMethod.POST)
+	public Question updateQuestion(@PathVariable("id") String id, @ModelAttribute QuestionDTO questionDTO) {
 		Question p = questionsRepository.findOne(id);
+
+		if (questionDTO.getCategory() != null) {
+			p.setCategory(questionDTO.getCategory());
+		}
+
+		if (questionDTO.getText() != null) {
+			p.setText(questionDTO.getText());
+		}
+
+		if (questionDTO.getOrder() != null) {
+			p.setOrder(questionDTO.getOrder());
+		}
+
 		Question updatedQuestion = questionsRepository.save(p);
 		return updatedQuestion;
 	}
@@ -43,11 +56,11 @@ public class QuestionsController {
 		return questionsRepository.findAll();
 	}
 
-//	@RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
-//	public Question getQuestion(@PathVariable("id") int id) {
-//		Question p = questionsRepository.findOne(id);
-//		return p;
-//	}
+	// @RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
+	// public Question getQuestion(@PathVariable("id") int id) {
+	// Question p = questionsRepository.findOne(id);
+	// return p;
+	// }
 
 	@RequestMapping(value = "/questions/{id}", method = RequestMethod.DELETE)
 	public Question deleteQuestion(@PathVariable("id") String id) {

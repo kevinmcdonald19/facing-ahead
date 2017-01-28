@@ -23,7 +23,7 @@ public class UsersController {
 	private UsersRepository usersRepository;
 
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionRepository questionsRepository;
 
 	@RequestMapping(value = "/create/user", method = RequestMethod.POST)
 	public User createUser(@RequestBody CreateUserDTO createUserDTO, Principal principalUser,
@@ -32,7 +32,7 @@ public class UsersController {
 		// check to see if the user exists
 		User existingUser = usersRepository.findByUsername(createUserDTO.getUsername());
 		if (existingUser == null) {
-			QuizResponse newQuizResponse = new QuizResponse(questionRepository.findAll());
+			QuizResponse newQuizResponse = new QuizResponse(questionsRepository.findAll());
 			User savedUser = usersRepository.save(new User(createUserDTO, newQuizResponse));
 			return savedUser;
 		} else {
@@ -107,11 +107,14 @@ public class UsersController {
 		User currentUser = usersRepository.findByUsername(username);
 		User partnerUser = usersRepository.findByUsername(currentUser.getPartnerUsername());
 
+		List<Question> allRepoQuestions = questionsRepository.findAll();
+		currentUser.getQuizResponse().syncUserQuizResponse(allRepoQuestions);
+		partnerUser.getQuizResponse().syncUserQuizResponse(allRepoQuestions);
 		determineIfAbleToCompareResults(currentUser);
 
 		if (currentUser.isAbleToSubmitResults()) {
 			Results results = new Results(currentUser, partnerUser);
-			results.getPartnerQuizResponse().populateQuestions(questionRepository.findAll(), currentUser, partnerUser);
+			results.getPartnerQuizResponse().populateQuestions(questionsRepository.findAll(), currentUser, partnerUser);
 			return results;
 		} else {
 			return null;
@@ -124,7 +127,9 @@ public class UsersController {
 			@PathVariable("category") String category) {
 		User savedUser = usersRepository.findByUsername(username);
 		QuizResponse quizResponse = savedUser.getQuizResponse();
-		quizResponse.syncUserQuizResponse(questionRepository.findAll());
+		List<Question> allRepoQuestions = questionsRepository.findAll();
+		quizResponse.syncUserQuizResponse(allRepoQuestions);
+		quizResponse.getQuestionAnswers().removeAll(quizResponse.getQuestionsToDelete());
 		usersRepository.save(savedUser);
 		return savedUser.getQuizResponse().getQuestionsByCategory(category);
 	}
@@ -145,8 +150,8 @@ public class UsersController {
 		return savedUser.getQuizResponse().getQuestionsByCategory(category);
 	}
 
-	private QuestionAnswer findQuestionAnswerWithQuestion(Set<QuestionAnswer> questionAnswerList, String questionID) {
-		for (QuestionAnswer questionAnswer : questionAnswerList) {
+	private QuestionAnswer findQuestionAnswerWithQuestion(List<QuestionAnswer> list, String questionID) {
+		for (QuestionAnswer questionAnswer : list) {
 			if (questionAnswer.getQuestion().getId().equals(questionID)) {
 				return questionAnswer;
 			}
