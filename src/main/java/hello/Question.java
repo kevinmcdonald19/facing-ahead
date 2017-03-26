@@ -13,6 +13,7 @@ public class Question {
 	private String text;
 	private String category;
 	private String order;
+	private String why;
 
 	public Question() {
 		// blank constructor
@@ -22,6 +23,7 @@ public class Question {
 		this.text = question.getText();
 		this.category = question.getCategory();
 		this.order = question.getOrder();
+		this.why = question.getWhy();
 	}
 
 	public String getId() {
@@ -55,5 +57,15 @@ public class Question {
 	public void setOrder(String order) {
 		this.order = order;
 	}
+
+	public String getWhy() {
+		return why;
+	}
+
+	public void setWhy(String why) {
+		this.why = why;
+	}
+	
+	
 
 }

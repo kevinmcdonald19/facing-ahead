@@ -36,6 +36,7 @@ public class QuizResponse {
 					usersQuestion.setText(savedRepoQuestion.getText());
 					usersQuestion.setCategory(savedRepoQuestion.getCategory());
 					usersQuestion.setOrder(savedRepoQuestion.getOrder());
+					usersQuestion.setWhy(savedRepoQuestion.getWhy());
 				} else {
 					// delete the question as it no longer exists anymore
 					questionsToDelete.add(usersQuestion);

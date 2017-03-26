@@ -14,12 +14,6 @@
             {{questionAnswer.question.text}}
             <br/>
 
-            <!--
-        <button class="btn btn-primary" ng-click="saveAnswers('families', questionAnswer.question.id, 'yes')">
-            Yes
-        </button>
--->
-
             <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
@@ -28,7 +22,12 @@
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
             </div>
-
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
         </div>
     </div>
 

@@ -4,6 +4,7 @@ public class QuestionDTO {
 	private String text;
 	private String category;
 	private String order;
+	private String why;
 	public String getText() {
 		return text;
 	}
@@ -21,6 +22,10 @@ public class QuestionDTO {
 	}
 	public void setOrder(String order) {
 		this.order = order;
+	}
+	
+	public void setWhy(String why){
+		this.why = why;
 	}
 	
 	
