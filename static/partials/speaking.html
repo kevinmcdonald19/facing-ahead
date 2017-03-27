@@ -29,40 +29,25 @@
     <div class="answer_area">
         <div ng-repeat="questionAnswer in speaking.questionAnswers">
             {{questionAnswer.question.text}}
-            <br/> {{questionAnswer.id}}
+            <br/>
 
-            <div class="btn-group" ng-model="speaking.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('speaking')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('speaking')">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('speaking')"> Not Sure</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
             </div>
-
-
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
 
         </div>
     </div>
-
-
     <div ng-include src="'partials/prev_next_buttons.html'"></div>
-
-
-
-    <div class="learnMorePanel">
-
-        <div id="why_link" class="why_link_text">Why do we ask about Spirituality?
-            <button class="btn btn-primary" ng-click="togglePanel()">{{!showLearnMorePanel ? "Tap here to learn more" : "Hide"}}
-            </button>
-
-
-        </div>
-
-        <!-- ****************** END PREV & NEXT BUTTONS ****************** -->
-        <p class="why_title">Faith, Religion & Spirituality</p>
-        <p class="why_body">Just as one's physical self opens up to the other in marriage, so too does one's spirituality open up to the other. In this section the engaged couple looks at where they are presently regarding their own spirituality and religious faith, as well as practice. Each couple is a mixed marriage of sorts, regardless of what their circumstances may be. This section takes them wherever they are and asks them to investigate how they might move into a spiritual intimacy, via prayer, rituals and practices — formal and informal.</p>
-
-    </div>
 
 </div>

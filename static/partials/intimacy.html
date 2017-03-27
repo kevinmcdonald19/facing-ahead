@@ -23,19 +23,22 @@
     <div class="answer_area">
         <div ng-repeat="questionAnswer in intimacy.questionAnswers">
             {{questionAnswer.question.text}}
-            <br/> {{questionAnswer.id}}
+            <br/>
 
-            <div class="btn-group" ng-model="intimacy.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('intimacy')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('intimacy')">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('intimacy')"> Not Sure</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
             </div>
-
-            <!--            <pre>{{values.answers | json }}</pre>-->
-
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
         </div>
     </div>
 

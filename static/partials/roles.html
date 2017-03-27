@@ -8,21 +8,25 @@
 
 
     <div class="answer_area">
-
         <div ng-repeat="questionAnswer in roles.questionAnswers">
             {{questionAnswer.question.text}}
             <br/>
 
-            <div class="btn-group" ng-model="roles.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('roles')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('roles')">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('roles')"> Not Sure</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
             </div>
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
         </div>
-
     </div>
     <div ng-include src="'partials/prev_next_buttons.html'"></div>
 

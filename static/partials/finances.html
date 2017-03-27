@@ -18,31 +18,39 @@
 
         <div ng-repeat="questionAnswer in finances.questionAnswers">
             {{questionAnswer.question.text}}
-            <br/> {{questionAnswer.id}}
+            <br/>
 
-            <div class="btn-group" ng-model="finances.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('finances')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('finances')">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('finances')"> Not Sure</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
             </div>
+            <br/>
+            <br/>
+            <small>
+            <em><p>{{questionAnswer.question.why}}</p></em>
+            </small>
+            <hr/>
 
         </div>
     </div>
 
     <div ng-include src="'partials/prev_next_buttons.html'"></div>
 
+<!--
     <div class="learnMorePanel">
-        <div id="why_link" class="why_link_text">Why do we ask about Budget/Finances?
+    <div id="why_link" class="why_link_text">Why do we ask about Budget/Finances?
 
 
-        </div>
-        <!-- ****************** END PREV & NEXT BUTTONS ****************** -->
-        <p class="why_title">Budget/Finances</p>
-
-        <p class="why_body">Finances are often the last talked about topic within a serious relationship. It can even be a topic with a lot of emotional tension that one or both parties bring into the relationship for various reasons. One may be a saver while the other is a spender. They might have accumulated some financial assets before they are married or they may have accumulated debt they are bringing into the marriage. All this needs to get addressed. This section helps the couple speak openly and honestly about their finances. Budgets can be very formal or informal. Regardless of how they choose to deal with their finances they need to be responsible.</p>
     </div>
+    ****************** END PREV & NEXT BUTTONS ******************
+    <p class="why_title">Budget/Finances</p>
+
+    <p class="why_body">Finances are often the last talked about topic within a serious relationship. It can even be a topic with a lot of emotional tension that one or both parties bring into the relationship for various reasons. One may be a saver while the other is a spender. They might have accumulated some financial assets before they are married or they may have accumulated debt they are bringing into the marriage. All this needs to get addressed. This section helps the couple speak openly and honestly about their finances. Budgets can be very formal or informal. Regardless of how they choose to deal with their finances they need to be responsible.</p>
+</div>
+-->
 
 </div>
