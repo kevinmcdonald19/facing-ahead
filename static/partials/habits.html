@@ -32,14 +32,18 @@
         <div ng-repeat="questionAnswer in habits.questionAnswers">
             {{questionAnswer.question.text}}
             <br/>
+            
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
 
-            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div class="btn-group" ng-model="habits.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('habits')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('habits')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('habits')"> Not Sure</label>
             </div>
             <br/>
             <br/>
@@ -53,7 +57,7 @@
     <div ng-include src="'partials/prev_next_buttons.html'"></div>
 
 
-<!--
+    <!--
     <div class="learnMorePanel">
     <div id="why_link" class="why_link_text">Why do we ask about Habits?
 

@@ -7,12 +7,17 @@
     </div>
 
     <div class="section_header">1. Families</div>
+
     <div class="answer_area">
 
 
         <div ng-repeat="questionAnswer in families.questionAnswers">
             {{questionAnswer.question.text}}
             <br/>
+
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
 
             <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">

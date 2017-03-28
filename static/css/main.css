@@ -179,3 +179,29 @@ body {
         vertical-align: middle;
     }
 }
+
+
+/* loading screen */
+
+.savingContent {
+    width: 100%;
+    position: fixed;
+    height: 500px;
+    /*    line-height: 500px;*/
+    width: 100%;
+    z-index: 10;
+    background: rgba(0, 0, 0, .2);
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 192px;
+}
+
+.savingContent h1 {
+    vertical-align: middle;
+}

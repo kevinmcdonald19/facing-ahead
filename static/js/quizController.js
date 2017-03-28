@@ -74,6 +74,8 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
             var questionAnswer = response.data[i];
             $scope[category].answers[questionAnswer.question.id] = {};
             $scope[category].answers[questionAnswer.question.id].radio = questionAnswer.answer;
+            console.log('saved answer: ' + questionAnswer.answer);
+            $scope.savingContent = false;
         }
     }
 
@@ -90,7 +92,7 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
     /* SAVE THE ANSWERS */
     /* refactoring as the button groups are firing twice for some reason when the buttons are being clicked */
     $scope.saveAnswers = function (category, questionID, answer) {
-        console.log('saving answers for category: ' + category);
+        console.log('saving answers for category: ' + category + 'to: ' + answer);
 
         var questionAnswers = {};
         questionAnswers.updateQuestionAnswerDTOList = [];
@@ -120,12 +122,15 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
 
             // submit to the server!
             if (questionAnswers.updateQuestionAnswerDTOList.length > 0) {
+                $scope.savingContent = true;
                 quizService.saveAnswers($rootScope.userInfo.username, category, questionAnswers).then(function (response) {
                     syncData(category, response);
                 });
             } else {
                 console.log('no questions to save, initializing');
             }
+
+            console.log('done saving');
         }
     }
 

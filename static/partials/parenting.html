@@ -18,14 +18,18 @@
         <div ng-repeat="questionAnswer in parenting.questionAnswers">
             {{questionAnswer.question.text}}
             <br/>
+            
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
 
-            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div class="btn-group" ng-model="parenting.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('parenting')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('parenting')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('parenting')"> Not Sure</label>
             </div>
             <br/>
             <br/>

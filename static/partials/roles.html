@@ -12,13 +12,17 @@
             {{questionAnswer.question.text}}
             <br/>
 
-            <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
+            <div ng-show="savingContent" class="savingContent">
+                <h1>Saving your response, just a sec :)</h1>
+            </div>
+
+            <div class="btn-group" ng-model="roles.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
+                    <input ng-disabled="savingContent" type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('roles')">Yes</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
+                    <input ng-disabled="savingContent" type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('roles')">No</label>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('families')"> Not Sure</label>
+                    <input ng-disabled="savingContent" type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('roles')"> Not Sure</label>
             </div>
             <br/>
             <br/>
@@ -28,7 +32,11 @@
             <hr/>
         </div>
     </div>
+
+
+
     <div ng-include src="'partials/prev_next_buttons.html'"></div>
+    <!--
 
     <div class="learnMorePanel">
         <div id="why_link" class="why_link_text">Why do we ask about Values?</div>
@@ -38,4 +46,5 @@
         <p class="why_body">Roles in marriage are still critical even in the 21st century. Given the changes in gender-based roles, it is easy to dismiss the idea that there are set roles within a marriage. But this is not necessarily true, nor does it need to be true. What is critical is how the couple sees it. If they both agree on who will cut the grass, who will handle the checking account, who will address the various tasks of their home, then all is good. This section is partially about the mutual giving and receiving within the relationship. There must be a sense of equity for both the husband and wife. They can form a more traditional style or they can adopt a style that appeals to them. But, it cannot be assumed.
         </p>
     </div>
+-->
 </div>
