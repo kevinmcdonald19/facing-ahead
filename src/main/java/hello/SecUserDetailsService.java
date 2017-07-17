@@ -18,7 +18,7 @@ public class SecUserDetailsService implements UserDetailsService{
 		 * Here add user data layer fetching from the MongoDB. I have used
 		 * userRepository
 		 */
-		User user = userRepository.findByUsername(username);
+		User user = userRepository.findByUsername(username.toLowerCase());
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		} else {

@@ -10,8 +10,12 @@
     <div ng-repeat="questionAnswer in user.quizResponse.questionAnswers">
         <div>{{questionAnswer.question.text}}</div>
         <div class="list-inline" class="confirmAnswer">
-            <h3>{{questionAnswer.answer}}</h3>
-            <button class="btn btn-xs btn-link" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
+            <h3>Your Answer: 
+            <span ng-if="questionAnswer.answer == 'yes'">Yes</span>
+            <span ng-if="questionAnswer.answer == 'no'">No</span>
+            <span ng-if="questionAnswer.answer == 'maybe'">Not Sure</span>
+            </h3>
+            <a class="takeMeToQuestionLink btn btn-link" ng-click="navigateToSection(questionAnswer.question.category)">Take me to this question</a>
         </div>
 
         <hr/>

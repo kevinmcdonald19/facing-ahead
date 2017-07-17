@@ -8,7 +8,7 @@
         <hr/>
 
         <div ng-repeat="questionAnswer in results.partnerQuizResponse.partnerQuestionAnswerList" id="results">
-            <div>{{questionAnswer.question.text}}</div>
+            <div>{{$index+1}} - {{questionAnswer.question.text}}</div>
             <br/>
             <div class="row">
                 <div class="col-xs-6">

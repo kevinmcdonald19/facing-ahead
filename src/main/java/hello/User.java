@@ -69,7 +69,7 @@ public class User {
 
 	public User(CreateUserDTO userDTO, QuizResponse quizResponse) {
 		this.name = userDTO.getName();
-		this.username = userDTO.getUsername();
+		this.username = userDTO.getUsername().toLowerCase();
 		this.password = userDTO.getPassword();
 		this.quizResponse = quizResponse;
 		// this.quizResponse.setUser(userDTO);

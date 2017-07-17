@@ -8,9 +8,9 @@
         <div ng-show="!authenticated">
             <button class="btn background-blue" ng-show="!authenticated" ui-sref="login">Login</button>
             <button class="btn background-blue" ui-sref="createAccount">Create Account </button>
-
-            <button class="btn background-blue" ui-sref="howItWorks">How it Works</button>
+            <button class="btn background-blue" ui-sref="about">About This App</button>
             <button class="btn background-blue" ui-sref="topics">Quiz Topics</button>
+            <button class="btn background-blue" ui-sref="settings">Settings</button>
         </div>
 
         <div ng-show="authenticated">
@@ -19,6 +19,10 @@
             <button class="btn background-blue" ui-sref="confirmation">Confirm Your Answers</button>
             <button ng-if="user.ableToSubmitResults" ui-sref="results" class="btn background-blue">See Your Results
             </button>
+            <hr/>
+            <button class="btn background-blue" ui-sref="about">About This App</button>
+            <button class="btn background-blue" ui-sref="topics">Quiz Topics</button>
+            <button class="btn background-blue" ui-sref="settings">Settings</button>
         </div>
 
 

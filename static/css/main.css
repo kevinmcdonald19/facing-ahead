@@ -30,6 +30,20 @@
 #footerContents {
     text-align: center;
     margin: auto;
+    padding-top: 4px;
+}
+
+#footerContents .fa {
+    font-size: 21px;
+    color: white;
+}
+
+#footerContents .fa:hover {
+    color: rgba(100, 148, 188, 0.5);
+}
+
+#footerContents .fa:active {
+    color: rgba(100, 148, 188, 1);
 }
 
 body {
@@ -58,6 +72,10 @@ body {
     padding: 30px;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.list-inline {
+    margin: 0;
 }
 
 *:focus {
@@ -140,6 +158,21 @@ body {
     border-bottom-left-radius: 4px;
 }
 
+.answer_area .btn-primary {
+    background: none;
+    border: 1px solid white;
+}
+
+.answer_area .btn-primary:hover {
+    background: rgba(100, 148, 188, 0.5);
+    border: 1px solid white;
+}
+
+.answer_area .btn-primary.active {
+    background: rgba(100, 148, 188, 1);
+    border: 1px solid white;
+}
+
 
 /* Confirmation Area */
 
@@ -160,6 +193,10 @@ body {
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+}
+
+a.btn.btn-link.takeMeToQuestionLink {
+    padding-left: 0;
 }
 
 
