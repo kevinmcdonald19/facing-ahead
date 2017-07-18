@@ -1,5 +1,6 @@
 mainModule.controller('QuizController', function ($scope, $http, $state, $rootScope, $stateParams, quizService) {
 
+    $scope.saveingContent = true;
     initializeToggles();
 
     function testAuthentication() {
@@ -141,116 +142,6 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         initializeQuestionAnswers(category);
         getQuestions(category);
     }
-
-    function initAutoSave() {
-        //        $scope.$watch('families.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '' && $state.current.name == 'families') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('families');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('roles.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('roles');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('finances.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('finances');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('values.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('values');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('habits.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('habits');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('work.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('work');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('leisure.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('leisure');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('intimacy.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('intimacy');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('community.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('community');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('communication.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('communication');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('parenting.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('parenting');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('speaking.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('speaking');
-        //                }
-        //            }
-        //        }, true);
-        //
-        //        $scope.$watch('life.answers', function (scope) {
-        //            if (arguments[1] != null && arguments[1] != '') {
-        //                if (arguments[1][Object.keys(arguments[1])]) {
-        //                    $scope.saveAnswers('life');
-        //                }
-        //            }
-        //        }, true);
-    }
-
-    // creates the watchers to auto-save values when chosen
-    initAutoSave();
-
 
     function rolesPageSetup() {
         console.log('roles page setup');
@@ -430,5 +321,6 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
         };
     }
 
+    $scope.savingContent = false;
 
 });
