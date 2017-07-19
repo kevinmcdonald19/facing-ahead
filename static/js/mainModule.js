@@ -26,7 +26,8 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('topics', {
             url: "/home/topics",
-            templateUrl: "partials/topics.html"
+            templateUrl: "partials/topics.html",
+            controller: "TopicsController"
         })
         .state('createAccount', {
             url: "/quiz/createAccount",

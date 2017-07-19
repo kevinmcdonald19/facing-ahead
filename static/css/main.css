@@ -97,6 +97,17 @@ body {
     background-size: cover;
 }
 
+a {
+    color: rgba(98, 146, 186, 0.8) !important;
+    text-decoration: underline;
+}
+
+a: hover {
+    color: rgba(98, 146, 186, 1) !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 /* Home Page */
 
@@ -122,6 +133,14 @@ body {
     margin-top: 50px;
     text-align: center;
     padding: 10px;
+}
+
+
+/* Topics List */
+
+.topicTitle {
+    font-weight: bold;
+    background: blue;
 }
 
 

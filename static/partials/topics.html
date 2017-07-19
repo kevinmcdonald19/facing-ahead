@@ -9,53 +9,110 @@
 
     <!-- ****************** DIRECTIONS ****************** -->
 
-    <div class="directions_body">The Facing Ahead couples' quiz touches on a variety of topics that come up in the course of long-term, committed relationships. Each topic, and why it is included in the quiz, is covered below. Please note that each question provides a link to this information as well, should you wish to review it while taking the quiz.
+    <div class="text-white">The Facing Ahead couples' quiz touches on a variety of topics that come up in the course of long-term, committed relationships. Each topic, and why it is included in the quiz, is covered below.
     </div>
 
     <!-- ****************** END DIRECTIONS ****************** -->
 
 
     <!-- ****************** QUESTION CONFIRMATION AREA ****************** -->
+    <br/>
+    <ul class="topicsList">
+        <li>
+            <div><strong>Family of Origin</strong></div>
+            <div> <a ng-click="scrollTo('familyOfOrigins')">Read More</a> | <a ui-sref="quiz.families">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Relationship Roles</strong></div>
+            <div> <a ng-click="scrollTo('relationshipRoles')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Finances</strong></div>
+            <div> <a ng-click="scrollTo('finances')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Values</strong></div>
+            <div> <a ng-click="scrollTo('values')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Habits</strong></div>
+            <div> <a ng-click="scrollTo('habits')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Work/Home Issues</strong></div>
+            <div> <a ng-click="scrollTo('workHomeIssues')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Friends & Leisure</strong></div>
+            <div> <a ng-click="scrollTo('friendsAndLeisure')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Intimacy & Sexuality</strong></div>
+            <div> <a ng-click="scrollTo('intimacyAndSexuality')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+
+        <li>
+            <div><strong>Community Life</strong></div>
+            <div> <a ng-click="scrollTo('communityLife')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Communication</strong></div>
+            <div> <a ng-click="scrollTo('communication')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Parenting</strong></div>
+            <div> <a ng-click="scrollTo('parenting')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Speaking Personally</strong></div>
+            <div> <a ng-click="scrollTo('speakingPersonally')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+        <li>
+            <div><strong>Inner Life</strong></div>
+            <div> <a ng-click="scrollTo('innerLife')">Read More</a> | <a ui-sref="quiz.roles">Go to Questions</a></div>
+        </li>
+    </ul>
 
     <div class="content_title">I. FAMILY OF ORIGIN</div>
-    <div class="content_body">
+
+    <div id="familyOfOrigins" class="content_body">
         <strong><em>Family of Origin</em></strong> is an important starting point for each couple. When one marries, he/she is marrying into the other person's family system. The task of each person upon entering marriage is to separate from one's own family of origin, while still remaining connected. To not separate is to make it impossible to create the marital union. At the same time, to cut off from one's family of origin is to threaten the marital relationship with too much pressure and intensity. It is important for both parties to go into marriage with an understanding of their own family background, as well as insight regarding their prospective marriage partner's family of origin.
     </div>
-    <div class="content_title">II. RELATIONSHIP ROLES</div>
+    <div class="content_title" id="relationshipRoles">II. RELATIONSHIP ROLES</div>
     <div class="content_body"><strong><em>Roles in Marriage</em> are still critical even in the 21st century.</strong>strong> Given the changes in gender-based roles, it is easy to dismiss the idea that there are set roles within a marriage. But this is not necessarily true, nor does it need to be true. What is critical is how the couple sees it. If they both agree on who will cut the grass, who will handle the checking account, who will address the various tasks of their home, then all is good. This section is partially about the mutual giving and receiving within the relationship. There must be a sense of equity for both the husband and wife. They can form a more traditional style or they can adopt a style that appeals to them. But, it cannot be assumed.
     </div>
-    <div class="content_title">III. FINANCES</div>
+    <div class="content_title" id="finances">III. FINANCES</div>
     <div class="content_body"><strong><em>Finances</em></strong> are often the last talked-about topic within a serious relationship. It can even be a topic with a lot of emotional tension that one or both parties bring into the relationship for various reasons. One may be a saver while the other is a spender. They might have accumulated some financial assets before they are married or they may have accumulated debt they are bringing into the marriage. All this needs to get addressed. This section helps the couple speak openly and honestly about their finances. Budgets can be very formal or informal. Regardless of how they choose to deal with their finances they need to be responsible.
     </div>
-    <div class="content_title">IV. VALUES</div>
+    <div class="content_title" id="values">IV. VALUES</div>
     <div class="content_body"><strong><em>Why discuss values?</em></strong> Because it’s extremely difficult to build a life with someone if there isn’t a fair bit of crossover in your values. If your goal is to make enough money to live a comfortable life and you’re dating someone who wants to live simply to protect the earth, then it seems likely that you will get on one another’s nerves! All your values don’t have to line up, but there has to be more to work with than how beautiful she is, or how cool that he went to Harvard.
     </div>
-    <div class="content_title">V. HABITS</div>
+    <div class="content_title" id="habits">V. HABITS</div>
     <div class="content_body"><strong><em>Habits:</em></strong> This covers a wide range of items. It might mean an occasional burp, or it could mean road rage. Some habits are destructive and will cause a marriage to crumble. This section has to do with having both parties go into the marriage with their eyes wide open. Too often a person will reason that a destructive habit, such as drug or alcohol abuse will go away once the couple marries. Love will conquer all. This is faulty thinking — magical thinking. In all probability it will only get worse. Counseling and other treatment programs are available and need to be considered if habits that are currently exhibited by one or both of the partners.
 
     </div>
-    <div class="content_title">VI. WORK/HOME ISSUES</div>
+    <div class="content_title" id="workHomeIssues">VI. WORK/HOME ISSUES</div>
     <div class="content_body"><strong><em>Work/Family Issues:</em></strong> Most of us are swamped with many things and we need to take responsibility for setting a healthy balance and making sure we keep the marriage as our top priority. Eventually there may be children, jobs, or other things that can come between the couple. It is up to the couple to take responsibility for how they will handle the various life obligations that will be an ongoing part of their relationship. Many engaged and newly married couples report that even before marriage they have trouble balancing "together time" with the many other time-consuming activities in their lives.
     </div>
-    <div class="content_title">VII. FRIENDS AND LEISURE</div>
+    <div class="content_title" id="friendsAndLeisure">VII. FRIENDS AND LEISURE</div>
     <div class="content_body"><strong><em>Friends/Leisure:</em></strong> Couples do not suddenly end the friendships they had prior to becoming involved with each other. They eventually find that they begin to develop mutual friends hopefully including some married friend couples. Ideally, they are to become each other's best friend. All those other friendships have their place but the marital relationship needs to take priority. This does not mean that they are not to have any other friends. In fact, friendships can and often do support the marital relationship. In order for this to be a positive benefit to the marriage, they will need to set some boundaries so that friendships remain supportive without becoming a distraction or even temptation for the marital relationship.
     </div>
-    <div class="content_title">VIII. INTIMACY AND SEXUALITY</div>
+    <div class="content_title" id="intimacyAndSexuality">VIII. INTIMACY AND SEXUALITY</div>
     <div class="content_body"><strong><em>Sexuality/Intimacy:</em></strong> This section addresses the bonding power of sexual love and how a couple can enter into a life-long commitment to build their relationship into a deepening and lasting one through intimacy and the gift of their sexuality. They must also pay attention to the intentional development of emotional, intellectual, and spiritual intimacy. Each dimension of a couple's intimacy connects with the others. So, if one is neglected, all parts of the relationship can suffer, including the physical expression of love. Studies report that couples that are passionate about each other can more easily solve problems that arise.
     </div>
-    <div class="content_title">IX. COMMUNITY LIFE</div>
+    <div class="content_title" id="communityLife">IX. COMMUNITY LIFE</div>
     <div class="content_body">Because community life in this country has become somewhat divisive, it is good for a relationship to talk about aspects of one’s belief system around community life. You may feel strongly about one or more of the following statements, but it may not have come up in your conversations. And responding to these statements may bring up other things that are important to you depending on where you live. Maybe you have strong feelings about hunting laws, or global warming, or police behaviors. We knew a couple who married, and then the wife found out her husband believed the moon landing was staged. That is not likely to come up necessarily in dating conversation, but the more of those “surprises” that can be avoided down the road, the better!
     </div>
-    <div class="content_title">X. COMMUNICATION</div>
+    <div class="content_title" id="communication">X. COMMUNICATION</div>
     <div class="content_body"><strong><em>The importance of Communication</em></strong> is a given, but in reality, it is a never-ending task, an important skill that the couple must continually work on throughout their marriage. This section addresses the basic starting point of this couple's level of communication, but this is only the beginning; they must desire to increase in their capacity to communicate masterfully. Active listening, speaking "I" messages, and all the ways that they have available to them are more than simple skills. In marriage the couple has the possibility of helping each other heal their own childhood wounds, and in doing so become intimate and more in love than they can ever imagine.
     </div>
-    <div class="content_title">XI. PARENTING</div>
+    <div class="content_title" id="parenting">XI. PARENTING</div>
     <div class="content_body"><strong><em>Deciding to have children</em></strong> is the largest decision a couple can make, and when it happens, can lead to the largest adjustment within a marriage. In some sense it makes the marital adjustment pale in comparison. The adjustment to time, money, household tasks, and to the couple's time together shifts in dramatic ways. This section has the couple discussing the realities of their own relationship and what it entails or will entail. When to have children is often a major decision they must make. If the couple runs into any issues during this process, another entire set of decisions and adjustments must be made. Their own family of origin can often factor into these decisions.
     </div>
-    <div class="content_title">XII. SPEAKING PERSONALLY…</div>
+    <div class="content_title" id="speakingPersonally">XII. SPEAKING PERSONALLY…</div>
     <div class="content_body"> If your partner was talking about you, do you think they would describe you the way you see yourself? Do you think they would talk about your relationship the same way you would? Are you pretty sure the two of you are on the same page as far as your future is concerned? The Hallmark channel has a lot of shows based of a misunderstanding of couples’ relationships. He proposes when she has found someone she likes better. She tells her friends they are about to be engaged when he’s planning to move to Alaska. You can save yourself some heartbreak by knowing how you honestly feel, and how your partner honestly feels about you and your relationship.
     </div>
-    <div class="content_title">XIII. INNER LIFE</div>
+    <div class="content_title" id="innerLife">XIII. INNER LIFE</div>
     <div class="content_body">Some people are religious and some are not, but most people have an interior life that guides their thoughts and actions. The “big questions” present themselves to every thoughtful person, and their life reflects the answers they find to those questions. In addition, many who no longer identify as religious were raised in a tradition that still is part of who they are and how they see life. Whether you call it a life philosophy, a brand of spirituality or a code to live by, it will enter into and color your relationship.
     </div>
     <br/>

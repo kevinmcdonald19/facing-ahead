@@ -1,5 +1,5 @@
 <div id="content" class="content">
-    <div class="section_header">Settings</div>
+    <div class="section_header">Profile & Partner Info</div>
 
     <div ng-if="authenticated">
         <h1>Profile</h1>
@@ -10,11 +10,22 @@
         <p>{{user.username}}</p>
 
         <label>Partner:</label>
-        <p>{{user.partnerUsername}}</p>
+        <div ng-if="!user.partnerUsername">
+            <input type="text" class="form-control" placeholder="Add Partner's Username" ng-model="partner.username" />
+            <br/>
+            <button class="btn btn-success" ng-click="updatePartnerUsername()">Save Partner Info</button>
+
+        </div>
+        <div ng-if="user.partnerUsername">
+            <p>{{user.partnerUsername}}</p>
+            <hr/>
+            <input type="text" class="form-control" placeholder="Update Partner's Username" ng-model="partner.username" />
+            <br/>
+            <button class="btn btn-success" ng-click="updatePartnerUsername()">Update Partner Info</button>
+
+        </div>
         <hr/>
-        <input type="text" class="form-control" placeholder="Update partner username" ng-model="partner.username" />
-        <br/>
-        <button class="btn btn-success" ng-click="updatePartnerUsername()">Update Partner</button>
+
 
         <div class="alert alert-warning" ng-if="!userFound">That user was not found and was not added as your partner</div>
 
