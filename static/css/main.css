@@ -24,6 +24,17 @@
     background: white;
 }
 
+.upperCase {
+    text-transform: uppercase;
+}
+
+.unAnswered {
+    background-color: darkred;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 
 /* page styles */
 
@@ -143,6 +154,10 @@ a: hover {
     background: blue;
 }
 
+ul.topicsList li {
+    padding: 7px;
+}
+
 
 /* Global Quiz Pages */
 
@@ -186,6 +201,23 @@ a: hover {
 .answer_area .btn-primary.active {
     background: rgba(100, 148, 188, 1);
     border: 1px solid white;
+}
+
+.btn-clear {
+    background: none;
+    border: 1px solid white;
+}
+
+.btn-clear:hover {
+    background: rgba(100, 148, 188, 0.5);
+    border: 1px solid white;
+    color: white
+}
+
+.btn-clear.active {
+    background: rgba(100, 148, 188, 1);
+    border: 1px solid white;
+    color: white;
 }
 
 

@@ -13,7 +13,7 @@
         <div ng-if="!user.partnerUsername">
             <input type="text" class="form-control" placeholder="Add Partner's Username" ng-model="partner.username" />
             <br/>
-            <button class="btn btn-success" ng-click="updatePartnerUsername()">Save Partner Info</button>
+            <button class="btn btn-clear" ng-click="updatePartnerUsername()">Save Partner Info</button>
 
         </div>
         <div ng-if="user.partnerUsername">
@@ -21,7 +21,7 @@
             <hr/>
             <input type="text" class="form-control" placeholder="Update Partner's Username" ng-model="partner.username" />
             <br/>
-            <button class="btn btn-success" ng-click="updatePartnerUsername()">Update Partner Info</button>
+            <button class="btn btn-clear" ng-click="updatePartnerUsername()">Update Partner Info</button>
 
         </div>
         <hr/>
@@ -29,21 +29,19 @@
 
         <div class="alert alert-warning" ng-if="!userFound">That user was not found and was not added as your partner</div>
 
-        <button class="btn btn-primary" ui-sref="confirmation">Confirm your answers</button>
+        <button ng-if="!authenticated" class="btn btn-clear" ui-sref="createAccount">Create Account</button>
 
-        <button ng-if="!authenticated" class="btn blue-translucent" ui-sref="createAccount">Create Account</button>
-
-        <button class="btn btn-warning" ng-click="logout()">
+        <button class="btn btn-clear" ng-click="logout()">
             Logout
         </button>
 
-        <!--        <pre>{{partner | json }}</pre>-->
+
     </div>
 
     <div ng-if="!authenticated">
         <p>You are not signed in yet.</p>
 
-        <button class="btn btn-primary" ui-sref="login">Login</button>
+        <button class="btn btn-clear" ui-sref="login">Login</button>
     </div>
 
 

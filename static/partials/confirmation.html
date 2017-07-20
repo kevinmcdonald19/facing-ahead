@@ -6,14 +6,16 @@
         <em><strong>Submit Answers</strong></em> button to see your results compared with your partner's.
     </div>
 
-    <h1>Your Answers</h1>
+    <hr/>
     <div ng-repeat="questionAnswer in user.quizResponse.questionAnswers">
-        <div>{{questionAnswer.question.text}}</div>
+        <div><span class="upperCase">{{questionAnswer.question.category}}</span>: <em>{{questionAnswer.question.text}}</em></div>
         <div class="list-inline" class="confirmAnswer">
             <h3>Your Answer: 
             <span ng-if="questionAnswer.answer == 'yes'">Yes</span>
             <span ng-if="questionAnswer.answer == 'no'">No</span>
             <span ng-if="questionAnswer.answer == 'maybe'">Not Sure</span>
+            <span ng-if="questionAnswer.answer == '' || questionAnswer.answer == null"><span class="unAnswered">Unanswered</span></span>
+            
             </h3>
             <a class="takeMeToQuestionLink btn btn-link" ng-click="navigateToSection(questionAnswer.question.category)">Take me to this question</a>
         </div>
@@ -28,11 +30,12 @@
 
         <div class="alert alert-warning" ng-if="!user.partnerUsername">
             You must enter a partner's username and they must have your username as well. Enter their username in your
-            <button class="btn btn-xs" ui-sref="settings">Settings</button>
+            <button class="btn btn-xs" ui-sref="settings">Profile and Info</button>
         </div>
 
         <div class="alert alert-warning" ng-if="!user.partnerMutuallyAddedYou">
-            Your partner hasn't mutually added you yet, so you can't compare results yet.
+            <p>Your partner hasn't mutually added you yet, so you can't compare results yet.</p>
+            <p>They can do this in the <strong>Profile & Info</strong> tab</p>
         </div>
 
         <div class="alert alert-warning" ng-if="!user.partnerAnsweredAllQuestions">
