@@ -1,0 +1,33 @@
+<br/>
+<br/>
+<div id="content" class="content">
+    <h1>Admin</h1>    
+    <h2>Questions</h2>
+    <hr/>
+    <!-- <pre>{{categories | json}}</pre> -->
+    
+        <div ng-repeat="category in categories" id="questionsList">
+        
+            <h3>{{$index+1}} - {{category.category}}</h3>
+            <hr/>
+
+            <ol>
+            <li ng-repeat="question in category.questionsList">
+                
+                        <p><strong>{{question.text}}</strong></p>
+                        <p><em>{{question.why}}</em></p>      
+                        <br/>  
+                
+                        
+            </li>
+        </ol>
+            <!-- <p>{{question.text}}</p>
+            <p>{{question.category}}</p>
+            <p><italic>{{question.why}}</italic></p>
+            <hr/> -->
+        
+       
+        </div>
+
+
+</div>

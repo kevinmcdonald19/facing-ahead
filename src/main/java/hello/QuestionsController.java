@@ -1,6 +1,7 @@
 package hello;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,27 @@ public class QuestionsController {
 		return questionsRepository.findByCategoryIgnoreCase(category);
 	}
 
+	@RequestMapping(value = "/categoriesAndQuestions", method = RequestMethod.GET)
+	public List<CategoryQuestions> getCategoriesAndQuestions() {
+		String[] categoryList = { "families", "roles", "finances", "values", "habits", "work", "leisure", "intimacy",
+				"community", "communication", "parenting", "speaking", "life" };
+
+		ArrayList<CategoryQuestions> categoryQuestionsList = new ArrayList<CategoryQuestions>();
+		for (String category : categoryList) {
+			CategoryQuestions cq = new CategoryQuestions(category,
+					questionsRepository.findByCategoryIgnoreCase(category));
+			categoryQuestionsList.add(cq);
+		}
+
+		return categoryQuestionsList;
+	}
+
 	@RequestMapping(value = "/questions", method = RequestMethod.POST)
 	public Question createQuestion(@ModelAttribute Question question) {
 		return questionsRepository.save(new Question(question));
 	}
 
+	/* Update a question */
 	@RequestMapping(value = "/questions/{id}", method = RequestMethod.POST)
 	public Question updateQuestion(@PathVariable("id") String id, @ModelAttribute QuestionDTO questionDTO) {
 		Question p = questionsRepository.findOne(id);

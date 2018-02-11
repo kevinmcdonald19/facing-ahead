@@ -37,6 +37,9 @@
 
 
 /* page styles */
+.page {
+    margin: 20px;
+}
 
 #footerContents {
     text-align: center;

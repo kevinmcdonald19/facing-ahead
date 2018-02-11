@@ -13,7 +13,7 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     }
 
     // For any unmatched url, send to /route1
-    $urlRouterProvider.otherwise("/home");
+    // $urlRouterProvider.otherwise("/home");
     $stateProvider
         .state('home', {
             url: "/home",
@@ -64,13 +64,11 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: "/roles",
             templateUrl: "partials/roles.html",
             controller: "QuizController"
-
         })
         .state('quiz.finances', {
             url: "/finances",
             templateUrl: "partials/finances.html",
             controller: "QuizController"
-
         })
         .state('quiz.values', {
             url: "/values",
@@ -137,6 +135,14 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "partials/confirmation.html",
             controller: "ConfirmationController",
 
+        })
+        .state('admin', {
+            url: "/admin",
+            templateUrl: "partials/admin/questions.html",
+            controller: "AdminQuestionsController",
+            params: {
+                location: null
+            }
         })
         .state('login', {
             url: '/login',
