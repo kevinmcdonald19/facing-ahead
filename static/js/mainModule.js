@@ -28,7 +28,7 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 
     // For any unmatched url, send to /route1
-    // $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/home");
     $stateProvider
         .state('home', {
             url: "/home",

@@ -10,6 +10,8 @@
             </div>
             <label for="username">Username:</label>
             <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username" />
+            <div id="emailHelp" class="form-text font-italic text-white">Note: username is NOT case sensitive</div>
+
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
@@ -22,6 +24,8 @@
                 The passwords you entered must match
             </div>
             <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password2" />
+            <div id="emailHelp" class="form-text font-italic text-white">Note: passwords ARE case sensitive</div>
+
         </div>
         <button type="submit" class="btn btn-primary" ng-click="createAccount()">Submit</button>
     </form>

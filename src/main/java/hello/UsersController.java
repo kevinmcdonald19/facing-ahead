@@ -30,12 +30,16 @@ public class UsersController {
 			HttpServletRequest request) {
 
 		// check to see if the user exists
-		User existingUser = usersRepository.findByUsername(createUserDTO.getUsername());
+		User existingUser = usersRepository.findByUsername(createUserDTO.getUsername().toLowerCase());
 		if (existingUser == null) {
 			QuizResponse newQuizResponse = new QuizResponse(questionsRepository.findAll());
+			
+			// save the user with a lowercase username to make everyone the same
 			User savedUser = usersRepository.save(new User(createUserDTO, newQuizResponse));
+			
 			return savedUser;
 		} else {
+			// the user already exists - can't create this user
 			return null;
 		}
 	}
@@ -82,7 +86,7 @@ public class UsersController {
 
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
 	public User getUser(@PathVariable("username") String username) {
-		User user = usersRepository.findByUsername(username);
+		User user = usersRepository.findByUsername(username.toLowerCase());
 		determineIfAbleToCompareResults(user);
 		return user;
 	}
