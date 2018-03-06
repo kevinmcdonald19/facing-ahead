@@ -1,33 +1,35 @@
 <br/>
 <br/>
 <div id="content" class="content">
-    <h1>Admin</h1>    
+
+    
+    <h1>Admin</h1>
     <h2>Questions</h2>
     <hr/>
     <!-- <pre>{{categories | json}}</pre> -->
-    
-        <div ng-repeat="category in categories" id="questionsList">
-        
-            <h3>{{$index+1}} - {{category.category}}</h3>
-            <hr/>
 
-            <ol>
-            <li ng-repeat="question in category.questionsList">
-                
-                        <p><strong>{{question.text}}</strong></p>
-                        <p><em>{{question.why}}</em></p>      
-                        <br/>  
-                
-                        
-            </li>
-        </ol>
-            <!-- <p>{{question.text}}</p>
-            <p>{{question.category}}</p>
-            <p><italic>{{question.why}}</italic></p>
-            <hr/> -->
-        
-       
+    <div ng-repeat="category in categories" id="questionsList">
+
+        <h2>{{$index+1}} - {{category.category}}</h2>
+        <hr/>
+
+
+        <div ng-repeat="question in category.questionsList">
+            <h4>{{$index+1}}</h4>
+            <textarea class="form-control" ng-model="question.text" ng-change="changedQuestion(question)"></textarea>
+            <!-- {{question[$index].text}} -->
+            <br/>
+            <!-- <button class="btn btn-clear" ng-click="updateQuestion(question.id, question.text)">Update question text</button> -->
+            <br/>
+            <textarea class="form-control" rows="4" ng-model="question.why"></textarea>
+            <br/>
+            <button class="btn btn-clear" ng-click="updateQuestion(question)">Update Question</button>
+            <hr/>
         </div>
+
+
+
+    </div>
 
 
 </div>

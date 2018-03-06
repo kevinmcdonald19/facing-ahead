@@ -15,6 +15,24 @@ mainModule.service('adminService', function ($http) {
         return $http.get('/categoriesAndQuestions');
     }
 
+    function updateQuestion(question){
+        // return $http.post('/questions/' + id, {
+        //     text: text
+        // });     
+        
+        return $http({
+            method: 'POST',
+            url: '/questions/' + question.id,
+            data: {
+                text: question.text,
+                why: question.why
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     // function updatePartnerUsername(currentUsername, partnerUsername) {
     //     return $http.put('/users/' + currentUsername + '/' + partnerUsername);
     // }
@@ -37,7 +55,8 @@ mainModule.service('adminService', function ($http) {
     return {
         getQuestions: getQuestions,
         getQuestionsByCategory: getQuestionsByCategory,
-        getCategoriesAndQuestions: getCategoriesAndQuestions
+        getCategoriesAndQuestions: getCategoriesAndQuestions,
+        updateQuestion: updateQuestion
         // updatePartnerUsername: updatePartnerUsername,
         // getResults: getResults,
         // createUser: createUser

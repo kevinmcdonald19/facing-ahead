@@ -10,7 +10,7 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
             category: 'roles',
             order: 2
         },
-        { 
+        {
             category: 'finances',
             order: 3
         },
@@ -34,7 +34,7 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
             category: 'intimacy',
             order: 8
         },
-        { 
+        {
             category: 'community',
             order: 9
         },
@@ -50,11 +50,11 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
             category: 'speaking',
             order: 12
         },
-        { 
+        {
             category: 'life',
             order: 9
         }
-    
+
 
     ]
 
@@ -74,7 +74,7 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
         }
         //callback && callback();
     }, function (response) {
-        console.log(response);
+        console.log(responsÍÍe);
         $rootScope.authenticated = false;
         //callback && callback();
         alert('you must be logged in for this functionality');
@@ -89,17 +89,38 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
         $scope.categories = [];
 
         // get partner's quizResponse
-      
+
+        adminService.getCategoriesAndQuestions().then(function (response) {
+            $scope.categories = response.data;
+
+            for (var i = 0; $scope.categories.length - 1; i++) {
+                // if (category != null) {
+                    $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
+                // }
+            }
+        });
+    }
+
+    $scope.updateQuestion = function (question) {
+        console.log('question: ' + question);
+        adminService.updateQuestion(question).then(function (response, data) {
+            console.log('updated: ' + response.data.text);
+            // $scope.question.text = response.data.text;
+            // initHomeController();
+
             adminService.getCategoriesAndQuestions().then(function (response) {
                 $scope.categories = response.data;
 
-                for (var i = 0; $scope.categories.length-1; i++){
-                    $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
+                for (var i = 0; $scope.categories.length - 1; i++) {
+                    // if (category != null) {
+                        $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
+                    // }
                 }
             });
-        
-        
+        });
     }
+
+
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
