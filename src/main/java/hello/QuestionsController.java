@@ -60,6 +60,10 @@ public class QuestionsController {
 		if (questionDTO.getText() != null) {
 			p.setText(questionDTO.getText());
 		}
+		
+		if (questionDTO.getWhy() != null) {
+			p.setWhy(questionDTO.getWhy());
+		}
 
 		if (questionDTO.getOrder() != null) {
 			p.setOrder(questionDTO.getOrder());
