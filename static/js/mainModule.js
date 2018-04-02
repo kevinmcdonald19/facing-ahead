@@ -159,6 +159,14 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
                 location: null
             }
         })
+        .state('pocpayment', {
+            url: "/pocpayment",
+            templateUrl: "partials/pocpayment/pocpayment.html",
+            controller: "POCPaymentController",
+            params: {
+                location: null
+            }
+        })
         .state('login', {
             url: '/login',
             templateUrl: 'partials/login.html',

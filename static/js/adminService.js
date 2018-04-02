@@ -33,6 +33,19 @@ mainModule.service('adminService', function ($http) {
         });
     }
 
+    function makePayment(){
+        return $http({
+            method: 'POST',
+            url: '/checkout',
+            data: {
+                paymentMethod: paymentMethod
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     // function updatePartnerUsername(currentUsername, partnerUsername) {
     //     return $http.put('/users/' + currentUsername + '/' + partnerUsername);
     // }
