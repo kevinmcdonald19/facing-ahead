@@ -1,36 +1,70 @@
-<div id="home_content">
-
-    <div class="text-purple" id="welcomeMessage" ng-if="authenticated">Hello, {{userInfo.username}}
-    </div>
-    <div class="home_nav_items">
+<div id="home" ng-class="{ 'home_content': !authenticated}">
 
 
-        <div ng-show="!authenticated">
-            <button class="btn background-blue" ng-show="!authenticated" ui-sref="login">Login</button>
-            <button class="btn background-blue" ui-sref="createAccount">Create Account </button>
-            <!-- <button class="btn background-blue" ui-sref="settings">Profile & Partner Info</button> -->
-
-            <hr/>
-
-            
-            <button class="btn background-blue" ui-sref="topics">Quiz Topics</button>
-            <button class="btn background-blue" ui-sref="about">About This App</button>
-
+    <div id="buttonBox" class="home_nav_items" ng-if="!authenticated">
+        <div id="loginButtons">
+            <button class="btn btn-clear" ui-sref="login">Login</button>
+            <button class="btn btn-link text-white" ui-sref="createAccount">Create Account </button>
+            <a ui-sref="about">
+                <i ui-sref="about" id="loginAbout" class="fa fa-info-circle btn btn-link" aria-hidden="true"></i>
+            </a>
         </div>
-
-        <div ng-show="authenticated">
-
-            <button class="btn background-blue" ui-sref="quiz.families">Take the Quiz</button>
-            <button class="btn background-blue" ui-sref="confirmation">Confirm Your Answers</button>
-            <button ng-if="user.ableToSubmitResults" ui-sref="results" class="btn background-blue">See Your Results
-            </button>
-            <button class="btn background-blue" ui-sref="settings">Profile & Partner Info</button>
-
-            <hr/>
-            <button class="btn background-blue" ui-sref="about">About This App</button>
-            <button class="btn background-blue" ui-sref="topics">Quiz Topics</button>
-        </div>
-
-
     </div>
+
+    <div ng-show="authenticated" class="content">
+        <div class="welcomeHeading text-center font-weight-light font-italic">
+            <h2>Welcome,
+                <br/>{{user.username}}</h2>
+            <br/>
+            <br/>
+        </div>
+        <div class="roundCard tappable" ui-sref="quiz.families">
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="../images/question-2.png" class="img img-responsive roundCardImage" />
+                </div>
+                <div class="col-xs-9">
+                    <div class="roundCardTitle">Take Quiz</div>
+                    <div class="roundCardInfo">
+                        Answer questions about you and your partner before reviewing your partner’s results
+                    </div>
+                    <span class="roundCardNavArrow glyphicon glyphicon-circle-arrow-right pull-right" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="roundCard tappable" ui-sref="confirmation">
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="../images/my-answers.png" class="img img-responsive roundCardImage" />
+                </div>
+                <div class="col-xs-9">
+                    <div class="roundCardTitle">My Answers</div>
+                    <div class="roundCardInfo">
+                        Answer questions about you and your partner before reviewing your partner’s results
+                    </div>
+                    <span class="roundCardNavArrow glyphicon glyphicon-circle-arrow-right pull-right" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="roundCard tappable" ui-sref="settings">
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="../images/profile.png" class="img img-responsive roundCardImage" />
+                </div>
+                <div class="col-xs-9">
+                    <div class="roundCardTitle">Profile</div>
+                    <div class="roundCardInfo">
+                        Answer questions about you and your partner before reviewing your partner’s results
+                    </div>
+                    <span class="roundCardNavArrow glyphicon glyphicon-circle-arrow-right pull-right" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+        <br/>
+        
+        <br/>
+    </div>
+
 </div>

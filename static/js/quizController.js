@@ -1,7 +1,11 @@
-mainModule.controller('QuizController', function ($scope, $http, $state, $rootScope, $stateParams, quizService) {
+mainModule.controller('QuizController', function ($scope, $http, $state, $rootScope, $stateParams, $route, quizService) {
 
     $scope.saveingContent = true;
     initializeToggles();
+
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams; 
+    $scope.$route = $route;
 
     function testAuthentication() {
         // test authentication

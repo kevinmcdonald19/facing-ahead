@@ -44,6 +44,12 @@ mainModule.controller('POCPaymentController', function ($rootScope, $scope, $htt
         // });
     }
 
+    function getToken(){
+        adminService.getToken().then(function(response){
+            
+        });
+    }
+
     // $scope.updateQuestion = function (question) {
     //     console.log('question: ' + question);
     //     adminService.updateQuestion(question).then(function (response, data) {

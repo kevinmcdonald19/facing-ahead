@@ -140,9 +140,14 @@ public class UsersController {
 
 	@RequestMapping(value = "/users/{username}/quizResponse/questionAnswers/{category}", method = RequestMethod.POST)
 	@ResponseBody
-	public List<QuestionAnswer> updateQuizResponseByCategory(@PathVariable("username") String username,
+	public List<QuestionAnswer> updateQuizResponseByCategory(Principal principal, @PathVariable("username") String username,
 			@PathVariable("category") String category, @RequestBody UpdateQuizResponseDTO updateQuizResponseDTO) {
-		User savedUser = usersRepository.findByUsername(username);
+		
+//		User savedUser = usersRepository.findByUsername(username);
+		
+		// reference: http://www.baeldung.com/get-user-in-spring-security 
+		User savedUser = usersRepository.findByUsername(principal.getName());
+		
 		QuizResponse savedQuizResponse = savedUser.getQuizResponse();
 
 		for (UpdateQuestionAnswerDTO updateQuestionAnswerDTO : updateQuizResponseDTO.getUpdateQuestionAnswerDTOList()) {
