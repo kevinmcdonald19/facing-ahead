@@ -1,4 +1,4 @@
-mainModule.controller('QuizController', function ($scope, $http, $state, $rootScope, $stateParams, $route, quizService) {
+mainModule.controller('QuizController', function ($scope, $http, $state, $rootScope, $stateParams,  quizService) {
 
     $scope.saveingContent = true;
     initializeToggles();

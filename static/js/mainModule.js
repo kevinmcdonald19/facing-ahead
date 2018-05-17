@@ -67,8 +67,7 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('quiz', {
             url: "/home/quiz",
             templateUrl: "partials/quiz.html",
-            controller: "QuizController",
-            activetab: "quiz"
+            controller: "QuizController"
         })
         .state('quiz.families', {
             url: "/families",
