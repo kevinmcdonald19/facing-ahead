@@ -3,9 +3,9 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
     $scope.saveingContent = true;
     initializeToggles();
 
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams; 
-    $scope.$route = $route;
+    // $rootScope.$state = $state;
+    // $rootScope.$stateParams = $stateParams; 
+    // $scope.$route = $route;
 
     function testAuthentication() {
         // test authentication
