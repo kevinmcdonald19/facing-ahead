@@ -49,6 +49,7 @@
     text-align: center;
     margin: auto;
     padding-top: 4px;
+    max-width: 500px;
 }
 
 #footerContents .fa {
@@ -86,7 +87,7 @@ body {
     margin: auto;
     max-width: 500px;
     padding: 30px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 50px;
 }
 
@@ -183,6 +184,13 @@ span.roundCardNavArrow {
     margin-right: 2px;
 }
 
+/* Header */
+.mainHeader {
+    border-bottom: 1px solid white;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 16px;
+}
 
 
 
@@ -234,6 +242,9 @@ ul.topicsList li {
 
 
 /* Global Quiz Pages */
+.count{
+
+}
 
 .learnMorePanel {
     margin-top: 100px;
@@ -333,13 +344,13 @@ btn.btn-link:hover{
 }
 
 @media only screen and (min-width: 917px) {
-    .home_nav_items {
+    /* .home_nav_items {
         width: 365px;
         right: -50%;
         top: 37%;
         bottom: 15%;
         vertical-align: middle;
-    }
+    } */
 }
 
 

@@ -37,7 +37,7 @@
 }
 
 .section_header {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 18pt;
     text-transform: uppercase;
     line-height: 21pt;
@@ -66,7 +66,7 @@
 }
 
 .question_title {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 14pt;
     margin-top: 25px;
     line-height: 21pt;
@@ -117,7 +117,7 @@
 }
 
 .content_title {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 14pt;
     margin-top: 25px;
     line-height: 21pt;
@@ -146,7 +146,7 @@
 }
 
 .close_x {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 18pt;
     font-weight: bold;
     color: #FFFFFF;
@@ -155,7 +155,7 @@
 }
 
 .why_title {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 14pt;
     margin-top: 25px;
     line-height: 21pt;
@@ -251,7 +251,7 @@
 }
 
 .site_title {
-    font-family: century gothic, arial, helvetica, sans-serif;
+    /* font-family: century gothic, arial, helvetica, sans-serif; */
     color: #FFFFFF;
     font-size: 32px;
     line-height: 36px;
@@ -276,7 +276,7 @@
 }
 
 .title {
-    font-family: century gothic, arial, helvetica, sans-serif;
+    /* font-family: century gothic, arial, helvetica, sans-serif; */
     color: #336699;
     align: left;
     font-size: 24px;
@@ -285,7 +285,7 @@
 }
 
 .header {
-    font-family: century gothic, arial, helvetica, sans-serif;
+    /* font-family: century gothic, arial, helvetica, sans-serif; */
     color: #003366;
     align: left;
     font-size: 14px;

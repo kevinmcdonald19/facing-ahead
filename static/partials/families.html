@@ -1,17 +1,10 @@
 <div id="content">
 
-    
-
-
-    <div class="directions_body"><strong>Directions:</strong> Indicate your agreement with the statement below by tapping the <strong><em>Yes</em></strong>, <strong><em>No</em></strong>, or <strong><em>Not
-            Sure</em></strong> button.
-    </div>
-
-    <div class="section_header">1. Families</div>
+    <div class="count">1 / 13</div>
+    <div class="section_header">Families</div>
+    <br/>
 
     <div class="answer_area">
-
-
         <div ng-repeat="questionAnswer in families.questionAnswers">
             {{questionAnswer.question.text}}
             <br/>
@@ -36,7 +29,10 @@
 
             <div class="btn-group" ng-model="families.answers[questionAnswer.question.id].radio" bs-radio-group>
                 <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">Yes</label>
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('families')">
+                    <!-- <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> -->
+
+                    Yes</label>
                 <label class="btn btn-primary">
                     <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('families')">No</label>
                 <label class="btn btn-primary">

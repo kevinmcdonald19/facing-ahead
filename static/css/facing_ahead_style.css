@@ -72,34 +72,34 @@
 }
 
 .content_title {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 14pt;
     font-weight: bold;
     margin-top: 25px;
-    line-height: 42pt;
     color: #FFFFFF;
-    color: #FFFFFF;
-    border-bottom: #000033;
+    /* border-bottom: #000033;
     border-top: #FFFFFF;
     border-right: #000033;
     border-left: #000033;
     border-style: solid;
-    border-width: 1px;
+    border-width: 1px; */
 }
 
 .section_header {
-    font-family: century gothic, sans-serif;
-    font-size: 18pt;
-    margin: 25px 20px 10px 0;
-    text-transform: uppercase;
-    line-height: 21pt;
+    /* font-family: century gothic, sans-serif; */
+    font-size: 20pt;
+    font-weight: bold;
+    margin-bottom:32px;
+    /* margin: 25px 20px 10px 0; */
+    /* text-transform: uppercase; */
     color: #FFFFFF;
-    border-bottom: #FFFFFF;
+    border-bottom: 1px solid white;
+    /* border-bottom: #FFFFFF;
     border-top: #000033;
     border-right: #000033;
     border-left: #000033;
     border-style: solid;
-    border-width: 1px;
+    border-width: 1px; */
 }
 
 .content_body {
@@ -149,7 +149,7 @@
     font-size: 12pt;
     line-height: 18pt;
     color: #8baed5;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .return_link {
@@ -159,11 +159,11 @@
 }
 
 .answer_area {
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .why_link_text {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 11pt;
     line-height: 15pt;
     color: #66A3FF;
@@ -186,7 +186,7 @@
 }
 
 .close_X {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 21pt;
     font-weight: bold;
     color: #000033;
@@ -201,7 +201,7 @@
 }
 
 .why_title {
-    font-family: century gothic, sans-serif;
+    /* font-family: century gothic, sans-serif; */
     font-size: 17pt;
     line-height: 21pt;
     font-weight: bold;
@@ -406,7 +406,6 @@ a:visited {
     margin: 0px;
     padding: 0px;
     text-align: left;
-    margin-left: -21px;
 }
 
 #prev:hover {

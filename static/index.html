@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/facing_ahead_style.css">
-    <link rel="stylesheet" type="text/css" href="css/facing_style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/facing_style.css"> -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
 
@@ -61,27 +61,33 @@
 
 <body class="app">
 
-    <div id="header_logo" align="center" ui-sref="home"><img src="images/header_logo_320x50.jpg" border="0"></div>
 
     <div ui-view>
         <!--app content-->
     </div>
 
     <div id="footer" ng-if="authenticated">
-        <div id="footerContents">
-            <i ui-sref="home" class="fa fa-home" aria-hidden="true"></i>
-            <img src="images/icon_divider_30x30.jpg" border="0">
+        <div id="footerContents" class="row">
 
+            <div class="col-xs-3">
+                    <i ui-sref="home" class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <!-- <img src="images/icon_divider_30x30.jpg" border="0"> -->
+            <div class="col-xs-3">
             <i ui-sref="quiz.families" class="fa fa-question-circle" aria-hidden="true"></i>
-            <img src="images/icon_divider_30x30.jpg" border="0">
+            </div>
 
+            <!-- <img src="images/icon_divider_30x30.jpg" border="0"> -->
+            <div class="col-xs-3">
             <i ng-if="authenticated" ui-sref="confirmation" class="fa fa-tasks" aria-hidden="true"></i>
-            <img ng-if="authenticated" src="images/icon_divider_30x30.jpg" border="0">
+            </div>
+            <!-- <img ng-if="authenticated" src="images/icon_divider_30x30.jpg" border="0"> -->
 
                 <!-- <i ui-sref="about" class="fa fa-info-circle" aria-hidden="true"></i>
                 <img src="images/icon_divider_30x30.jpg" border="0"> -->
-
+                <div class="col-xs-3">
             <i ui-sref="settings" class="fa fa-user-circle" aria-hidden="true"></i>
+            </div>
 
         </div>
     </div>

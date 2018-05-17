@@ -1,4 +1,5 @@
 <div id="home" ng-class="{ 'home_content': !authenticated}">
+        <div id="header_logo" align="center"  ui-sref="home"><img src="images/header_logo_320x50.jpg" border="0"></div>
 
 
     <div id="buttonBox" class="home_nav_items" ng-if="!authenticated">
@@ -12,6 +13,9 @@
     </div>
 
     <div ng-show="authenticated" class="content">
+        <br/>
+        <br/>
+        <br/>
         <div class="welcomeHeading text-center font-weight-light font-italic">
             <h2>Welcome,
                 <br/>{{user.username}}</h2>
