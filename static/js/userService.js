@@ -12,6 +12,10 @@ mainModule.service('userService', function ($http) {
         return $http.get('/users/' + currentUsername + '/results');
     }
 
+    function getQuizResponse(currentUsername){
+        return $http.get('/users/' + currentUsername + '/quizResponse');
+    }
+
     function createUser(creds) {
         return $http({
             method: 'POST',
@@ -27,6 +31,7 @@ mainModule.service('userService', function ($http) {
         getUser: getUser,
         updatePartnerUsername: updatePartnerUsername,
         getResults: getResults,
-        createUser: createUser
+        createUser: createUser,
+        getQuizResponse: getQuizResponse
     }
 });

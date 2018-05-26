@@ -28,15 +28,24 @@
     text-transform: uppercase;
 }
 
+.answered {
+    font-size: 16px;
+}
+
 .unAnswered {
-    background-color: darkred;
+    background-color: #D45F5F;
     color: white;
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
 }
 
+
 .active {
     color: blue;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: bold !important;
 }
 
 
@@ -109,7 +118,7 @@ input:-webkit-autofill {
 }
 
 
-input.form-control, .form-control:focus{
+input.form-control, .form-control:focus, textarea.form-control, textarea.form-control:focus{
     color: white !important;
     border: 1px solid white !important;
     background: transparent;
@@ -161,14 +170,16 @@ a:hover {
     padding: 10px;
 }
 
-.roundCard:hover {
+.roundCard.tappable:hover {
     cursor: pointer;
     background: rgba(98, 146, 186, 0.6);
+    color:white;
 }
 
-.roundCard:active {
+.roundCard.tappable:active {
     cursor: pointer;
     background: rgba(98, 146, 186, 0.9);
+    color: white;
 }
 
 .roundCard .roundCardImage {
@@ -180,10 +191,18 @@ a:hover {
     font-weight: bold;
 }
 
-span.roundCardNavArrow {
+.roundCard .actionRow {
     margin-top: 9px;
     margin-right: 2px;
+    text-align: right;
 }
+
+.actionRow .roundCardNavArrow {
+    margin-top: 2px;
+    margin-left: 7px;
+}
+
+
 
 /* Header */
 .mainHeader {
@@ -310,10 +329,10 @@ ul.topicsList li {
 /* Confirmation Area */
 
 .submit_area {
-    text-align: center;
+    /* text-align: center;
     margin-top: 40px;
     width: 80%;
-    margin: auto;
+    margin: auto; */
 }
 
 .confirmAnswer {
@@ -334,6 +353,10 @@ a.btn.btn-link.takeMeToQuestionLink {
 
 btn.btn-link:hover{
     color: white;
+}
+
+.responseColumn{
+    text-align: center;
 }
 
 

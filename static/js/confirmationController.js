@@ -9,30 +9,35 @@ mainModule.controller('ConfirmationController', function ($rootScope, $state, $s
 
             userService.getUser($rootScope.userInfo.username).then(function (response) {
                 $scope.user = response.data;
-
                 initConfirmationController();
             });
         } else {
             $rootScope.authenticated = false;
-            $state.go('login');
-
         }
         //callback && callback();
     }, function (response) {
         console.log(response);
         $rootScope.authenticated = false;
-        $state.go('login');
-
         //callback && callback();
+        alert('you must be logged in for this functionality');
     });
-
-    if (!$rootScope.authenticated) {
-        $state.go('login');
-    }
 
     function initConfirmationController() {
         $scope.navigateToSection = function (section) {
             $state.go('quiz.' + section.toLowerCase());
         }
+
+        // get partner's quizResponse
+        userService.getQuizResponse($scope.user.username).then(function (response) {
+            $scope.quizResponse = response.data;
+console.log($scope.quizResponse);
+            // if (response.data.partnerOne.ableToSubmitResults == '' || response.data.partnerOne.ableToSubmitResults == null) {
+            //     $scope.ableToCompareResults = false;
+            // } else {
+            //     if (response.data.partnerOne.ableToSubmitResults == true) {
+            //         $scope.ableToCompareResults = true;
+            //     }
+            // }
+        });
     }
 });

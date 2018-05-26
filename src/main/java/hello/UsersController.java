@@ -1,13 +1,12 @@
 package hello;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,17 +32,16 @@ public class UsersController {
 		User existingUser = usersRepository.findByUsername(createUserDTO.getUsername().toLowerCase());
 		if (existingUser == null) {
 			QuizResponse newQuizResponse = new QuizResponse(questionsRepository.findAll());
-			
+
 			// save the user with a lowercase username to make everyone the same
 			User savedUser = usersRepository.save(new User(createUserDTO, newQuizResponse));
-			
+
 			return savedUser;
 		} else {
 			// the user already exists - can't create this user
 			return null;
 		}
 	}
-
 
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
 	public User updateUser(@PathVariable("id") String id, @ModelAttribute User user) {
@@ -102,7 +100,24 @@ public class UsersController {
 	@RequestMapping(value = "/users/{username}/quizResponse", method = RequestMethod.GET)
 	public QuizResponse getQuizResponse(@PathVariable("username") String username) {
 		User savedUser = usersRepository.findByUsername(username);
+
+		String[] categoryList = { "families", "roles", "finances", "values", "habits", "work", "leisure", "intimacy",
+				"community", "communication", "parenting", "speaking", "life" };
+
 		QuizResponse quizResponse = savedUser.getQuizResponse();
+		List<CategoryQuestionAnswers> categoryQuestionAnswersList = quizResponse.getCategoryQuestionAnswerList();
+
+		ArrayList<CategoryQuestions> categoryQuestionsList = new ArrayList<CategoryQuestions>();
+		for (String category : categoryList) {
+			// per category, grab the questionAnswers with that category and add it to the
+			// quizresponse list
+//			 quizResponse.getQuestionAnswersByCategory(category);
+			
+			categoryQuestionAnswersList.add(new CategoryQuestionAnswers(category, quizResponse.getQuestionAnswersByCategory(category)));
+
+			// categoryQuestionsList.add(new CategoryQuestions(category, list));
+		}
+
 		return quizResponse;
 	}
 
@@ -135,19 +150,20 @@ public class UsersController {
 		quizResponse.syncUserQuizResponse(allRepoQuestions);
 		quizResponse.getQuestionAnswers().removeAll(quizResponse.getQuestionsToDelete());
 		usersRepository.save(savedUser);
-		return savedUser.getQuizResponse().getQuestionsByCategory(category);
+		return savedUser.getQuizResponse().getQuestionAnswersByCategory(category);
 	}
 
 	@RequestMapping(value = "/users/{username}/quizResponse/questionAnswers/{category}", method = RequestMethod.POST)
 	@ResponseBody
-	public List<QuestionAnswer> updateQuizResponseByCategory(Principal principal, @PathVariable("username") String username,
-			@PathVariable("category") String category, @RequestBody UpdateQuizResponseDTO updateQuizResponseDTO) {
-		
-//		User savedUser = usersRepository.findByUsername(username);
-		
-		// reference: http://www.baeldung.com/get-user-in-spring-security 
+	public List<QuestionAnswer> updateQuizResponseByCategory(Principal principal,
+			@PathVariable("username") String username, @PathVariable("category") String category,
+			@RequestBody UpdateQuizResponseDTO updateQuizResponseDTO) {
+
+		// User savedUser = usersRepository.findByUsername(username);
+
+		// reference: http://www.baeldung.com/get-user-in-spring-security
 		User savedUser = usersRepository.findByUsername(principal.getName());
-		
+
 		QuizResponse savedQuizResponse = savedUser.getQuizResponse();
 
 		for (UpdateQuestionAnswerDTO updateQuestionAnswerDTO : updateQuizResponseDTO.getUpdateQuestionAnswerDTOList()) {
@@ -156,7 +172,7 @@ public class UsersController {
 			savedQuestionAnswer.setAnswer(updateQuestionAnswerDTO.getAnswer());
 			usersRepository.save(savedUser);
 		}
-		return savedUser.getQuizResponse().getQuestionsByCategory(category);
+		return savedUser.getQuizResponse().getQuestionAnswersByCategory(category);
 	}
 
 	private QuestionAnswer findQuestionAnswerWithQuestion(List<QuestionAnswer> list, String questionID) {

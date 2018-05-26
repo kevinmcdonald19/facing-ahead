@@ -11,6 +11,15 @@ public class QuizResponse {
 	private boolean allQuestionsAnswered;
 	private List<QuestionAnswer> unansweredQuestions = new ArrayList<QuestionAnswer>();
 	private List<Question> questionsToDelete = new ArrayList<Question>();
+	private List<CategoryQuestionAnswers> categoryQuestionAnswerList = new ArrayList<CategoryQuestionAnswers>();
+
+	public List<CategoryQuestionAnswers> getCategoryQuestionAnswerList() {
+		return categoryQuestionAnswerList;
+	}
+
+	public void setCategoryQuestionAnswerList(List<CategoryQuestionAnswers> categoryQuestionAnswerList) {
+		this.categoryQuestionAnswerList = categoryQuestionAnswerList;
+	}
 
 	public QuizResponse() {
 
@@ -106,7 +115,7 @@ public class QuizResponse {
 		return questionAnswers;
 	}
 
-	public List<QuestionAnswer> getQuestionsByCategory(String category) {
+	public List<QuestionAnswer> getQuestionAnswersByCategory(String category) {
 		List<QuestionAnswer> filteredList = new ArrayList<QuestionAnswer>();
 		for (QuestionAnswer qa : this.questionAnswers) {
 			if (qa.getQuestion().getCategory().equalsIgnoreCase(category)) {
