@@ -1,48 +1,54 @@
+<div class="mainHeader">
+    <div class="text text-center text-bold">Profile</div>
+</div>
 <div id="content" class="content">
-    <div class="section_header">Profile & Partner Info</div>
 
     <div ng-if="authenticated">
-        <h1>Profile</h1>
-        <label>Name</label>
-        <p>{{user.name}}</p>
 
-        <label>Username:</label>
-        <p>{{user.username}}</p>
+        <h3>My Info</h3>
+        <div class="row">
+            <div class="col-xs-6">Username</div>
+            <div class="col-xs-6 text-bold">{{user.username}}</div>
+        </div>
 
-        <label>Partner:</label>
+        <div class="row">
+            <div class="col-xs-6">Partner Username</div>
+            <div class="col-xs-6 text-bold">
+                <div ng-if="!user.partnerUsername" class=" text-italic">None added yet</div>
+                <div ng-if="user.partnerUsername">{{user.partnerUsername}}</div>
+            </div>
+        </div>
+
+
+<br/>
+        <h4>Partner Modification</h4>
         <div ng-if="!user.partnerUsername">
             <input type="text" class="form-control" placeholder="Add Partner's Username" ng-model="partner.username" />
             <br/>
             <button class="btn btn-clear" ng-click="updatePartnerUsername()">Save Partner Info</button>
-
         </div>
+
         <div ng-if="user.partnerUsername">
-            <p>{{user.partnerUsername}}</p>
-            <hr/>
-            <input type="text" class="form-control" placeholder="Update Partner's Username" ng-model="partner.username" />
-            <br/>
-            <button class="btn btn-clear" ng-click="updatePartnerUsername()">Update Partner Info</button>
-
+            <input type="text" class="form-control" placeholder="Update partner username" ng-model="partner.username" />
+            <button class="btn btn-clear btn-block" id="updatePartnerUsername" ng-click="updatePartnerUsername()">Update Partner Info</button>
         </div>
+        <br/>
+
         <hr/>
 
+        <br/>
 
         <div class="alert alert-warning" ng-if="!userFound">That user was not found and was not added as your partner</div>
 
         <button ng-if="!authenticated" class="btn btn-clear" ui-sref="createAccount">Create Account</button>
 
-        <button class="btn btn-clear" ui-sref="about">About App</button>
-        <button class="btn btn-clear" ui-sref="topics">Topics</button>
-        <hr/>
-        <button class="btn btn-clear" ng-click="logout()">
+        <button class="btn btn-clear btn-block" ui-sref="about">About App</button>
+        <button class="btn btn-clear btn-block" ui-sref="topics">Topics</button>
+
+        <a class="btn btn-clear btn-block buttonHyperlink" href="mailto:sandkpubs@gmail.com?Subject=Feedback" target="_top">Leave Feedback or Report Issue</a>
+        <button class="btn btn-clear btn-block" ng-click="logout()">
             Logout
         </button>
-
-        
-            <!-- <i ui-sref="about" class="fa fa-info-circle" aria-hidden="true"></i>
-            <img src="images/icon_divider_30x30.jpg" border="0"> -->
-
-
     </div>
 
     <div ng-if="!authenticated">
@@ -50,6 +56,12 @@
 
         <button class="btn btn-clear" ui-sref="login">Login</button>
     </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 
 
 </div>

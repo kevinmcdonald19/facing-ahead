@@ -29,15 +29,7 @@ mainModule.controller('ConfirmationController', function ($rootScope, $state, $s
 
         // get partner's quizResponse
         userService.getQuizResponse($scope.user.username).then(function (response) {
-            $scope.quizResponse = response.data;
-console.log($scope.quizResponse);
-            // if (response.data.partnerOne.ableToSubmitResults == '' || response.data.partnerOne.ableToSubmitResults == null) {
-            //     $scope.ableToCompareResults = false;
-            // } else {
-            //     if (response.data.partnerOne.ableToSubmitResults == true) {
-            //         $scope.ableToCompareResults = true;
-            //     }
-            // }
+            $scope.quizResponse = response.data;            
         });
     }
 });

@@ -1,37 +1,108 @@
+<div class="mainHeader">
+    <div class="text text-center text-bold">Our Results</div>
+</div>
 <div id="content" class="content">
-
+    <button class="btn btn-clear">Back to My Answers</button>
+    <br/>
+    <br/>
     <div ng-if="ableToCompareResults">
-        <div class="section_header">Results</div>
+        <h2>Our Results</h2>
+        <br/>
 
-        <div>You: {{results.partnerOne.username}}</div>
-        <div>Partner: {{results.partnerTwo.username}}</div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="../images/profile.png" class="img img-responsive" />
+                    </div>
+                    <div class="col-xs-8">
+                        <div>
+                            <div>Me</div>
+                            <h4>{{results.partnerOne.username}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="../images/profile.png" class="img img-responsive" />
+                    </div>
+                    <div class="col-xs-8">
+                        <div>
+                            <div>Partner</div>
+                            <h4>{{results.partnerTwo.username}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr/>
+
+        <div ng-repeat="categoryPartnerQuestionAnswer in results.categoryPartnerQuestionAnswersList">
+
+            <div class="row">
+                <div class="col-xs-8">
+                        <h4>{{$index+1}}. {{categoryPartnerQuestionAnswer.category}}</h4>
+
+                </div>
+                <div class="col-xs-2 resultsLabels">Me</div>
+                <div class="col-xs-2 resultsLabels">Partner</div>
+
+            </div>
+
+            <div ng-repeat="partnerQuestionAnswer in categoryPartnerQuestionAnswer.partnerQuestionAnswerList">
+                <div class="row" ng-click="navigateToSection(partnerQuestionAnswer.question.category)">
+                    <div class="col-xs-8">
+                        {{partnerQuestionAnswer.question.text}}
+                    </div>
+                    <div class="col-xs-2">
+                        <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'yes'" class="fa fa-thumbs-up answered" aria-hidden="true"></i>
+                        <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'no'" class="fa fa-thumbs-down answered responseColumn"
+                            aria-hidden="true"></i>
+                        <i ui-sref="settings" ng-if="qpartnerQuestionAnswer.partnerOneAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-xs-2">
+                        <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerTwoAnswer == 'yes'" class="fa fa-thumbs-up answered" aria-hidden="true"></i>
+                        <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerTwoAnswer == 'no'" class="fa fa-thumbs-down answered responseColumn"
+                            aria-hidden="true"></i>
+                        <i ui-sref="settings" ng-if="qpartnerQuestionAnswer.partnerTwoAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <hr/>
+            </div>
+        </div>
+
 
         <div ng-repeat="questionAnswer in results.partnerQuizResponse.partnerQuestionAnswerList" id="results">
             <div>{{$index+1}} - {{questionAnswer.question.text}}</div>
             <br/>
-            <div class="row">
-                <div class="col-xs-6">
-                    <label>Your Answer:
-                        <h3>{{questionAnswer.partnerOneAnswer}}</h3></label>
-                </div>
-                <div class="col-xs-6">
-                    <label>Partner's Answer:
-                        <h3>{{questionAnswer.partnerTwoAnswer}}</h3></label>
-                </div>
+            <div class="row"></div>
+            <div class="col-xs-6">
+                <label>Your Answer:
+                    <h3>{{questionAnswer.partnerOneAnswer}}</h3>
+                </label>
             </div>
-
-
-            <button class="btn-xs btn btn-link" ng-click="navigateToSection(questionAnswer.question.category)">Take me to question</button>
-
-            <br/>
-            <hr/>
+            <div class="col-xs-6">
+                <label>Partner's Answer:
+                    <h3>{{questionAnswer.partnerTwoAnswer}}</h3>
+                </label>
+            </div>
         </div>
-    </div>
 
-    <div class="alert alert-danger" ng-if="!ableToCompareResults">
-        You are not supposed to be viewing this page as you either haven't answered all the questions or added a partner that has also added you.
+
+
+
+        <br/>
+        <hr/>
     </div>
+</div>
+
+<div class="alert alert-danger" ng-if="!ableToCompareResults">
+    You are not supposed to be viewing this page as you either haven't answered all the questions or added a partner that has
+    also added you.
+</div>
 
 
 </div>

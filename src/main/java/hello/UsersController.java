@@ -71,6 +71,16 @@ public class UsersController {
 		return usersRepository.findAll();
 	}
 
+	@RequestMapping(value = "/simpleUsers", method = RequestMethod.GET)
+	public List<SimpleUser> getSimpleUsers() {
+		List<User> users = usersRepository.findAll();
+		List<SimpleUser> simpleUsers = new ArrayList<SimpleUser>();
+		for (User user : users) {
+			simpleUsers.add(new SimpleUser(user));
+		}
+		return simpleUsers;
+	}
+
 	// @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	// public User getUser(@PathVariable("id") String id) {
 	// User p = usersRepository.findOne(id);
@@ -109,16 +119,15 @@ public class UsersController {
 
 		ArrayList<CategoryQuestions> categoryQuestionsList = new ArrayList<CategoryQuestions>();
 		for (String category : categoryList) {
-			// per category, grab the questionAnswers with that category and add it to the
-			// quizresponse list
-//			 quizResponse.getQuestionAnswersByCategory(category);
-			
-			categoryQuestionAnswersList.add(new CategoryQuestionAnswers(category, quizResponse.getQuestionAnswersByCategory(category)));
-
-			// categoryQuestionsList.add(new CategoryQuestions(category, list));
+			categoryQuestionAnswersList.add(new CategoryQuestionAnswers(capitalize(category),
+					quizResponse.getQuestionAnswersByCategory(category)));
 		}
 
 		return quizResponse;
+	}
+
+	private String capitalize(final String line) {
+		return Character.toUpperCase(line.charAt(0)) + line.substring(1);
 	}
 
 	@RequestMapping(value = "/users/{username}/results", method = RequestMethod.GET)
@@ -133,7 +142,6 @@ public class UsersController {
 
 		if (currentUser.isAbleToSubmitResults()) {
 			Results results = new Results(currentUser, partnerUser);
-			results.getPartnerQuizResponse().populateQuestions(questionsRepository.findAll(), currentUser, partnerUser);
 			return results;
 		} else {
 			return null;
@@ -173,6 +181,24 @@ public class UsersController {
 			usersRepository.save(savedUser);
 		}
 		return savedUser.getQuizResponse().getQuestionAnswersByCategory(category);
+	}
+
+	@RequestMapping(value = "/users/{username}/updateAllAnswersYes", method = RequestMethod.POST)
+	@ResponseBody
+	public User updateAllAnswersYes(Principal principal, @PathVariable("username") String username) {
+
+		// User savedUser = usersRepository.findByUsername(username);
+
+		// reference: http://www.baeldung.com/get-user-in-spring-security
+		User savedUser = usersRepository.findByUsername(username);
+
+		for (QuestionAnswer qa : savedUser.getQuizResponse().getQuestionAnswers()) {
+			qa.setAnswer("yes");
+		}
+
+		usersRepository.save(savedUser);
+
+		return usersRepository.findByUsername(username);
 	}
 
 	private QuestionAnswer findQuestionAnswerWithQuestion(List<QuestionAnswer> list, String questionID) {
