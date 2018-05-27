@@ -30,12 +30,19 @@
             </div>
 
             <div class="btn-group" ng-model="life.answers[questionAnswer.question.id].radio" bs-radio-group>
-                <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('life')">Yes</label>
-                <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('life')">No</label>
-                <label class="btn btn-primary">
-                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('life')"> Not Sure</label>
+                    <label class="btn btn-primary">
+                            <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('life')">
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        
+                            Yes</label>
+                        <label class="btn btn-primary">
+                            <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('life')">
+                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            No</label>
+                        <label class="btn btn-primary">
+                            <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('life')">
+                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            Not Sure</label>
             </div>
             <br/>
             <br/>

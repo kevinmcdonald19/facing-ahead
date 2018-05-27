@@ -1,6 +1,6 @@
 <div id="content">
 
-        <div class="count">2 / 13</div>
+    <div class="count">2 / 13</div>
 
     <div class="section_header">Relationship Roles</div>
 
@@ -10,7 +10,7 @@
             {{questionAnswer.question.text}}
             <br/>
 
-                 <div class="spinner" ng-if="savingContent">
+            <div class="spinner" ng-if="savingContent">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
                     <defs>
                         <filter id="gooey">
@@ -29,17 +29,26 @@
             </div>
 
             <div class="btn-group" ng-model="roles.answers[questionAnswer.question.id].radio" bs-radio-group>
-                <label class="btn btn-primary">
-                    <input ng-disabled="savingContent" type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('roles')">Yes</label>
-                <label class="btn btn-primary">
-                    <input ng-disabled="savingContent" type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('roles')">No</label>
-                <label class="btn btn-primary">
-                    <input ng-disabled="savingContent" type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('roles')"> Not Sure</label>
+                    <label class="btn btn-primary">
+                            <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('roles')">
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        
+                            Yes</label>
+                        <label class="btn btn-primary">
+                            <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('roles')">
+                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            No</label>
+                        <label class="btn btn-primary">
+                            <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('roles')">
+                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            Not Sure</label>
             </div>
             <br/>
             <br/>
             <small>
-            <em><p>{{questionAnswer.question.why}}</p></em>
+                <em>
+                    <p>{{questionAnswer.question.why}}</p>
+                </em>
             </small>
             <hr/>
         </div>

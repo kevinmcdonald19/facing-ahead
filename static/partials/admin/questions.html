@@ -9,10 +9,8 @@
     <!-- <pre>{{categories | json}}</pre> -->
 
     <div ng-repeat="category in categories" id="questionsList">
-
         <h2>{{$index+1}} - {{category.category}}</h2>
         <hr/>
-
 
         <div ng-repeat="question in category.questionsList">
             <h4>{{$index+1}}</h4>
@@ -26,9 +24,6 @@
             <button class="btn btn-clear" ng-click="updateQuestion(question)">Update Question</button>
             <hr/>
         </div>
-
-
-
     </div>
 
 
