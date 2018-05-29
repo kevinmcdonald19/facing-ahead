@@ -44,7 +44,7 @@
 
             <div class="row">
                 <div class="col-xs-8">
-                        <h4>{{$index+1}}. {{categoryPartnerQuestionAnswer.category}}</h4>
+                    <h4>{{$index+1}}. {{categoryPartnerQuestionAnswer.category}}</h4>
 
                 </div>
                 <div class="col-xs-2 resultsLabels">Me</div>
@@ -55,19 +55,20 @@
             <div ng-repeat="partnerQuestionAnswer in categoryPartnerQuestionAnswer.partnerQuestionAnswerList">
                 <div class="row" ng-click="navigateToSection(partnerQuestionAnswer.question.category)">
                     <div class="col-xs-8">
-                        {{partnerQuestionAnswer.question.text}}
+                        {{$index+1}}. {{partnerQuestionAnswer.question.text}}
                     </div>
                     <div class="col-xs-2">
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'yes'" class="fa fa-thumbs-up answered" aria-hidden="true"></i>
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'no'" class="fa fa-thumbs-down answered responseColumn"
                             aria-hidden="true"></i>
-                        <i ui-sref="settings" ng-if="qpartnerQuestionAnswer.partnerOneAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
+                        <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
+                        
                     </div>
                     <div class="col-xs-2">
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerTwoAnswer == 'yes'" class="fa fa-thumbs-up answered" aria-hidden="true"></i>
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerTwoAnswer == 'no'" class="fa fa-thumbs-down answered responseColumn"
                             aria-hidden="true"></i>
-                        <i ui-sref="settings" ng-if="qpartnerQuestionAnswer.partnerTwoAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
+                        <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerTwoAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
                     </div>
                 </div>
                 <hr/>
