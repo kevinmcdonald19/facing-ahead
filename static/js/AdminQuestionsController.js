@@ -93,11 +93,11 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
         adminService.getCategoriesAndQuestions().then(function (response) {
             $scope.categories = response.data;
 
-            for (var i = 0; $scope.categories.length - 1; i++) {
-                // if (category != null) {
-                    $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
-                // }
-            }
+            // for (var i = 0; $scope.categories.length - 1; i++) {
+            //     // if (category != null) {
+            //         $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
+            //     // }
+            // }
         });
     }
 
@@ -111,13 +111,29 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
             adminService.getCategoriesAndQuestions().then(function (response) {
                 $scope.categories = response.data;
 
-                for (var i = 0; $scope.categories.length - 1; i++) {
-                    // if (category != null) {
-                        $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
-                    // }
-                }
+                // for (var i = 0; $scope.categories.length - 1; i++) {
+                //     // if (category != null) {
+                //         $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
+                //     // }
+                // }
             });
         });
+    }
+
+    $scope.deleteQuestion = function(question){
+        console.log('delete question: ' + question);
+
+        adminService.deleteQuestion(question).then(function (response){
+            console.log('successfully deleted');
+            adminService.getCategoriesAndQuestions().then(function (response) {
+                $scope.categories = response.data;
+
+                // for (var i = 0; $scope.categories.length - 1; i++) {
+                //     // if (category != null) {
+                //         $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
+                //     // }
+                // }
+            });        });
     }
 
 

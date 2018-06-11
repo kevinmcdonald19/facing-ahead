@@ -9,7 +9,7 @@
 
 
         <div ng-repeat="questionAnswer in values.questionAnswers">
-            {{questionAnswer.question.text}}
+            {{$index+1}}. {{questionAnswer.question.text}}
             <br/>
 
             <div class="spinner" ng-if="savingContent">

@@ -33,6 +33,14 @@ mainModule.service('adminService', function ($http) {
         });
     }
 
+    function deleteQuestion(question){
+
+        return $http({
+            method: 'DELETE',
+            url: '/questions/'+ question.id
+        })
+    }
+
     function makePayment(){
         return $http({
             method: 'POST',
@@ -69,7 +77,8 @@ mainModule.service('adminService', function ($http) {
         getQuestions: getQuestions,
         getQuestionsByCategory: getQuestionsByCategory,
         getCategoriesAndQuestions: getCategoriesAndQuestions,
-        updateQuestion: updateQuestion
+        updateQuestion: updateQuestion,
+        deleteQuestion: deleteQuestion
         // updatePartnerUsername: updatePartnerUsername,
         // getResults: getResults,
         // createUser: createUser

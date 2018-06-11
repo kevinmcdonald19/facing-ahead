@@ -9,7 +9,7 @@
 
     <div class="answer_area">
         <div ng-repeat="questionAnswer in community.questionAnswers">
-            {{questionAnswer.question.text}}
+            {{$index+1}}. {{questionAnswer.question.text}}
             <br/>
             
                  <div class="spinner" ng-if="savingContent">

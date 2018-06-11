@@ -6,7 +6,7 @@
     <div class="section_header">Work/Home Issues</div>
     <div class="answer_area">
         <div ng-repeat="questionAnswer in work.questionAnswers">
-            {{questionAnswer.question.text}}
+            {{$index+1}}. {{questionAnswer.question.text}}
             <br/>
                  <div class="spinner" ng-if="savingContent">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
