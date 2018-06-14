@@ -439,26 +439,6 @@ btn.btn-link:hover{
 
 
 /* loading screen */
-
-.savingContent {
-    width: 100%;
-    position: fixed;
-    height: 500px;
-    /*    line-height: 500px;*/
-    width: 100%;
-    z-index: 10;
-    background: rgba(0, 0, 0, .8);
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding-top: 192px;
-}
-
 .savingContent h1 {
     vertical-align: middle;
 }
@@ -467,6 +447,18 @@ btn.btn-link:hover{
 /* fancy loader */
 
 .spinner {
+    background: rgba(98, 146, 186, 0.1);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.spinnerReal {
     background: rgba(98, 146, 186, 0.8);
     height: 100%;
     position: fixed;

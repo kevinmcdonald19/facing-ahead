@@ -104,7 +104,7 @@
         <div ng-repeat="questionAnswer in categoryQuestionAnswer.questionAnswerList">
             <div class="row" ng-click="navigateToSection(questionAnswer.question.category)">
                 <div class="col-xs-7">
-                    {{questionAnswer.question.text}}
+                    {{$index+1}}. {{questionAnswer.question.text}}
                 </div>
                 <div class="col-xs-5 responseColumn">
                     <!-- {{questionAnswer.answer}} -->
