@@ -90,19 +90,17 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
 
         // get partner's quizResponse
 
+        $scope.savingContent = true;
+
         adminService.getCategoriesAndQuestions().then(function (response) {
             $scope.categories = response.data;
-
-            // for (var i = 0; $scope.categories.length - 1; i++) {
-            //     // if (category != null) {
-            //         $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
-            //     // }
-            // }
+            $scope.savingContent = false;
         });
     }
 
     $scope.updateQuestion = function (question) {
         console.log('question: ' + question);
+        $scope.savingContent = true;
         adminService.updateQuestion(question).then(function (response, data) {
             console.log('updated: ' + response.data.text);
             // $scope.question.text = response.data.text;
@@ -110,23 +108,26 @@ mainModule.controller('AdminQuestionsController', function ($rootScope, $scope, 
 
             adminService.getCategoriesAndQuestions().then(function (response) {
                 $scope.categories = response.data;
-
-                // for (var i = 0; $scope.categories.length - 1; i++) {
-                //     // if (category != null) {
-                //         $scope.categories[i].category = capitalizeFirstLetter($scope.categories[i].category);
-                //     // }
-                // }
+                $scope.savingContent = false;
             });
         });
     }
 
+    $scope.deleted = false;
     $scope.deleteQuestion = function(question){
         console.log('delete question: ' + question);
+        $scope.savingContent = true;
 
         adminService.deleteQuestion(question).then(function (response){
             console.log('successfully deleted');
             adminService.getCategoriesAndQuestions().then(function (response) {
+
                 $scope.categories = response.data;
+                $scope.savingContent = false;
+                // setTimeout(function(){
+                //     $scope.deleted = false;
+                // }, 3000);
+
 
                 // for (var i = 0; $scope.categories.length - 1; i++) {
                 //     // if (category != null) {
