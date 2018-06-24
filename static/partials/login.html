@@ -1,10 +1,15 @@
 <div class="content" id="loginPage">
+        <div id="header_logo" align="center" ui-sref="home" href="#/home">
+            <img src="images/header_logo_320x50.jpg" border="0">
+        </div>
 
     <div class="alert alert-danger" ng-show="error">
         There was a problem logging in. Please try again.
     </div>
-
+<br/>
+<br/>
     <form role="form">
+        <h1>Login</h1>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username" />
@@ -13,6 +18,7 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password" />
         </div>
+        <hr/>
         <button class="btn btn-clear btn-block" ng-click="login()">Login
             <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
 

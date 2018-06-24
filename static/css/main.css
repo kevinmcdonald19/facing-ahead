@@ -141,19 +141,7 @@ input:-webkit-autofill {
     padding: 0;
 }
 
-.home_content {
-    background-image: url('../images/home_bkg_large.png');
-    background-repeat: no-repeat;
-    /*-moz-background-size: cover;*/
-    /*-o-background-size: cover;*/
-    /*background-size: cover;*/
-    background-attachment: fixed;
-    margin: auto;
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-    background-size: cover;
-}
+
 
 a {
     color: rgba(98, 146, 186, 0.8) !important;
@@ -176,12 +164,6 @@ a:hover {
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
-}
-
-.roundCard.tappable:hover {
-    cursor: pointer;
-    background: rgba(98, 146, 186, 0.6);
-    color:white;
 }
 
 .roundCard.tappable:active {
@@ -236,6 +218,32 @@ a:hover {
 
 
 /* Home Page */
+
+#header_logo {   
+    position: absolute;
+    z-index: 1000;
+    left:0;
+    right:0;
+    top:0;
+    height: 50px;
+    width: 500px;
+    margin:auto;
+    background: -webkit-linear-gradient(left, #393c73, #393c73, #393c73, white, white, white);
+    background: -o-linear-gradient(right, #393c73, #393c73, #393c73, white, white, white);
+    background: -moz-linear-gradient(right, #393c73, #393c73, #393c73, white, white, white);
+    background: linear-gradient(to right, #393c73, #393c73, #393c73, white, white, white);
+}
+
+.homeContent {
+    background: url(../images/home_bkg_large.png);
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    max-width: 500px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
 
 #buttonBox{
     background: linear-gradient(129.57deg, #00002D 10.46%, #383B72 92.96%);
