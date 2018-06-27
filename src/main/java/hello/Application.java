@@ -9,9 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
-import com.braintreegateway.BraintreeGateway;
-import com.braintreegateway.Environment;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootApplication
 public class Application {

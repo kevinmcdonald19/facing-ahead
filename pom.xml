@@ -53,12 +53,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<executable>true</executable>
-					<arguments>
-						<argument>--spring.profiles.active=${env.davesprofile}</argument>
-					</arguments>
-				</configuration>
+			
 			</plugin>
 		</plugins>
 	</build>
