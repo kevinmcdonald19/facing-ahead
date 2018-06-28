@@ -42,7 +42,6 @@
 			<version>2.77.0</version>
 		</dependency>
 	</dependencies>
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
