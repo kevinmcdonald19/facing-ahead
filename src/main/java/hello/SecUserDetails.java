@@ -54,5 +54,9 @@ public class SecUserDetails implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public String getRole() {
+		return this.user.getRole();
+	}
   
 }

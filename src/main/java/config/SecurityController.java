@@ -13,5 +13,4 @@ public class SecurityController {
 	public Principal user(Principal user) {
 		return user;
 	}
-
 }
