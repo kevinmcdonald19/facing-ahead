@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,9 @@ public class UsersController {
 
 	@Autowired
 	private QuestionRepository questionsRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	@RequestMapping(value = "/create/user", method = RequestMethod.POST)
 	public User createUser(@RequestBody CreateUserDTO createUserDTO, Principal principalUser,
@@ -223,6 +227,41 @@ public class UsersController {
 		User p = usersRepository.findOne(id);
 		usersRepository.delete(p);
 		return p;
+	}
+
+	// One-time use method to encryp all users' passwords in the system
+	@RequestMapping(value = "/encryptAllUsers", method = RequestMethod.GET)
+	public String encryptAllUsers() {
+		List<User> users = usersRepository.findAll();
+		int countUpdated = 0;
+		for (User user : users) {
+			String plainPassword = user.getPassword();
+			if (plainPassword != null) {
+				String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+				user.setPassword(encodedPassword);
+				usersRepository.save(user);
+				countUpdated++;
+			}
+		}
+
+		return "success: " + countUpdated;
+	}
+
+	// One-time use
+	@RequestMapping(value = "/removeUserFromQuizResponse", method = RequestMethod.GET)
+	public String removeUserFromQuizResponse() {
+		List<User> users = usersRepository.findAll();
+		int countUpdated = 0;
+		for (User user : users) {
+			QuizResponse quizResponse = user.getQuizResponse();
+			if (quizResponse != null) {
+				quizResponse.setUser(null);
+				usersRepository.save(user);
+				countUpdated++;
+			}
+		}
+
+		return "success: " + countUpdated;
 	}
 
 }

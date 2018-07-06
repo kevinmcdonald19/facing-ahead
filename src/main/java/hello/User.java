@@ -1,6 +1,8 @@
 package hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class User {
 	@Id
@@ -16,6 +18,9 @@ public class User {
 	private boolean ableToSubmitResults;
 	private boolean partnerMutuallyAddedYou;
 	private boolean partnerAnsweredAllQuestions;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	public User() {
 		// blank constructor
@@ -70,7 +75,11 @@ public class User {
 	public User(CreateUserDTO userDTO, QuizResponse quizResponse) {
 		this.name = userDTO.getName();
 		this.username = userDTO.getUsername().toLowerCase();
-		this.password = userDTO.getPassword();
+		
+		
+		String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
+
+		this.password = encodedPassword;
 		this.quizResponse = quizResponse;
 		// this.quizResponse.setUser(userDTO);
 	}
