@@ -225,7 +225,7 @@ a:hover {
     right:0;
     top:0;
     height: 50px;
-    width: 500px;
+    max-width: 500px;
     margin:auto;
     background: -webkit-linear-gradient(left, #393c73, #393c73, #393c73, white, white, white);
     background: -o-linear-gradient(right, #393c73, #393c73, #393c73, white, white, white);
