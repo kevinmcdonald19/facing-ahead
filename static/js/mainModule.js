@@ -39,7 +39,7 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: "/home/howItWorks",
             templateUrl: "partials/howItWorks.html"
         })
-        .state('topics', {
+        .state('settings.topics', {
             url: "/home/topics",
             templateUrl: "partials/topics.html",
             controller: "TopicsController"
@@ -54,18 +54,18 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "partials/results.html",
             controller: "ResultsController"
         })
-        .state('about', {
-            url: "/home/about",
-            templateUrl: "partials/about.html",
-            controller: "HomeController"
+        .state('settings.about', {
+            parent: 'home',
+            url: "/about",
+            templateUrl: "partials/about.html"
         })
         .state('settings', {
-            url: "/home/settings",
+            url: "/settings",
             templateUrl: "partials/settings.html",
             controller: "HomeController"
         })
         .state('quiz', {
-            url: "/home/quiz",
+            url: "/quiz",
             templateUrl: "partials/quiz.html",
             controller: "QuizController"
         })

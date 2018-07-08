@@ -1,9 +1,10 @@
+<div id="home" class="content" ui-view autoscroll="true">
 
+   
 
-<div id="home" class="content">
-        <div id="header_logo" align="center" ui-sref="home" href="#/home">
-            <img src="images/header_logo_320x50.jpg" border="0">
-        </div>
+    <div id="header_logo" align="center" ui-sref="home" href="#/home">
+        <img src="images/header_logo_320x50.jpg" border="0">
+    </div>
 
     <div ng-show="!authenticated" class="homeContent">
 
@@ -27,6 +28,8 @@
                 <br/>{{user.username}}</h2>
             <br/>
             <br/>
+
+
         </div>
         <div class="roundCard tappable" ui-sref="quiz.families">
             <div class="row">
@@ -73,7 +76,7 @@
             </div>
         </div>
         <br/>
-        <div class="roundCard tappable" ui-sref="about">
+        <div class="roundCard tappable" ui-sref="settings.about">
             <div class="row">
                 <div class="col-xs-3">
                     <img src="../images/eye.png" class="img img-responsive roundCardImage" />

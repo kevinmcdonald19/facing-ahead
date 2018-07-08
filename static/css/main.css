@@ -81,8 +81,11 @@ h1, h2, h3, h4, h5, h6{
 
 #footerContents .fa {
     font-size: 21px;
-    color: white;
     font-size: 26px;
+}
+
+#footerContents .fa.active{
+    color:#6393BB;
 }
 
 #footerContents .fa:active {
