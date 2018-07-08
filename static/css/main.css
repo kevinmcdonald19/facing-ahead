@@ -54,6 +54,12 @@
 
 h1, h2, h3, h4, h5, h6{
     font-weight: bold !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+.directions {
+    font-style: italic;
 }
 
 
@@ -84,7 +90,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 body {
-    background: rgba(56, 59, 114, 0.92);
+    background: rgba(56, 59, 114, 0.932);
     color: white;
     font-family: 'Roboto', sans-serif !important;
     height: auto;

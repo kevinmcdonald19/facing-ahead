@@ -1,13 +1,16 @@
 <div class="mainHeader">
-        <div class="text text-center text-bold">My Answers</div>
+    <div class="text text-center text-bold">My Answers</div>
 </div>
 <div id="content" class="content">
-    <div class="directions_body">Please review your answers and return to any questions you haven't answered, or would like to update. You do not need
+    <p>Please review your answers and return to any questions you haven't answered, or would like to update. You do not need
         to complete the entire quiz in one visit.
-    </div>
+    </p>
 
     <h2>Review with Partner</h2>
+    <p ng-if="!user.ableToSubmitResults" class="directions">In order to view you and your partner's results, the outstanding tasks listed below must be completed. </p>
     <button class="btn btn-clear btn-block" ng-if="user.ableToSubmitResults" ui-sref="results">Compare results with partner</button>
+
+    <h4>My Outstanding Tasks</h4>
 
 
     <div class="submit_area" ng-if="!user.ableToSubmitResults">
@@ -20,14 +23,15 @@
                 <div class="col-xs-9">
                     <div class="roundCardTitle">Unanswered Questions</div>
                     <div class="roundCardInfo">
-                        Before submitting for review with a partner, you must answer all of the questions.
+                        <p>Before submitting for review with a partner, you must answer all of the questions.</p>
+                        <p class="directions">Scroll down to review questions</p>
                     </div>
 
                 </div>
             </div>
         </div>
 
-
+        <br/>
 
         <div class="roundCard tappable background-white text-purple" ui-sref="settings" ng-if="!user.partnerUsername">
 
@@ -51,6 +55,7 @@
         </div>
         <br/>
 
+        <h4>My Partner's Outstanding Tasks</h4>
 
         <div class="roundCard background-white text-purple" ng-if="!user.partnerMutuallyAddedYou">
 
@@ -59,7 +64,7 @@
                     <img src="../images/exclamation-triangle.png" class="img img-responsive roundCardImage" />
                 </div>
                 <div class="col-xs-9">
-                    <div class="roundCardTitle">Partner Add You</div>
+                    <div class="roundCardTitle">Partner Must Add You</div>
 
                     <p>Your partner hasn't mutually added you yet, so you can't compare results yet.</p>
                     <p>They can do this in the
@@ -89,7 +94,7 @@
 
         </div>
         <br/>
-        <p ng-if="!user.ableToSubmitResults">Once the above measures are met, you will then be able to submit your results to compare with a partner</p>
+
 
 
     </div>
@@ -111,7 +116,9 @@
                     <i ui-sref="settings" ng-if="questionAnswer.answer == 'yes'" class="fa fa-thumbs-up answered" aria-hidden="true"></i>
                     <i ui-sref="settings" ng-if="questionAnswer.answer == 'no'" class="fa fa-thumbs-down answered responseColumn" aria-hidden="true"></i>
                     <i ui-sref="settings" ng-if="questionAnswer.answer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
-                    <span ng-if="questionAnswer.answer == '' || questionAnswer.answer == null"><span class="unAnswered">No answer</span></span>
+                    <span ng-if="questionAnswer.answer == '' || questionAnswer.answer == null">
+                        <span class="unAnswered">No answer</span>
+                    </span>
 
                     <span class="roundCardNavArrow glyphicon glyphicon-circle-arrow-right pull-right" aria-hidden="true"></span>
 
