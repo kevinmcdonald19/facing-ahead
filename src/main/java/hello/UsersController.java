@@ -96,7 +96,7 @@ public class UsersController {
 		user.determineIfAbleToSubmitResults(usersRepository.findByUsername(user.getPartnerUsername()));
 	}
 
-	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{username:.+}", method = RequestMethod.GET)
 	public User getUser(@PathVariable("username") String username) {
 		User user = usersRepository.findByUsername(username.toLowerCase());
 		determineIfAbleToCompareResults(user);
@@ -111,7 +111,7 @@ public class UsersController {
 		return p;
 	}
 
-	@RequestMapping(value = "/users/{username}/quizResponse", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{username:.+}/quizResponse", method = RequestMethod.GET)
 	public QuizResponse getQuizResponse(@PathVariable("username") String username) {
 		User savedUser = usersRepository.findByUsername(username);
 
@@ -134,7 +134,7 @@ public class UsersController {
 		return Character.toUpperCase(line.charAt(0)) + line.substring(1);
 	}
 
-	@RequestMapping(value = "/users/{username}/results", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{username:.+}/results", method = RequestMethod.GET)
 	public Results getResults(@PathVariable("username") String username) {
 		User currentUser = usersRepository.findByUsername(username);
 		User partnerUser = usersRepository.findByUsername(currentUser.getPartnerUsername());
@@ -153,7 +153,7 @@ public class UsersController {
 
 	}
 
-	@RequestMapping(value = "/users/{username}/quizResponse/questionAnswers/{category}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{username:.+}/quizResponse/questionAnswers/{category}", method = RequestMethod.GET)
 	public List<QuestionAnswer> getQuizResponseByCategory(@PathVariable("username") String username,
 			@PathVariable("category") String category) {
 		User savedUser = usersRepository.findByUsername(username);
@@ -165,7 +165,7 @@ public class UsersController {
 		return savedUser.getQuizResponse().getQuestionAnswersByCategory(category);
 	}
 
-	@RequestMapping(value = "/users/{username}/quizResponse/questionAnswers/{category}", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/{username:.+}/quizResponse/questionAnswers/{category}", method = RequestMethod.POST)
 	@ResponseBody
 	public List<QuestionAnswer> updateQuizResponseByCategory(Principal principal,
 			@PathVariable("username") String username, @PathVariable("category") String category,
@@ -187,7 +187,7 @@ public class UsersController {
 		return savedUser.getQuizResponse().getQuestionAnswersByCategory(category);
 	}
 
-	@RequestMapping(value = "/users/{username}/updateAllAnswersYes", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/{username:.+}/updateAllAnswersYes", method = RequestMethod.POST)
 	@ResponseBody
 	public User updateAllAnswersYes(Principal principal, @PathVariable("username") String username) {
 
@@ -214,7 +214,7 @@ public class UsersController {
 		return null;
 	}
 
-	@RequestMapping(value = "/users/{username}/quizResponse", method = RequestMethod.PUT)
+	@RequestMapping(value = "/users/{username:.+}/quizResponse", method = RequestMethod.PUT)
 	public QuizResponse updateQuizResponse(@PathVariable("username") String username,
 			@ModelAttribute QuizResponse quizResponse) {
 		User savedUser = usersRepository.findByUsername(username);
