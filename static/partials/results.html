@@ -1,9 +1,27 @@
-<div class="mainHeader">
-    <div class="text text-center text-bold">Our Results</div>
-</div>
-<div id="content" class="content">
-    <button class="btn btn-clear">Back to My Answers</button>
+<div id="content" class="content" ui-view>
+    <button class="btn btn-clear" ui-sref="confirmation">Back</button>
     <br/>
+    <br/>
+
+    <div class="roundCard tappable text-white" ui-sref="confirmation.results.whatsnext">
+
+        <div class="row">
+            <div class="col-xs-3">
+                <img src="../images/hands.png" class="img img-responsive roundCardImage" />
+            </div>
+            <div class="col-xs-9">
+                <div class="roundCardTitle">What's Next?</div>
+                <div class="roundCardInfo">
+                    <p>Now that you’ve taken the quiz, how should you interpret the results?</p>
+                    <span class="roundCardNavArrow glyphicon glyphicon-circle-arrow-right pull-right" aria-hidden="true"></span>
+                    <p class="directions pull-right leadText">View recommendations
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
     <br/>
     <div ng-if="ableToCompareResults">
         <h2>Our Results</h2>
@@ -62,7 +80,7 @@
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'no'" class="fa fa-thumbs-down answered responseColumn"
                             aria-hidden="true"></i>
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerOneAnswer == 'maybe'" class="fa fa-question-circle answered" aria-hidden="true"></i>
-                        
+
                     </div>
                     <div class="col-xs-2">
                         <i ui-sref="settings" ng-if="partnerQuestionAnswer.partnerTwoAnswer == 'yes'" class="fa fa-thumbs-up answered" aria-hidden="true"></i>
@@ -98,12 +116,14 @@
         <br/>
         <hr/>
     </div>
+
+    <div class="alert alert-danger" ng-if="!ableToCompareResults">
+        You are not supposed to be viewing this page as you either haven't answered all the questions or added a partner that has
+        also added you.
+    </div>
 </div>
 
-<div class="alert alert-danger" ng-if="!ableToCompareResults">
-    You are not supposed to be viewing this page as you either haven't answered all the questions or added a partner that has
-    also added you.
-</div>
+
 
 
 </div>

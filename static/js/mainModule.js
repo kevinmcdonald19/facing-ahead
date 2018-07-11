@@ -49,13 +49,17 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "partials/createAccount.html",
             controller: "CreateAccountController"
         })
-        .state('results', {
-            url: "/quiz/results",
+        .state('confirmation.results', {
+            url: "/results",
             templateUrl: "partials/results.html",
             controller: "ResultsController"
         })
+        .state('confirmation.results.whatsnext', {
+            url: "/whatsnext",
+            templateUrl: "partials/whatsnext.html"
+            // controller: "ResultsController"
+        })
         .state('settings.about', {
-            parent: 'home',
             url: "/about",
             templateUrl: "partials/about.html"
         })

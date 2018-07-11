@@ -1,19 +1,17 @@
 <div class="mainHeader">
     <div class="text text-center text-bold">My Answers</div>
 </div>
-<div id="content" class="content">
+<div id="content" class="content" ui-view>
     <p>Please review your answers and return to any questions you haven't answered, or would like to update. You do not need
         to complete the entire quiz in one visit.
     </p>
-
     <h2>Review with Partner</h2>
     <p ng-if="!user.ableToSubmitResults" class="directions">In order to view you and your partner's results, the outstanding tasks listed below must be completed. </p>
-    <button class="btn btn-clear btn-block" ng-if="user.ableToSubmitResults" ui-sref="results">Compare results with partner</button>
-
-    <h4>My Outstanding Tasks</h4>
-
+    <button class="btn btn-clear btn-block" ng-if="user.ableToSubmitResults" ui-sref="confirmation.results">Compare results with partner</button>
 
     <div class="submit_area" ng-if="!user.ableToSubmitResults">
+        <h4>My Outstanding Tasks</h4>
+
         <div class="roundCard background-white text-purple" ng-if="!user.quizResponse.allQuestionsAnswered">
 
             <div class="row">
