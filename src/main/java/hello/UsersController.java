@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +24,8 @@ public class UsersController {
 	@Autowired
 	private QuestionRepository questionsRepository;
 
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//	@Autowired
+//	private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	@RequestMapping(value = "/create/user", method = RequestMethod.POST)
 	public User createUser(@RequestBody CreateUserDTO createUserDTO, Principal principalUser,
@@ -35,12 +34,18 @@ public class UsersController {
 		// check to see if the user exists
 		User existingUser = usersRepository.findByUsername(createUserDTO.getUsername().toLowerCase());
 		if (existingUser == null) {
-			QuizResponse newQuizResponse = new QuizResponse(questionsRepository.findAll());
+			if (createUserDTO.getUsername().contains("@")) {
+				QuizResponse newQuizResponse = new QuizResponse(questionsRepository.findAll());
 
-			// save the user with a lowercase username to make everyone the same
-			User savedUser = usersRepository.save(new User(createUserDTO, newQuizResponse));
+				// save the user with a lowercase username to make everyone the same
+				User savedUser = usersRepository.save(new User(createUserDTO, newQuizResponse));
 
-			return savedUser;
+				return savedUser;
+			} else {
+				// user didn't provide an email
+				return null;
+			}
+			
 		} else {
 			// the user already exists - can't create this user
 			return null;
@@ -55,12 +60,12 @@ public class UsersController {
 		return updatedUser;
 	}
 
-	@RequestMapping(value = "/users/{currentUsername:.+}/{partnerUsername:.+}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/users/{currentUsername}/{partnerUsername}", method = RequestMethod.PUT)
 	public User pairPartner(@PathVariable("currentUsername") String currentUsername,
 			@PathVariable("partnerUsername") String partnerUsername) {
 		User savedUser = usersRepository.findByUsername(currentUsername);
 
-		User savedPartner = usersRepository.findByUsername(partnerUsername.toLowerCase());
+		User savedPartner = usersRepository.findByUsername(partnerUsername);
 		if (savedPartner != null) {
 			savedUser.setPartnerUsername(partnerUsername);
 			User updatedUser = usersRepository.save(savedUser);
@@ -229,23 +234,23 @@ public class UsersController {
 		return p;
 	}
 
-	// One-time use method to encryp all users' passwords in the system
-	@RequestMapping(value = "/encryptAllUsers", method = RequestMethod.GET)
-	public String encryptAllUsers() {
-		List<User> users = usersRepository.findAll();
-		int countUpdated = 0;
-		for (User user : users) {
-			String plainPassword = user.getPassword();
-			if (plainPassword != null) {
-				String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-				user.setPassword(encodedPassword);
-				usersRepository.save(user);
-				countUpdated++;
-			}
-		}
-
-		return "success: " + countUpdated;
-	}
+//	// One-time use method to encryp all users' passwords in the system
+//	@RequestMapping(value = "/encryptAllUsers", method = RequestMethod.GET)
+//	public String encryptAllUsers() {
+//		List<User> users = usersRepository.findAll();
+//		int countUpdated = 0;
+//		for (User user : users) {
+//			String plainPassword = user.getPassword();
+//			if (plainPassword != null) {
+//				String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+//				user.setPassword(encodedPassword);
+//				usersRepository.save(user);
+//				countUpdated++;
+//			}
+//		}
+//
+//		return "success: " + countUpdated;
+//	}
 
 	// One-time use
 	@RequestMapping(value = "/removeUserFromQuizResponse", method = RequestMethod.GET)

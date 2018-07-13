@@ -77,9 +77,9 @@ public class User {
 		this.username = userDTO.getUsername().toLowerCase();
 		
 		
-		String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
+//		String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
 
-		this.password = encodedPassword;
+		this.password = userDTO.getPassword();
 		this.quizResponse = quizResponse;
 		// this.quizResponse.setUser(userDTO);
 	}
