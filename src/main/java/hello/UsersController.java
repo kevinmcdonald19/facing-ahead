@@ -55,12 +55,12 @@ public class UsersController {
 		return updatedUser;
 	}
 
-	@RequestMapping(value = "/users/{currentUsername}/{partnerUsername}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/users/{currentUsername:.+}/{partnerUsername:.+}", method = RequestMethod.PUT)
 	public User pairPartner(@PathVariable("currentUsername") String currentUsername,
 			@PathVariable("partnerUsername") String partnerUsername) {
 		User savedUser = usersRepository.findByUsername(currentUsername);
 
-		User savedPartner = usersRepository.findByUsername(partnerUsername);
+		User savedPartner = usersRepository.findByUsername(partnerUsername.toLowerCase());
 		if (savedPartner != null) {
 			savedUser.setPartnerUsername(partnerUsername);
 			User updatedUser = usersRepository.save(savedUser);

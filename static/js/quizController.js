@@ -265,6 +265,15 @@ mainModule.controller('QuizController', function ($scope, $http, $state, $rootSc
     function getCurrentState() {
         return $state.current.name;
     }
+    $scope.whyContentShown = true;
+
+    $scope.toggleWhyContent = function (targetIndex){
+        $scope.whyContentShown = !$scope.whyContentShown;
+        console.log('toggle: '+ $scope.whyContentShown);
+        // var section = $('target'+targetIndex);
+        // section.hide();
+        // // $("#kevin").show();
+    }
 
     /* General */
     var answers = {};

@@ -1,22 +1,32 @@
 <div class="content" id="loginPage">
-        <div id="header_logo" align="center" ui-sref="home" href="#/home">
-            <img src="images/header_logo_320x50.jpg" border="0">
-        </div>
+    <div id="header_logo" align="center" ui-sref="home" href="#/home">
+        <img src="images/header_logo_320x50.jpg" border="0">
+    </div>
+
+
+    <br/>
+    <br/>
 
     <div class="alert alert-danger" ng-show="error">
         There was a problem logging in. Please try again.
     </div>
-<br/>
-<br/>
     <form role="form">
+
+
         <h1>Login</h1>
         <div class="form-group">
             <label for="username">Email</label>
-            <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username" />
+            <input type="email" class="form-control" placeholder="Enter your email" id="username" name="username" ng-model="credentials.username" />
+            <br/>
+            <div class="alert alert-warning">Please note: You will now need to login with your username as an email address. If you have not done this, you
+                will need to create a new account using a valid email.
+                <div class="text text-bold text-underline text-warning"
+                    ui-sref="createAccount">Create new account</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password" />
+            <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password" ng-model="credentials.password" />
         </div>
         <hr/>
         <button class="btn btn-clear btn-block" ng-click="login()">Login
@@ -27,10 +37,10 @@
     </form>
     <br/>
     <!-- <em>
-        <h5>
-            <strong>Forgot your password?</strong>
-        </h5>
-        <p>Send an email to
-            <a class="text-blue" href="mailto:support@facingahead.com">Support@FacingAhead.com</a> with your username.</p>
-    </em> -->
+            <h5>
+                <strong>Forgot your password?</strong>
+            </h5>
+            <p>Send an email to
+                <a class="text-blue" href="mailto:support@facingahead.com">Support@FacingAhead.com</a> with your username.</p>
+        </em> -->
 </div>

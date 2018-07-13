@@ -47,6 +47,10 @@
     font-style: italic;
 }
 
+.text-underline {
+    text-decoration: underline;
+}
+
 
 .active {
     color: blue;
@@ -137,12 +141,7 @@ input:-webkit-autofill {
     -webkit-animation-fill-mode: both;
 }
 
-
-
-
 *:focus {
-
-    
     outline: none;
     border: none;
 }
@@ -151,11 +150,10 @@ input:-webkit-autofill {
     padding: 0;
 }
 
-
-
 a {
     color: white !important;
     text-decoration: underline;
+    font-weight: normal !important;
 }
 
 a:hover {
@@ -204,6 +202,10 @@ a:hover {
 
 span.roundCardNavArrow.glyphicon.glyphicon-circle-arrow-right.pull-right{
     margin-top: 2px;
+}
+
+.roundCardInfo {
+    margin-top: 4px;
 }
 
 .roundCardInfo .leadText {
@@ -317,6 +319,21 @@ ul.topicsList li {
 
 
 /* Global Quiz Pages */
+.whyContent {
+    font-weight: normal;
+    font-style: iatlic;
+    color: white;
+    cursor: pointer;
+}
+
+.whyContent:hover{
+    cursor:pointer;
+}
+
+.whyContent:active{
+    color: rgba(98, 146, 186, 0.8) !important;
+}
+
 .count{
 
 }
@@ -425,6 +442,14 @@ a.btn.btn-link.takeMeToQuestionLink {
 }
 
 btn.btn-link:hover{
+    color: white !important;
+}
+
+btn.btn-link:active{
+    color: rgba(100, 148, 188, 1) !important;
+}
+
+button.btn.btn-link.text-white {
     color: white;
 }
 

@@ -59,7 +59,7 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "partials/whatsnext.html"
             // controller: "ResultsController"
         })
-        .state('settings.about', {
+        .state('about', {
             url: "/about",
             templateUrl: "partials/about.html"
         })

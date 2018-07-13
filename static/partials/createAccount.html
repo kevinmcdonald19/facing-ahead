@@ -1,40 +1,50 @@
 <div class="content">
-
-
-    <h3>Create Your Account</h3>
-
-    <form role="form">
-        <div class="form-group">
-            <div class="alert alert-danger" ng-if="error && usernameAlreadyExists">
-                A user already has this username, please choose a different one
+        <div id="header_logo" align="center" ui-sref="home" >
+            <img src="images/header_logo_320x50.jpg" border="0">
+        </div>
+        <br/>
+        <br/>
+    
+        <h3>Create Your Account</h3>
+    
+        <form role="form">
+            <div class="form-group">
+                <div class="alert alert-danger" ng-if="error && usernameAlreadyExists">
+                    A user already has this username, please choose a different one
+                </div>
+                <label for="username">Email:</label>
+                <input type="email" class="form-control" id="username" placeholder="Please provide an email..." name="username" ng-model="credentials.username" />
+                <div id="emailHelp" class="form-text text-italic text-white">Note: username is NOT case sensitive</div>
+    
             </div>
-            <label for="username">Email:</label>
-            <input type="email" class="form-control" id="username" name="username" ng-model="credentials.username" />
-            <div id="emailHelp" class="form-text font-italic text-white">Note: username is NOT case sensitive</div>
-
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password1" />
-        </div>
-        <div class="form-group">
-
-            <label for="password">Re-enter Password:</label>
-            <div class="alert alert-danger" ng-show="passwordMismatch">
-                The passwords you entered must match
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Please enter a password..." name="password" ng-model="credentials.password1" />
             </div>
-            <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password2" />
-            <div id="emailHelp" class="form-text font-italic text-white">Note: passwords ARE case sensitive</div>
+            <div class="form-group">
+    
+                <label for="password">Re-enter Password:</label>
+                <div class="alert alert-danger" ng-show="passwordMismatch">
+                    The passwords you entered must match
+                </div>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Re-type your password" ng-model="credentials.password2" />
+                <div id="emailHelp" class="form-text text-italic text-white">Note: passwords ARE case sensitive</div>
+    
+            </div>
+            <hr/>
+            <button type="submit" class="btn btn-clear btn-block" ng-click="createAccount()">Create Account</button>
+            <button class="btn text-white text-underline btn-link btn-block" ui-sref="home">Cancel</div>
 
+        </form>
+    
+        <br/>
+    
+        <div ng-if="success">
+            <div class="alert alert-success">
+                <h3>User successfully created!</h3>
+    
+            </div>
+            <button class="btn btn-clear" ui-sref="login">Proceed to Login</button>
+    
         </div>
-        <button type="submit" class="btn btn-primary" ng-click="createAccount()">Submit</button>
-    </form>
-
-
-
-    <div class="alert alert-success" ng-if="success">
-        User successfully created!
-
-        <button class="btn btn-success" ui-sref="login">Proceed to Login</button>
     </div>
-</div>

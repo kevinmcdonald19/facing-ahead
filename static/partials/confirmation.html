@@ -10,7 +10,7 @@
     <button class="btn btn-clear btn-block" ng-if="user.ableToSubmitResults" ui-sref="confirmation.results">Compare results with partner</button>
 
     <div class="submit_area" ng-if="!user.ableToSubmitResults">
-        <h4>My Outstanding Tasks</h4>
+        <h4 ng-if="!user.quizResponse.allQuestionsAnswered || !user.partnerUsername">My Outstanding Tasks</h4>
 
         <div class="roundCard background-white text-purple" ng-if="!user.quizResponse.allQuestionsAnswered">
 
