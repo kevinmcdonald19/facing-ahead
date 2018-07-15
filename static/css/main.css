@@ -308,13 +308,9 @@ span.roundCardNavArrow.glyphicon.glyphicon-circle-arrow-right.pull-right{
 
 
 /* Topics List */
-.topicTitle {
-    font-weight: bold;
-    background: blue;
-}
 
-ul.topicsList li {
-    padding: 7px;
+ol.topicsList li {
+    margin-bottom: 20px !important;
 }
 
 

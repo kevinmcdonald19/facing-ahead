@@ -15,8 +15,8 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     // preventing cache
     //initialize get if not there
     if (!$httpProvider.defaults.headers.get) {
-        $httpProvider.defaults.headers.get = {};    
-    }    
+        $httpProvider.defaults.headers.get = {};
+    }
 
     // Answer edited to include suggestions from comments
     // because previous version of code introduced browser-related errors
@@ -38,11 +38,6 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('howItWorks', {
             url: "/home/howItWorks",
             templateUrl: "partials/howItWorks.html"
-        })
-        .state('settings.topics', {
-            url: "/home/topics",
-            templateUrl: "partials/topics.html",
-            controller: "TopicsController"
         })
         .state('createAccount', {
             url: "/quiz/createAccount",
@@ -67,6 +62,11 @@ mainModule.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: "/settings",
             templateUrl: "partials/settings.html",
             controller: "HomeController"
+        })
+        .state('topics', {
+            url: "/topics",
+            templateUrl: "partials/topics.html",
+            controller: "TopicsController"
         })
         .state('quiz', {
             url: "/quiz",
