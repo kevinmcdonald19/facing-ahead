@@ -234,23 +234,22 @@ public class UsersController {
 		return p;
 	}
 
-//	// One-time use method to encryp all users' passwords in the system
-//	@RequestMapping(value = "/encryptAllUsers", method = RequestMethod.GET)
-//	public String encryptAllUsers() {
-//		List<User> users = usersRepository.findAll();
-//		int countUpdated = 0;
-//		for (User user : users) {
-//			String plainPassword = user.getPassword();
-//			if (plainPassword != null) {
-//				String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-//				user.setPassword(encodedPassword);
-//				usersRepository.save(user);
-//				countUpdated++;
-//			}
-//		}
-//
-//		return "success: " + countUpdated;
-//	}
+	// One-time use method to encryp all users' passwords in the system
+	@RequestMapping(value = "/resetPasswords", method = RequestMethod.GET)
+	public String encryptAllUsers() {
+		List<User> users = usersRepository.findAll();
+		int countUpdated = 0;
+		for (User user : users) {
+			String plainPassword = user.getPassword();
+			if (plainPassword != null) {
+				user.setPassword(user.getUsername());
+				usersRepository.save(user);
+				countUpdated++;
+			}
+		}
+
+		return "success: " + countUpdated;
+	}
 
 	// One-time use
 	@RequestMapping(value = "/removeUserFromQuizResponse", method = RequestMethod.GET)

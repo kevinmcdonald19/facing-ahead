@@ -42,19 +42,34 @@
                     <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                     Not Sure</label>
             </div>
-            <br/>
-            <br/>
-            <!-- <div class="text-white text-italic text-underline whyContent" data-toggle="collapse" ng-click="toggleWhyContent($index)">Why is this important?</div> -->
 
-            
-            <div ng-attr-id="{{ 'target'+$index }}" id="'target'+$index">
-                <br/>
-                <em>
-                    <p>{{questionAnswer.question.why}}</p>
-                </em>
+            <br/>
+            <br/>
+
+            <div class="panel-group" ng-model="panels.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab">
+                        <div class="panel-title text-italic">
+                            <a bs-collapse-toggle>
+                                Why is this important?
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-collapse" role="tabpanel" bs-collapse-target>
+                        <br/>
+                        <div class="panel-body">
+                            {{questionAnswer.question.why}}
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+
             </div>
-            <hr/>
+            <br/>
+
         </div>
+        <hr/>
+
     </div>
 
     <div ng-include src="'partials/prev_next_buttons.html'"></div>
