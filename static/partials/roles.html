@@ -29,28 +29,44 @@
             </div>
 
             <div class="btn-group" ng-model="roles.answers[questionAnswer.question.id].radio" bs-radio-group>
-                    <label class="btn btn-primary">
-                            <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('roles')">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-        
-                            Yes</label>
-                        <label class="btn btn-primary">
-                            <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('roles')">
-                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                            No</label>
-                        <label class="btn btn-primary">
-                            <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('roles')">
-                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                            Not Sure</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="yes" ng-change="saveAnswers('roles')">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+
+                    Yes</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="no" ng-change="saveAnswers('roles')">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    No</label>
+                <label class="btn btn-primary">
+                    <input type="radio" class="btn btn-default" value="maybe" ng-change="saveAnswers('roles')">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                    Not Sure</label>
             </div>
-            <br/>
-            <br/>
-            <small>
-                <em>
-                    <p>{{questionAnswer.question.why}}</p>
-                </em>
-            </small>
-            <hr/>
+             <!-- why is this important -->
+             <br/>
+             <br/>
+ 
+             <div class="panel-group" ng-model="panels.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
+                 <div class="panel panel-default">
+                     <div class="panel-heading" role="tab">
+                         <div class="panel-title text-italic">
+                             <a bs-collapse-toggle>
+                                 Why is this important?
+                             </a>
+                         </div>
+                     </div>
+                     <div class="panel-collapse" role="tabpanel" bs-collapse-target>
+                         <br/>
+                         <div class="panel-body">
+                             {{questionAnswer.question.why}}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <hr/>
+             <br/>
+             <!-- END OF: why is this important -->
         </div>
     </div>
 
